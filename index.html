@@ -1,0 +1,4058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mesociclo Hipertrofia · 4d · U/L</title>
+<meta name="description" content="Registro de rutina de gimnasio – Mesociclo de hipertrofia 4 días Upper/Lower">
+<meta name="theme-color" content="#0a0a0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rutina">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elev: #141416;
+    --bg-card: #1a1a1d;
+    --border: #2a2a2e;
+    --border-strong: #3a3a40;
+    --text: #e8e8ea;
+    --text-dim: #8a8a90;
+    --text-faint: #5a5a60;
+    --accent: #d4ff3a;
+    --accent-dim: #a8cc2e;
+    --warn: #ff6b3a;
+    --danger: #e13a3a;
+    --ok: #3ad48a;
+    --hombro: #ff9a3a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding-bottom: 80px;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* Header */
+  header {
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+    padding: 24px 20px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 28px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  h1 .accent { color: var(--accent); }
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.15s;
+    border-radius: 0;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .btn.primary:hover { background: var(--accent-dim); color: var(--bg); }
+  .btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* Selectors */
+  .selector-row {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .week-selector, .day-selector {
+    display: flex;
+    gap: 4px;
+  }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    background: var(--bg-elev);
+    color: var(--text-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .pill:hover { border-color: var(--border-strong); color: var(--text); }
+  .pill.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .pill.deload { border-color: var(--warn); color: var(--warn); }
+  .pill.deload.active { background: var(--warn); color: var(--bg); border-color: var(--warn); }
+
+  /* Main container */
+  main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 20px;
+  }
+
+  /* Session header */
+  .session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .session-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .session-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 6px;
+  }
+  .session-params {
+    display: flex;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .param {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .param-label { color: var(--text-faint); font-size: 10px; }
+  .param-value { color: var(--accent); font-size: 14px; font-weight: 700; }
+
+  /* Wellness panel */
+  .wellness {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .wellness-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .wellness-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .wellness-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .wellness-item label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .wellness-item select, .wellness-item input {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 6px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border-radius: 0;
+  }
+  .wellness-item select:focus, .wellness-item input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* Exercise card */
+  .exercise {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .exercise-head {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elev);
+  }
+  .exercise-code {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    color: var(--accent);
+    min-width: 28px;
+  }
+  .exercise-name {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.25;
+  }
+  .exercise-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hombro-warn {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--hombro);
+    background: rgba(255, 154, 58, 0.1);
+    padding: 2px 6px;
+    margin-left: 6px;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--hombro);
+  }
+  .exercise-params {
+    display: flex;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-wrap: wrap;
+  }
+  .exercise-params span strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  /* Sets table */
+  .sets-body { padding: 12px 16px 16px; }
+  .sets-prev {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .sets-prev strong { color: var(--accent-dim); font-weight: 500; }
+  .sets-grid {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .sets-grid.header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .set-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .set-input {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 0;
+    text-align: center;
+  }
+  .set-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(212, 255, 58, 0.05);
+  }
+  .set-input.done { border-color: var(--ok); color: var(--ok); }
+  .set-check {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--text-faint);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .set-check:hover { border-color: var(--ok); color: var(--ok); }
+  .set-check.checked { background: var(--ok); color: var(--bg); border-color: var(--ok); }
+
+  .exercise-notes {
+    margin-top: 10px;
+  }
+  .exercise-notes textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    min-height: 40px;
+    resize: vertical;
+    border-radius: 0;
+  }
+  .exercise-notes textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* Tech notes modal */
+  .tech-note-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 4px 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.15s;
+  }
+  .tech-note-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .tech-note-content {
+    padding: 12px 16px;
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    line-height: 1.6;
+    display: none;
+  }
+  .tech-note-content.open { display: block; }
+
+  /* Footer status */
+  .footer-status {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+  .status-left { color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+  .status-indicator { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; background: var(--ok); border-radius: 50%; }
+  .dot.warn { background: var(--warn); }
+  .dot.off { background: var(--text-faint); }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .modal h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .modal p { margin-bottom: 12px; font-size: 14px; }
+  .modal label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    margin-top: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .modal input[type="text"], .modal input[type="url"], .modal textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border-radius: 0;
+    margin-bottom: 8px;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  /* Modal rutinas — listado con acciones por fila */
+  .modal.modal-wide { max-width: 760px; }
+  .routines-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .routines-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .routine-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .routine-card.active {
+    border-color: var(--accent);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  .routine-info { min-width: 0; }
+  .routine-name-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .routine-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .routine-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 2px 6px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+  .routine-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .routine-meta strong { color: var(--text); font-weight: 700; }
+  .routine-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 6px;
+  }
+  .routine-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: stretch;
+    min-width: 100px;
+  }
+  .routine-actions .btn {
+    font-size: 10px;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  .routine-actions .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .routine-actions .btn:disabled:hover {
+    border-color: var(--border-strong);
+    color: var(--text-dim);
+  }
+  .routines-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Panel de volumen semanal */
+  .volume-panel {
+    margin-top: 32px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .volume-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .volume-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 8px;
+  }
+  .volume-cell {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .volume-cell .label {
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .volume-cell .value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-top: 2px;
+  }
+  .volume-cell .target {
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-top: 1px;
+  }
+
+  /* Finish section */
+  .finish-section {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+  .finish-summary {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .finish-summary strong { color: var(--text); font-weight: 700; }
+  .btn-finish-session {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    background: var(--ok);
+    color: var(--bg);
+    border: none;
+    padding: 20px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-finish-session:hover { background: var(--accent); }
+  .btn-finish-session.completed {
+    background: var(--bg-elev);
+    color: var(--ok);
+    border: 1px solid var(--ok);
+  }
+  .btn-finish-session.completed:hover { background: var(--bg-card); }
+  .finish-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  /* Finish Timer (tiempo total en header) */
+  .session-duration {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+  .session-duration.active { color: var(--accent); }
+
+  /* Rest Timer flotante */
+  .rest-timer {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120%);
+    background: var(--accent);
+    color: var(--bg);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Archivo Black', sans-serif;
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--accent), 0 10px 40px rgba(0,0,0,0.6);
+    z-index: 200;
+    transition: transform 0.3s cubic-bezier(.2,.9,.3,1.2);
+    min-width: 280px;
+    max-width: 90vw;
+  }
+  .rest-timer.visible { transform: translateX(-50%) translateY(0); }
+  .rest-timer.finished { background: var(--warn); animation: pulse 0.6s ease-in-out 3; }
+  .rest-timer.paused { background: var(--text-dim); }
+  .rest-timer.paused .rest-time { opacity: 0.7; }
+  @keyframes pulse {
+    0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+    50% { transform: translateX(-50%) translateY(0) scale(1.05); }
+  }
+  .rest-time {
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    min-width: 90px;
+    text-align: center;
+  }
+  .rest-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .rest-exercise {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rest-actions { display: flex; gap: 6px; margin-left: auto; }
+  .rest-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--bg);
+    color: var(--accent);
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rest-btn:hover { opacity: 0.85; }
+  .rest-btn.close { background: transparent; color: var(--bg); padding: 6px 8px; }
+
+  /* Set row nueva */
+  .set-row {
+    display: grid;
+    grid-template-columns: 30px 1fr 1fr 1fr 72px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .set-row.header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .set-row.done-row .set-input:not(:focus) {
+    border-color: var(--ok);
+    color: var(--ok);
+  }
+  .btn-fin {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 12px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 8px 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    height: 36px;
+    transition: all 0.15s;
+  }
+  .btn-fin:hover { background: var(--accent-dim); }
+  .btn-fin.done {
+    background: var(--ok);
+    color: var(--bg);
+  }
+  .btn-fin.done:hover { background: transparent; color: var(--ok); border: 1px solid var(--ok); }
+
+  /* Placeholder sugerido */
+  .set-input.suggested:not(:focus) {
+    color: var(--text-faint);
+    font-style: italic;
+  }
+  .set-input.suggested:not(:focus)::placeholder {
+    color: var(--text-faint);
+    opacity: 1;
+  }
+
+  /* Editor de rutina — pantalla completa (Fase 3) */
+  #editor-main { display: none; }
+  body.editor-mode header,
+  body.editor-mode main { display: none; }
+  body.editor-mode #editor-main { display: block; }
+  body.editor-mode .footer-status { display: none; }
+  body.editor-mode { padding-bottom: 0; }
+
+  .editor-header {
+    background: var(--bg);
+    border-bottom: 2px solid var(--border);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .editor-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .editor-title .accent { color: var(--accent); }
+  .editor-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+  .editor-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .editor-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+  .editor-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .editor-section-head {
+    padding: 14px 16px;
+    background: var(--bg-elev);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .editor-section-head:hover { background: #1e1e22; }
+  .editor-section-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .editor-section-chevron {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    transition: transform 0.15s;
+  }
+  .editor-section.collapsed .editor-section-chevron { transform: rotate(-90deg); }
+  .editor-section.collapsed .editor-section-body { display: none; }
+  .editor-section-body { padding: 16px; }
+
+  .editor-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .editor-field { display: flex; flex-direction: column; gap: 4px; }
+  .editor-field label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .editor-field input,
+  .editor-field textarea,
+  .editor-field select {
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border-radius: 0;
+    font-weight: 500;
+  }
+  .editor-field textarea { resize: vertical; min-height: 60px; font-family: 'Inter', sans-serif; font-size: 13px; }
+  .editor-field input:focus,
+  .editor-field textarea:focus,
+  .editor-field select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .editor-field input[readonly] {
+    background: var(--bg-elev);
+    color: var(--text-dim);
+    cursor: not-allowed;
+  }
+  .editor-field .hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-faint);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .editor-field-wide { grid-column: 1 / -1; }
+
+  /* Tabla de semanas */
+  .weeks-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .weeks-table th {
+    text-align: left;
+    padding: 8px 6px;
+    color: var(--text-faint);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .weeks-table td {
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .weeks-table input[type="text"],
+  .weeks-table input[type="number"] {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    border-radius: 0;
+  }
+  .weeks-table input:focus { outline: none; border-color: var(--accent); }
+  .weeks-table input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; transform: scale(1.2); }
+  .weeks-table .week-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-align: center;
+    width: 32px;
+  }
+  .weeks-table .col-actions { width: 36px; text-align: center; }
+  .btn-row-delete {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-faint);
+    padding: 4px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .btn-row-delete:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* Lista de días */
+  .days-list { display: flex; flex-direction: column; gap: 10px; }
+  .day-row {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 28px 1fr 1fr 1fr auto auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .day-row-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    color: var(--accent);
+    text-align: center;
+  }
+  .day-reorder-btns { display: flex; flex-direction: column; gap: 2px; }
+  .btn-reorder {
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-dim);
+    padding: 2px 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .btn-reorder:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn-reorder:disabled { opacity: 0.3; cursor: not-allowed; }
+  .day-row-info {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-faint);
+    grid-column: 1 / -1;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .day-row-info strong { color: var(--text); font-weight: 700; }
+
+  .editor-add-btn {
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    color: var(--text-dim);
+    padding: 10px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .editor-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    h1 { font-size: 22px; }
+    .session-title { font-size: 22px; }
+    .exercise-head {
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+    }
+    .exercise-params {
+      grid-column: 1 / -1;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      margin-top: 4px;
+    }
+    .sets-grid {
+      grid-template-columns: 30px 1fr 1fr 1fr auto;
+      gap: 6px;
+    }
+    .set-row {
+      grid-template-columns: 26px 1fr 1fr 1fr 60px;
+      gap: 5px;
+    }
+    .set-input { font-size: 13px; padding: 6px 4px; }
+    .btn-fin { font-size: 11px; padding: 6px 2px; height: 34px; }
+    .session-params { gap: 16px; }
+    .rest-timer { min-width: auto; padding: 10px 14px; gap: 10px; }
+    .rest-time { font-size: 26px; min-width: 70px; }
+    .rest-exercise { max-width: 100px; font-size: 10px; }
+    .routine-card { grid-template-columns: 1fr; }
+    .routine-actions { flex-direction: row; flex-wrap: wrap; min-width: 0; }
+    .routine-actions .btn { flex: 1 1 auto; min-width: 72px; }
+    .editor-title { font-size: 15px; }
+    .editor-actions .btn { font-size: 10px; padding: 6px 10px; }
+    .day-row { grid-template-columns: 24px 1fr auto auto; gap: 6px; }
+    .day-row .field-foco-wrap { grid-column: 1 / -1; }
+    .weeks-table { font-size: 11px; }
+    .weeks-table th, .weeks-table td { padding: 4px 3px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div>
+      <h1 id="app-title">Mesociclo <span class="accent">Hipertrofia</span></h1>
+      <div class="subtitle" id="app-subtitle">4D · Upper/Lower · 5 semanas · Juan K</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn primary" id="btn-install" style="display:none;" onclick="handleInstall()">📲 Instalar</button>
+      <button class="btn" id="btn-routines">Rutinas</button>
+      <button class="btn" id="btn-export">Exportar JSON</button>
+      <button class="btn" id="btn-import">Importar</button>
+      <button class="btn" id="btn-sheets">Sheets</button>
+      <button class="btn danger" id="btn-reset">Reset</button>
+    </div>
+  </div>
+  <div class="selector-row">
+    <div class="week-selector" id="week-selector"></div>
+    <div style="width: 16px;"></div>
+    <div class="day-selector" id="day-selector"></div>
+  </div>
+</header>
+
+<main>
+  <section class="session-header">
+    <div>
+      <div class="session-title" id="session-title">Día 1 · Upper A</div>
+      <div class="session-meta" id="session-meta">Pecho + Espalda horizontal</div>
+    </div>
+    <div class="session-params">
+      <div class="param">
+        <span class="param-label">RIR objetivo</span>
+        <span class="param-value" id="rir-target">3</span>
+      </div>
+      <div class="param">
+        <span class="param-label">Carga vs base</span>
+        <span class="param-value" id="load-target">100%</span>
+      </div>
+      <div class="param">
+        <span class="param-label">Fase</span>
+        <span class="param-value" id="phase-label">MEV</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="wellness">
+    <div class="wellness-title">Indicadores subjetivos · pre-entreno</div>
+    <div class="wellness-grid" id="wellness-grid"></div>
+  </section>
+
+  <section id="exercises-container"></section>
+
+  <section class="volume-panel">
+    <div class="volume-title">Volumen semanal · series completadas / objetivo</div>
+    <div class="volume-grid" id="volume-grid"></div>
+  </section>
+
+  <section class="finish-section">
+    <div class="finish-summary" id="finish-summary"></div>
+    <button class="btn-finish-session" id="btn-finish-session">
+      <span class="finish-icon">✓</span>
+      <span id="finish-btn-label">Finalizar rutina del día</span>
+    </button>
+  </section>
+</main>
+
+<!-- Editor de rutina (Fase 3) — pantalla completa, se muestra cuando body.editor-mode -->
+<div id="editor-main">
+  <div class="editor-header">
+    <div>
+      <div class="editor-title" id="editor-title">Editor · <span class="accent" id="editor-title-name">—</span></div>
+      <div class="editor-subtitle" id="editor-subtitle">Editando rutina</div>
+    </div>
+    <div class="editor-actions">
+      <button class="btn" id="btn-editor-cancel">← Cancelar</button>
+      <button class="btn primary" id="btn-editor-save">Guardar</button>
+    </div>
+  </div>
+  <div class="editor-body">
+
+    <!-- Sección META -->
+    <div class="editor-section" id="section-meta">
+      <div class="editor-section-head" data-toggle-section="section-meta">
+        <div class="editor-section-title">Metadatos</div>
+        <div class="editor-section-chevron">▾</div>
+      </div>
+      <div class="editor-section-body">
+        <div class="editor-form-grid">
+          <div class="editor-field">
+            <label>Nombre *</label>
+            <input type="text" id="edit-meta-nombre" placeholder="Mi Rutina PPL">
+          </div>
+          <div class="editor-field">
+            <label>Atleta</label>
+            <input type="text" id="edit-meta-atleta" placeholder="Juan K">
+          </div>
+          <div class="editor-field">
+            <label>Objetivo</label>
+            <input type="text" id="edit-meta-objetivo" placeholder="Hipertrofia / Fuerza / ...">
+          </div>
+          <div class="editor-field">
+            <label>Split (descripción)</label>
+            <input type="text" id="edit-meta-split" placeholder="Upper/Lower 4d">
+          </div>
+          <div class="editor-field">
+            <label>Lesión hombro</label>
+            <select id="edit-meta-lesion-hombro">
+              <option value="false">No</option>
+              <option value="true">Sí</option>
+            </select>
+          </div>
+          <div class="editor-field editor-field-wide">
+            <label>Notas</label>
+            <textarea id="edit-meta-notas" rows="2" placeholder="Notas libres sobre la rutina..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección SEMANAS -->
+    <div class="editor-section" id="section-weeks">
+      <div class="editor-section-head" data-toggle-section="section-weeks">
+        <div class="editor-section-title">Plan semanal</div>
+        <div class="editor-section-chevron">▾</div>
+      </div>
+      <div class="editor-section-body">
+        <div style="overflow-x: auto;">
+          <table class="weeks-table" id="weeks-table">
+            <thead>
+              <tr>
+                <th class="week-num">#</th>
+                <th>Fase</th>
+                <th>RIR</th>
+                <th>Carga ×</th>
+                <th>Series ±</th>
+                <th>Deload</th>
+                <th class="col-actions"></th>
+              </tr>
+            </thead>
+            <tbody id="weeks-tbody"></tbody>
+          </table>
+        </div>
+        <button class="editor-add-btn" id="btn-add-week">＋ Agregar semana</button>
+      </div>
+    </div>
+
+    <!-- Sección DÍAS -->
+    <div class="editor-section" id="section-days">
+      <div class="editor-section-head" data-toggle-section="section-days">
+        <div class="editor-section-title">Días</div>
+        <div class="editor-section-chevron">▾</div>
+      </div>
+      <div class="editor-section-body">
+        <div class="days-list" id="days-list"></div>
+        <button class="editor-add-btn" id="btn-add-day">＋ Agregar día</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Rest Timer flotante -->
+<div class="rest-timer" id="rest-timer">
+  <div>
+    <div class="rest-label" id="rest-label">Descanso</div>
+    <div class="rest-exercise" id="rest-exercise"></div>
+  </div>
+  <div class="rest-time mono" id="rest-time">2:30</div>
+  <div class="rest-actions">
+    <button class="rest-btn" id="rest-minus">−15</button>
+    <button class="rest-btn" id="rest-plus">+15</button>
+    <button class="rest-btn" id="rest-pause">❚❚</button>
+    <button class="rest-btn close" id="rest-close">✕</button>
+  </div>
+</div>
+
+<div class="footer-status">
+  <div class="status-left">
+    <span class="status-indicator"><span class="dot" id="local-dot"></span>Local</span>
+    &nbsp;·&nbsp;
+    <span class="status-indicator"><span class="dot off" id="sheets-dot"></span>Sheets</span>
+    &nbsp;·&nbsp;
+    <span id="autosave-status">Autoguardado activo</span>
+  </div>
+  <div class="status-left" id="session-stats"></div>
+</div>
+
+<!-- Modal Sheets config -->
+<div class="modal-overlay" id="modal-sheets">
+  <div class="modal">
+    <h2>Integración Google Sheets</h2>
+    <p style="color: var(--text-dim); font-size: 13px;">
+      La integración con Sheets requiere desplegar un Google Apps Script como Web App.
+      <a href="#" id="link-show-script" style="color: var(--accent);">Ver script a copiar ▾</a>
+    </p>
+    <div id="script-block" style="display:none; margin: 12px 0; background: var(--bg); border: 1px solid var(--border); padding: 10px; max-height: 260px; overflow: auto;">
+      <pre id="script-code" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text); white-space: pre-wrap; margin: 0;"></pre>
+      <button class="btn" id="btn-copy-script" style="margin-top: 8px;">Copiar script</button>
+    </div>
+    <details style="margin: 8px 0; font-size: 12px; color: var(--text-dim);">
+      <summary style="cursor: pointer; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.05em; font-size: 11px;">Pasos de despliegue</summary>
+      <ol style="padding-left: 20px; margin-top: 8px; line-height: 1.7;">
+        <li>Abrí un <b>Google Sheet nuevo</b></li>
+        <li>Menú: <b>Extensiones → Apps Script</b></li>
+        <li>Borrá el código por defecto y pegá el script (link arriba)</li>
+        <li>Cambiá <code>cambia-este-token</code> por tu token (mismo que pegás acá)</li>
+        <li><b>Guardá</b> con el disquete, nombrá el proyecto</li>
+        <li><b>Desplegar → Nueva implementación → Aplicación web</b></li>
+        <li>Ejecutar como: <b>Yo</b></li>
+        <li>Quién tiene acceso: <b style="color: var(--warn);">Cualquier usuario</b> (crítico)</li>
+        <li>Aceptá permisos, copiá la URL que termina en <code>/exec</code></li>
+        <li>Pegá la URL acá abajo y tocá <b>Probar conexión</b></li>
+      </ol>
+      <p style="margin-top: 8px; color: var(--warn); font-size: 11px;">
+        ⚠ Si modificás el script después, usá <b>Administrar implementaciones → lápiz → Nueva versión</b> (no nueva implementación, eso cambia la URL).
+      </p>
+    </details>
+    <label>URL del Web App</label>
+    <input type="url" id="sheets-url" placeholder="https://script.google.com/macros/s/AKfyc.../exec">
+    <label>Token</label>
+    <input type="text" id="sheets-token" placeholder="tu-token-secreto">
+    <div class="modal-actions">
+      <button class="btn" id="btn-sheets-test">Probar conexión</button>
+      <button class="btn" id="btn-sheets-sync">Sincronizar ahora</button>
+      <button class="btn primary" id="btn-sheets-save">Guardar</button>
+      <button class="btn" id="btn-sheets-close">Cerrar</button>
+    </div>
+    <p id="sheets-msg" style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.5; min-height: 18px;"></p>
+  </div>
+</div>
+
+<!-- Modal Import -->
+<div class="modal-overlay" id="modal-import">
+  <div class="modal">
+    <h2>Importar datos</h2>
+    <p style="color: var(--text-dim); font-size: 13px;">Pega el JSON exportado previamente.</p>
+    <textarea id="import-data" rows="10" style="width: 100%; margin-top: 8px;"></textarea>
+    <div class="modal-actions">
+      <button class="btn primary" id="btn-import-confirm">Importar</button>
+      <button class="btn" id="btn-import-close">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Rutinas -->
+<div class="modal-overlay" id="modal-routines">
+  <div class="modal modal-wide">
+    <h2>Gestor de rutinas</h2>
+    <div class="routines-toolbar">
+      <button class="btn" id="btn-routine-new">＋ Crear desde cero</button>
+      <button class="btn" id="btn-routine-import" title="Disponible en Fase 5" disabled>Importar rutina</button>
+    </div>
+    <div class="routines-list" id="routines-list"></div>
+    <div class="modal-actions">
+      <button class="btn" id="btn-routines-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================
+   DEFINICIÓN DE LA RUTINA (mesociclo 5 semanas)
+   Nota: DEFAULT_ROUTINE es la rutina-plantilla hardcodeada.
+   El resto del código accede a la rutina activa vía routineStore,
+   nunca directo. Esto permitirá en fases siguientes tener múltiples
+   rutinas y editarlas sin tocar render/sync.
+   ============================================ */
+const DEFAULT_ROUTINE = {
+  meta: {
+    nombre: "Mesociclo Hipertrofia",
+    atleta: "Juan K",
+    edad: 59,
+    peso: 89,
+    altura: 176,
+    objetivo: "Hipertrofia con transferencia a fuerza",
+    split: "Upper/Lower 4d",
+    duracion_semanas: 5,
+    lesion_hombro: true
+  },
+  semanas: [
+    { n: 1, fase: "MEV", rir: 3, carga: 1.0, series_extra: 0, deload: false },
+    { n: 2, fase: "Acumulación", rir: 2, carga: 1.0, series_extra: 1, deload: false },
+    { n: 3, fase: "Acumulación", rir: 2, carga: 1.02, series_extra: 1, deload: false },
+    { n: 4, fase: "MAV / Pico", rir: 1, carga: 1.05, series_extra: 2, deload: false },
+    { n: 5, fase: "Deload", rir: 4, carga: 0.9, series_extra: -2, deload: true }
+  ],
+  objetivos_volumen: {
+    "Pecho":       { mev: 10, mav: 16 },
+    "Espalda":     { mev: 12, mav: 18 },
+    "Hombro lat/post": { mev: 8, mav: 12 },
+    "Cuádriceps":  { mev: 10, mav: 14 },
+    "Isquios/Glúteo": { mev: 10, mav: 14 },
+    "Bíceps":      { mev: 8, mav: 12 },
+    "Tríceps":     { mev: 8, mav: 12 }
+  },
+  dias: [
+    {
+      id: "D1",
+      nombre: "Upper A",
+      foco: "Pecho + Espalda horizontal",
+      ejercicios: [
+        {
+          id: "D1-A1", codigo: "A1",
+          nombre: "Press banca inclinado con mancuernas",
+          variante_semana_par: "Incline press máquina",
+          grupos: ["Pecho"],
+          series_base: 3, reps: "8-10", tempo: "3-1-1-0",
+          descanso: "2:30", hombro_flag: true,
+          nota: "30° inclinación, codos 45-60° del torso, escápulas retraídas. Si molesta hombro, reduce rango — no empujes el dolor."
+        },
+        {
+          id: "D1-A2", codigo: "A2",
+          nombre: "Remo en T-bar",
+          variante_semana_par: "Remo sentado polea (neutro)",
+          grupos: ["Espalda"],
+          series_base: 3, reps: "8-10", tempo: "3-0-1-1",
+          descanso: "2:30",
+          nota: "Cadera bisagrada, espalda neutra, tira codo hacia cadera, aprieta escápula arriba."
+        },
+        {
+          id: "D1-B1", codigo: "B1",
+          nombre: "Decline chest press máquina",
+          grupos: ["Pecho"],
+          series_base: 3, reps: "10-12", tempo: "2-1-1-0",
+          descanso: "2:00", hombro_flag: true,
+          nota: "Ángulo descendente muy amigable al hombro. Controla excéntrica."
+        },
+        {
+          id: "D1-B2", codigo: "B2",
+          nombre: "Remo sentado polea (ancho neutro)",
+          grupos: ["Espalda"],
+          series_base: 3, reps: "10-12", tempo: "2-1-1-1",
+          descanso: "2:00"
+        },
+        {
+          id: "D1-C1", codigo: "C1",
+          nombre: "Apertura en máquina (pec deck)",
+          grupos: ["Pecho"],
+          series_base: 2, reps: "12-15", tempo: "3-1-2-0",
+          descanso: "90s", hombro_flag: true,
+          nota: "Estiramiento controlado, no fuerces más allá del plano del pecho."
+        },
+        {
+          id: "D1-C2", codigo: "C2",
+          nombre: "Face pull polea alta",
+          grupos: ["Espalda", "Hombro lat/post"],
+          series_base: 3, reps: "15-20", tempo: "2-1-1-2",
+          descanso: "60s"
+        },
+        {
+          id: "D1-D", codigo: "D",
+          nombre: "Rotación externa en polea (manguito)",
+          grupos: ["Prehab"],
+          series_base: 2, reps: "15", tempo: "3-0-2-0",
+          descanso: "60s", hombro_flag: true,
+          nota: "Carga muy ligera, énfasis en control. Codo fijo a 90°."
+        }
+      ]
+    },
+    {
+      id: "D2",
+      nombre: "Lower A",
+      foco: "Cuádriceps + Isquios",
+      ejercicios: [
+        {
+          id: "D2-A", codigo: "A",
+          nombre: "Prensa 45°",
+          variante_semana_par: "Linear leg press",
+          grupos: ["Cuádriceps"],
+          series_base: 4, reps: "8-10", tempo: "3-1-1-0",
+          descanso: "3:00",
+          nota: "Pies medios, no bloquees rodillas arriba. Rango completo sin despegar lumbar."
+        },
+        {
+          id: "D2-B", codigo: "B",
+          nombre: "Peso muerto rumano con mancuernas",
+          grupos: ["Isquios/Glúteo"],
+          series_base: 3, reps: "8-10", tempo: "3-1-1-0",
+          descanso: "2:30",
+          nota: "Rodillas semiflexionadas y fijas, bisagra pura desde cadera. Baja hasta estiramiento isquio sin redondear lumbar."
+        },
+        {
+          id: "D2-C", codigo: "C",
+          nombre: "Extensión de cuádriceps",
+          grupos: ["Cuádriceps"],
+          series_base: 3, reps: "12-15", tempo: "2-1-2-1",
+          descanso: "90s"
+        },
+        {
+          id: "D2-D", codigo: "D",
+          nombre: "Curl femoral tumbado",
+          grupos: ["Isquios/Glúteo"],
+          series_base: 3, reps: "10-12", tempo: "3-1-1-1",
+          descanso: "90s"
+        },
+        {
+          id: "D2-E", codigo: "E",
+          nombre: "Elevación de gemelos de pie",
+          grupos: ["Pantorrilla"],
+          series_base: 3, reps: "12-15", tempo: "2-2-1-1",
+          descanso: "60s"
+        },
+        {
+          id: "D2-F", codigo: "F",
+          nombre: "Plancha frontal",
+          grupos: ["Core"],
+          series_base: 3, reps: "30-45s", tempo: "iso",
+          descanso: "60s"
+        }
+      ]
+    },
+    {
+      id: "D3",
+      nombre: "Upper B",
+      foco: "Hombro + Espalda vertical",
+      ejercicios: [
+        {
+          id: "D3-A1", codigo: "A1",
+          nombre: "Landmine press unilateral",
+          variante_semana_par: "Shoulder press máquina",
+          grupos: ["Pecho", "Hombro lat/post"],
+          series_base: 3, reps: "8-10", tempo: "3-1-1-0",
+          descanso: "2:30", hombro_flag: true,
+          nota: "Plano escapular (entre frontal y lateral), codo viaja 0-70°. Angulo seguro para hombro lesionado."
+        },
+        {
+          id: "D3-A2", codigo: "A2",
+          nombre: "Jalón al pecho (agarre neutro)",
+          grupos: ["Espalda"],
+          series_base: 3, reps: "8-10", tempo: "3-0-1-1",
+          descanso: "2:30"
+        },
+        {
+          id: "D3-B1", codigo: "B1",
+          nombre: "Elevación lateral en máquina",
+          variante_semana_par: "Elevación lateral mancuerna",
+          grupos: ["Hombro lat/post"],
+          series_base: 3, reps: "12-15", tempo: "2-1-2-1",
+          descanso: "90s", hombro_flag: true,
+          nota: "Resistencia constante — ideal para hombro lesionado. Sin sacudida inicial."
+        },
+        {
+          id: "D3-B2", codigo: "B2",
+          nombre: "Pullover en polea recto",
+          grupos: ["Espalda"],
+          series_base: 3, reps: "10-12", tempo: "3-1-1-0",
+          descanso: "90s"
+        },
+        {
+          id: "D3-C1", codigo: "C1",
+          nombre: "Curl bíceps en predicador",
+          variante_semana_par: "Curl mancuerna supinación",
+          grupos: ["Bíceps"],
+          series_base: 3, reps: "10-12", tempo: "3-0-1-1",
+          descanso: "90s"
+        },
+        {
+          id: "D3-C2", codigo: "C2",
+          nombre: "Extensión tríceps polea (cuerda)",
+          variante_semana_par: "Seated dip machine",
+          grupos: ["Tríceps"],
+          series_base: 3, reps: "12-15", tempo: "2-1-1-1",
+          descanso: "90s"
+        },
+        {
+          id: "D3-D", codigo: "D",
+          nombre: "Reverse fly en máquina (deltoides posterior)",
+          grupos: ["Hombro lat/post"],
+          series_base: 2, reps: "15-20", tempo: "2-1-2-1",
+          descanso: "60s"
+        }
+      ]
+    },
+    {
+      id: "D4",
+      nombre: "Lower B",
+      foco: "Glúteo + Unilateral",
+      ejercicios: [
+        {
+          id: "D4-A", codigo: "A",
+          nombre: "Hip thrust con barra",
+          variante_semana_par: "Glute isolator máquina",
+          grupos: ["Isquios/Glúteo"],
+          series_base: 4, reps: "8-10", tempo: "2-1-1-2",
+          descanso: "2:30",
+          nota: "Barbilla metida, no hiperextender lumbar, empuja con talones, glúteo 1s arriba."
+        },
+        {
+          id: "D4-B", codigo: "B",
+          nombre: "Sentadilla búlgara con mancuernas",
+          grupos: ["Cuádriceps", "Isquios/Glúteo"],
+          series_base: 3, reps: "8-10 /pierna", tempo: "3-1-1-0",
+          descanso: "2:00"
+        },
+        {
+          id: "D4-C", codigo: "C",
+          nombre: "Peso muerto rumano mancuernas (énfasis isquio)",
+          grupos: ["Isquios/Glúteo"],
+          series_base: 3, reps: "10-12", tempo: "3-2-1-0",
+          descanso: "2:00"
+        },
+        {
+          id: "D4-D", codigo: "D",
+          nombre: "Abductor en máquina",
+          grupos: ["Isquios/Glúteo"],
+          series_base: 3, reps: "12-15", tempo: "2-1-2-1",
+          descanso: "60s"
+        },
+        {
+          id: "D4-E", codigo: "E",
+          nombre: "Elevación gemelos sentado",
+          grupos: ["Pantorrilla"],
+          series_base: 3, reps: "12-15", tempo: "2-2-1-1",
+          descanso: "60s"
+        },
+        {
+          id: "D4-F", codigo: "F",
+          nombre: "Pallof press (anti-rotación)",
+          grupos: ["Core"],
+          series_base: 3, reps: "10 /lado", tempo: "2-2-2-0",
+          descanso: "60s"
+        }
+      ]
+    }
+  ]
+};
+
+/* ============================================
+   ROUTINE STORE — capa de acceso a la rutina activa
+   ============================================
+   Única fuente de verdad para leer datos de la rutina. El resto del
+   código nunca accede al objeto de rutina directamente; va por acá.
+   En fases futuras, setActiveRoutine() cambiará `activeRoutine` a
+   una rutina distinta cargada de localStorage, sin que render/sync
+   se enteren.
+*/
+let activeRoutine = DEFAULT_ROUTINE;
+
+function getRoutine() {
+  return activeRoutine;
+}
+
+function setActiveRoutine(routine) {
+  if (!routine || !Array.isArray(routine.semanas) || !Array.isArray(routine.dias)) {
+    console.warn("setActiveRoutine: rutina inválida, se ignora", routine);
+    return false;
+  }
+  activeRoutine = routine;
+  return true;
+}
+
+function getMeta() {
+  return activeRoutine.meta || {};
+}
+
+function getAtleta() {
+  return (activeRoutine.meta && activeRoutine.meta.atleta) || "";
+}
+
+function getWeeks() {
+  return activeRoutine.semanas || [];
+}
+
+function getWeek(n) {
+  return (activeRoutine.semanas || []).find(w => w.n === n) || null;
+}
+
+function getWeeksCount() {
+  return (activeRoutine.semanas || []).length;
+}
+
+function getDays() {
+  return activeRoutine.dias || [];
+}
+
+function getDay(id) {
+  return (activeRoutine.dias || []).find(d => d.id === id) || null;
+}
+
+function getFirstDayId() {
+  const dias = activeRoutine.dias || [];
+  return dias.length > 0 ? dias[0].id : null;
+}
+
+function getExercisesForDay(dayId) {
+  const day = getDay(dayId);
+  return day ? (day.ejercicios || []) : [];
+}
+
+function getVolumeTargets() {
+  return activeRoutine.objetivos_volumen || {};
+}
+
+function hasVolumeTarget(grupo) {
+  return !!(activeRoutine.objetivos_volumen && activeRoutine.objetivos_volumen[grupo]);
+}
+
+/* ============================================
+   ESTADO GLOBAL Y PERSISTENCIA (v2 — multi-rutina)
+   ============================================
+   Schema:
+     rutina_routines_v2 → { routines: {[id]: RoutineDef}, activeRoutineId }
+     rutina_logs_v2     → { [routineId]: { weeks, currentWeek, currentDay } }
+     rutina_config_v1   → intacta (sheetsUrl, sheetsToken)
+     rutina_juank_v1    → se mantiene como backup (no se toca)
+
+   La variable `state` apunta siempre al log de la rutina ACTIVA.
+   Reasignarla (no mutar la referencia global) al cambiar de rutina.
+*/
+const LEGACY_KEY_V1 = "rutina_juank_v1";
+const ROUTINES_KEY  = "rutina_routines_v2";
+const LOGS_KEY      = "rutina_logs_v2";
+const CONFIG_KEY    = "rutina_config_v1";
+const LIBRARY_KEY   = "rutina_exercise_library_v1";
+
+const DEFAULT_ROUTINE_ID = "default-hipertrofia-juank";
+
+/* ============================================
+   LIBRERÍA DE EJERCICIOS — seed inicial
+   ============================================
+   Cada ejercicio en la librería es reutilizable entre rutinas.
+   Un ejercicio DENTRO de una rutina puede referenciar un library_id,
+   o seguir siendo inline (legacy, campos nombre/grupos/nota propios).
+   Grupos canónicos: Pecho, Espalda, Hombro lat/post, Cuádriceps,
+   Isquios/Glúteo, Bíceps, Tríceps, Pantorrilla, Core, Prehab.
+*/
+const DEFAULT_EXERCISE_LIBRARY = {
+  // === Pecho ===
+  "press-banca-plano-barra":      { nombre: "Press banca plano con barra",      grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Escápulas retraídas, codos ~45° del torso, barra al pecho controlada." },
+  "press-banca-incl-mancuernas":  { nombre: "Press banca inclinado con mancuernas", grupos: ["Pecho"], hombro_flag: true,  nota_default: "30° inclinación, codos 45-60°, escápulas retraídas." },
+  "press-incl-maquina":           { nombre: "Incline press máquina",             grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Resistencia constante, amigable al hombro." },
+  "press-banca-decl-maquina":     { nombre: "Decline chest press máquina",       grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Ángulo descendente, muy seguro para hombro." },
+  "apertura-maquina":             { nombre: "Apertura en máquina (pec deck)",    grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Estiramiento controlado, no fuerces más allá del plano del pecho." },
+  "apertura-mancuernas-plana":    { nombre: "Apertura con mancuernas plana",     grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Codos ligeramente flexionados y fijos." },
+  "cross-over-polea":             { nombre: "Cross-over en polea",               grupos: ["Pecho"],     hombro_flag: false, nota_default: "Ajustar altura poleas según zona a enfatizar." },
+  "fondos-paralelas":             { nombre: "Fondos en paralelas",               grupos: ["Pecho", "Tríceps"], hombro_flag: true, nota_default: "Inclinar torso adelante para enfatizar pecho; vertical para tríceps." },
+
+  // === Espalda ===
+  "dominadas":                    { nombre: "Dominadas",                         grupos: ["Espalda", "Bíceps"], hombro_flag: false, nota_default: "Omóplatos abajo al iniciar, llevar pecho a la barra." },
+  "jalon-pecho-agarre-ancho":     { nombre: "Jalón al pecho agarre ancho",       grupos: ["Espalda"],  hombro_flag: false, nota_default: "Barra al pecho, codos hacia caderas." },
+  "jalon-pecho-neutro":           { nombre: "Jalón al pecho agarre neutro",      grupos: ["Espalda"],  hombro_flag: false, nota_default: "Agarre neutro reduce estrés en hombro." },
+  "remo-tbar":                    { nombre: "Remo en T-bar",                     grupos: ["Espalda"],  hombro_flag: false, nota_default: "Cadera bisagrada, espalda neutra, codo hacia cadera." },
+  "remo-sentado-polea":           { nombre: "Remo sentado polea (agarre neutro)", grupos: ["Espalda"], hombro_flag: false, nota_default: "Retracción escapular, llevar agarre al abdomen." },
+  "remo-mancuerna-unilateral":    { nombre: "Remo mancuerna unilateral",         grupos: ["Espalda"],  hombro_flag: false, nota_default: "Apoyado en banco, torso paralelo al piso, tirar hasta cadera." },
+  "remo-barra-pendlay":           { nombre: "Remo con barra (Pendlay)",          grupos: ["Espalda"],  hombro_flag: false, nota_default: "Torso paralelo al piso, explosivo al subir." },
+  "pullover-polea":               { nombre: "Pullover en polea recto",           grupos: ["Espalda"],  hombro_flag: true,  nota_default: "Codos semi-fijos, tracción desde dorsal." },
+  "face-pull-polea":              { nombre: "Face pull polea alta",              grupos: ["Espalda", "Hombro lat/post"], hombro_flag: false, nota_default: "Codos altos, llevar cuerda a la cara, rotación externa al final." },
+
+  // === Hombro ===
+  "press-militar-barra":          { nombre: "Press militar con barra",           grupos: ["Hombro lat/post", "Tríceps"], hombro_flag: true, nota_default: "Glúteos apretados, barra sobre cabeza línea recta." },
+  "press-mancuernas-sentado":     { nombre: "Press mancuernas sentado",          grupos: ["Hombro lat/post", "Tríceps"], hombro_flag: true, nota_default: "Respaldo 80-85°, mancuernas no se tocan arriba." },
+  "shoulder-press-maquina":       { nombre: "Shoulder press máquina",            grupos: ["Hombro lat/post", "Tríceps"], hombro_flag: true, nota_default: "Resistencia constante, ajustar altura asiento." },
+  "landmine-press-unilateral":    { nombre: "Landmine press unilateral",         grupos: ["Pecho", "Hombro lat/post"], hombro_flag: true, nota_default: "Plano escapular, amigable al hombro lesionado." },
+  "elev-lateral-maquina":         { nombre: "Elevación lateral en máquina",      grupos: ["Hombro lat/post"], hombro_flag: true, nota_default: "Resistencia constante, sin sacudida inicial." },
+  "elev-lateral-mancuerna":       { nombre: "Elevación lateral con mancuerna",   grupos: ["Hombro lat/post"], hombro_flag: true, nota_default: "Codos ligeramente flexionados, subir hasta altura hombro." },
+  "elev-lateral-polea":           { nombre: "Elevación lateral en polea",        grupos: ["Hombro lat/post"], hombro_flag: true, nota_default: "Tensión constante en todo el rango." },
+  "reverse-fly-maquina":          { nombre: "Reverse fly en máquina",            grupos: ["Hombro lat/post"], hombro_flag: false, nota_default: "Apretar escápulas, no usar impulso del tronco." },
+  "rot-externa-polea":            { nombre: "Rotación externa en polea",         grupos: ["Prehab"],  hombro_flag: true,  nota_default: "Codo fijo 90°, carga ligera, control." },
+
+  // === Cuádriceps / Pierna ===
+  "sentadilla-barra":             { nombre: "Sentadilla con barra",              grupos: ["Cuádriceps", "Isquios/Glúteo"], hombro_flag: false, nota_default: "Pies ancho hombros, rodillas siguen línea de pies." },
+  "sentadilla-frontal":           { nombre: "Sentadilla frontal",                grupos: ["Cuádriceps"], hombro_flag: false, nota_default: "Codos altos, torso vertical." },
+  "prensa-45":                    { nombre: "Prensa 45°",                        grupos: ["Cuádriceps"], hombro_flag: false, nota_default: "Pies medios, no bloquear rodillas arriba, rango completo sin despegar lumbar." },
+  "linear-leg-press":             { nombre: "Linear leg press",                  grupos: ["Cuádriceps"], hombro_flag: false, nota_default: "Plano horizontal, ángulo seguro para rodilla." },
+  "extension-cuadriceps":         { nombre: "Extensión de cuádriceps",           grupos: ["Cuádriceps"], hombro_flag: false, nota_default: "Control excéntrica, no traba rodilla arriba." },
+  "sentadilla-bulgara":           { nombre: "Sentadilla búlgara con mancuernas", grupos: ["Cuádriceps", "Isquios/Glúteo"], hombro_flag: false, nota_default: "Pie trasero en banco, torso ligeramente adelante." },
+  "zancadas":                     { nombre: "Zancadas con mancuernas",           grupos: ["Cuádriceps", "Isquios/Glúteo"], hombro_flag: false, nota_default: "Rodilla trasera baja controlada, paso largo para glúteo." },
+  "hack-squat":                   { nombre: "Hack squat máquina",                grupos: ["Cuádriceps"], hombro_flag: false, nota_default: "Ángulo seguro, pies según énfasis deseado." },
+
+  // === Isquios / Glúteo ===
+  "peso-muerto-convencional":     { nombre: "Peso muerto convencional",          grupos: ["Isquios/Glúteo", "Espalda"], hombro_flag: false, nota_default: "Barra pegada al cuerpo, escapulas bloqueadas, empujar piso." },
+  "pmr-mancuernas":               { nombre: "Peso muerto rumano con mancuernas", grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Rodillas semiflexionadas fijas, bisagra desde cadera." },
+  "pmr-barra":                    { nombre: "Peso muerto rumano con barra",      grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Barra pegada a piernas, estirar isquio sin redondear lumbar." },
+  "curl-femoral-tumbado":         { nombre: "Curl femoral tumbado",              grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Cadera pegada al banco, llevar talones al glúteo." },
+  "curl-femoral-sentado":         { nombre: "Curl femoral sentado",              grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Posición más corta del isquio, buena activación." },
+  "hip-thrust-barra":             { nombre: "Hip thrust con barra",              grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Barbilla metida, empujar con talones, glúteo 1s arriba." },
+  "glute-isolator-maquina":       { nombre: "Glute isolator máquina",            grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Aislamiento unilateral, carga progresiva." },
+  "abductor-maquina":             { nombre: "Abductor en máquina",               grupos: ["Isquios/Glúteo"], hombro_flag: false, nota_default: "Torso ligeramente adelante para enfatizar glúteo medio." },
+
+  // === Pantorrilla ===
+  "gemelos-pie":                  { nombre: "Elevación de gemelos de pie",       grupos: ["Pantorrilla"], hombro_flag: false, nota_default: "Rango completo, pausa arriba y abajo." },
+  "gemelos-sentado":              { nombre: "Elevación gemelos sentado",         grupos: ["Pantorrilla"], hombro_flag: false, nota_default: "Enfatiza sóleo, rodilla 90°." },
+
+  // === Bíceps ===
+  "curl-biceps-barra":            { nombre: "Curl bíceps con barra",             grupos: ["Bíceps"],   hombro_flag: false, nota_default: "Codos fijos, no usar impulso del torso." },
+  "curl-mancuerna-supinacion":    { nombre: "Curl mancuerna supinación",         grupos: ["Bíceps"],   hombro_flag: false, nota_default: "Iniciar neutro, rotar a supino al subir." },
+  "curl-predicador":              { nombre: "Curl bíceps en predicador",         grupos: ["Bíceps"],   hombro_flag: false, nota_default: "Brazos apoyados, aisla el bíceps." },
+  "curl-martillo":                { nombre: "Curl martillo",                     grupos: ["Bíceps"],   hombro_flag: false, nota_default: "Agarre neutro, trabaja braquial y braquiorradial." },
+
+  // === Tríceps ===
+  "extension-triceps-polea":      { nombre: "Extensión tríceps polea (cuerda)",  grupos: ["Tríceps"],  hombro_flag: false, nota_default: "Codos pegados al torso, separar cuerda al final." },
+  "extension-triceps-barra":      { nombre: "Extensión tríceps polea (barra)",   grupos: ["Tríceps"],  hombro_flag: false, nota_default: "Codos fijos, solo mueve el antebrazo." },
+  "fondos-banco":                 { nombre: "Fondos en banco",                   grupos: ["Tríceps"],  hombro_flag: true,  nota_default: "Manos en banco, pies apoyados, bajar controlado." },
+  "seated-dip-machine":           { nombre: "Seated dip machine",                grupos: ["Tríceps"],  hombro_flag: true,  nota_default: "Resistencia constante, ángulo seguro." },
+  "skull-crusher":                { nombre: "Skull crusher",                     grupos: ["Tríceps"],  hombro_flag: false, nota_default: "Codos fijos apuntando al techo." },
+
+  // === Core ===
+  "plancha-frontal":              { nombre: "Plancha frontal",                   grupos: ["Core"],     hombro_flag: false, nota_default: "Línea recta hombros-caderas-talones, glúteos apretados." },
+  "pallof-press":                 { nombre: "Pallof press (anti-rotación)",      grupos: ["Core"],     hombro_flag: false, nota_default: "Resistir la rotación, no empujar recto." },
+  "ab-wheel":                     { nombre: "Ab wheel rollout",                  grupos: ["Core"],     hombro_flag: false, nota_default: "No arquear lumbar, extender hasta donde mantengas tensión." },
+  "hanging-leg-raise":            { nombre: "Hanging leg raise",                 grupos: ["Core"],     hombro_flag: false, nota_default: "Rodillas al pecho controladas, no balanceo." }
+};
+
+// Store en memoria de la librería (se hidrata en boot)
+let exerciseLibrary = {};
+
+// Store persistente (en memoria, espejo de localStorage)
+let routinesStore = { routines: {}, activeRoutineId: null };
+let logsStore     = {}; // { [routineId]: { weeks, currentWeek, currentDay } }
+let config        = loadConfig();
+
+// `state` = log activo. Se reasigna en setActiveRoutineId().
+let state;
+let currentWeek;
+let currentDay;
+
+/* ---------- boot: migración + load ---------- */
+
+function bootPersistence() {
+  // 1. Leer routines_v2. Si no existe, migrar desde v1 o crear fresh.
+  const rawRoutines = safeRead(ROUTINES_KEY);
+  const rawLogs     = safeRead(LOGS_KEY);
+
+  // Tolerar asimetría: si existe routines pero no logs (o al revés), reconstruir lo que falte
+  if (rawRoutines && !rawLogs) {
+    console.warn("[boot] routines_v2 existe pero logs_v2 no. Inicializando logs vacíos.");
+    logsStore = {};
+    for (const rid of Object.keys(rawRoutines.routines || {})) {
+      const r = rawRoutines.routines[rid];
+      logsStore[rid] = { weeks: {}, currentWeek: 1, currentDay: getFirstDayIdOf(r) || "D1" };
+    }
+    routinesStore = rawRoutines;
+    if (!routinesStore.routines[routinesStore.activeRoutineId]) {
+      routinesStore.activeRoutineId = Object.keys(routinesStore.routines)[0] || null;
+    }
+    persistRoutines();
+    persistLogs();
+  } else if (!rawRoutines && rawLogs) {
+    // Caso raro: hay logs pero no rutinas. Intentar recuperar.
+    console.warn("[boot] logs_v2 existe pero routines_v2 no. Cargando DEFAULT_ROUTINE y asociando logs.");
+    routinesStore = {
+      routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+      activeRoutineId: DEFAULT_ROUTINE_ID
+    };
+    logsStore = rawLogs;
+    persistRoutines();
+  } else if (rawRoutines && rawLogs) {
+    // Caso normal: ya hay schema v2
+    routinesStore = rawRoutines;
+    logsStore     = rawLogs;
+
+    // Defensa 1: si no hay ninguna rutina, tratar como instalación fresca
+    const availableIds = Object.keys(routinesStore.routines || {});
+    if (availableIds.length === 0) {
+      console.warn("[boot] routines_v2 vacío. Re-creando con DEFAULT_ROUTINE.");
+      routinesStore = {
+        routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+        activeRoutineId: DEFAULT_ROUTINE_ID
+      };
+      persistRoutines();
+    } else if (!routinesStore.routines[routinesStore.activeRoutineId]) {
+      // Defensa 2: activeRoutineId apunta a algo inexistente → pick first y persistir
+      console.warn("[boot] activeRoutineId inválido, usando el primero disponible:", availableIds[0]);
+      routinesStore.activeRoutineId = availableIds[0];
+      persistRoutines();
+    }
+  } else {
+    // Inicialización: desde v1 o fresh
+    const legacyV1 = safeRead(LEGACY_KEY_V1);
+    if (legacyV1 && legacyV1.weeks) {
+      // Migración v1 → v2
+      routinesStore = {
+        routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+        activeRoutineId: DEFAULT_ROUTINE_ID
+      };
+      logsStore = {
+        [DEFAULT_ROUTINE_ID]: {
+          weeks: legacyV1.weeks || {},
+          currentWeek: legacyV1.currentWeek || 1,
+          currentDay:  legacyV1.currentDay  || "D1"
+        }
+      };
+      console.info("[migración v1→v2] datos previos preservados. rutina_juank_v1 queda como backup.");
+    } else {
+      // Instalación fresca
+      routinesStore = {
+        routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+        activeRoutineId: DEFAULT_ROUTINE_ID
+      };
+      logsStore = {
+        [DEFAULT_ROUTINE_ID]: { weeks: {}, currentWeek: 1, currentDay: getFirstDayIdOf(DEFAULT_ROUTINE) || "D1" }
+      };
+    }
+    persistRoutines();
+    persistLogs();
+  }
+
+  // 2. Activar la rutina y enganchar `state`
+  activateRoutineInMemory(routinesStore.activeRoutineId);
+
+  // 3. Hidratar librería de ejercicios (con seed si no existe)
+  exerciseLibrary = loadLibrary();
+}
+
+/* ---------- helpers de IO ---------- */
+
+function safeRead(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function deepClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function getFirstDayIdOf(routine) {
+  return (routine && routine.dias && routine.dias[0]) ? routine.dias[0].id : null;
+}
+
+/* ---------- persistencia activa ---------- */
+
+function persistRoutines() {
+  try {
+    localStorage.setItem(ROUTINES_KEY, JSON.stringify(routinesStore));
+    setStatus("local", "ok");
+  } catch (e) { setStatus("local", "warn"); }
+}
+
+function persistLogs() {
+  try {
+    localStorage.setItem(LOGS_KEY, JSON.stringify(logsStore));
+    setStatus("local", "ok");
+  } catch (e) { setStatus("local", "warn"); }
+}
+
+function loadConfig() {
+  const c = safeRead(CONFIG_KEY);
+  return c || { sheetsUrl: "", sheetsToken: "" };
+}
+
+function saveConfig() {
+  try { localStorage.setItem(CONFIG_KEY, JSON.stringify(config)); } catch (e) {}
+}
+
+/* ---------- librería de ejercicios ---------- */
+
+function loadLibrary() {
+  const lib = safeRead(LIBRARY_KEY);
+  if (lib && typeof lib === "object") return lib;
+  // Seed inicial si no existe
+  const seed = deepClone(DEFAULT_EXERCISE_LIBRARY);
+  try {
+    localStorage.setItem(LIBRARY_KEY, JSON.stringify(seed));
+  } catch (e) { /* ok, en memoria alcanza */ }
+  return seed;
+}
+
+function persistLibrary() {
+  try {
+    localStorage.setItem(LIBRARY_KEY, JSON.stringify(exerciseLibrary));
+    setStatus("local", "ok");
+  } catch (e) { setStatus("local", "warn"); }
+}
+
+function getLibraryExercise(libId) {
+  return exerciseLibrary[libId] || null;
+}
+
+function getLibraryIdsByGroup(grupo) {
+  return Object.keys(exerciseLibrary).filter(id => {
+    const ex = exerciseLibrary[id];
+    return ex && ex.grupos && ex.grupos.includes(grupo);
+  });
+}
+
+function searchLibrary(query) {
+  const q = (query || "").toLowerCase().trim();
+  const ids = Object.keys(exerciseLibrary);
+  if (!q) return ids;
+  return ids.filter(id => {
+    const ex = exerciseLibrary[id];
+    if (!ex) return false;
+    const nombreMatch = (ex.nombre || "").toLowerCase().includes(q);
+    const gruposMatch = (ex.grupos || []).some(g => g.toLowerCase().includes(q));
+    return nombreMatch || gruposMatch;
+  });
+}
+
+function addLibraryExercise(libEx) {
+  // Genera ID único basado en slug del nombre
+  if (!libEx.nombre || !libEx.nombre.trim()) return null;
+  const baseId = slugify(libEx.nombre);
+  let id = baseId;
+  let n = 2;
+  while (exerciseLibrary[id]) {
+    id = `${baseId}-${n}`;
+    n++;
+  }
+  exerciseLibrary[id] = {
+    nombre: libEx.nombre.trim(),
+    grupos: Array.isArray(libEx.grupos) ? libEx.grupos.filter(Boolean) : [],
+    hombro_flag: !!libEx.hombro_flag,
+    nota_default: libEx.nota_default || ""
+  };
+  persistLibrary();
+  return id;
+}
+
+function updateLibraryExercise(libId, patch) {
+  const ex = exerciseLibrary[libId];
+  if (!ex) return false;
+  if (patch.nombre     != null) ex.nombre     = String(patch.nombre).trim();
+  if (patch.grupos     != null) ex.grupos     = Array.isArray(patch.grupos) ? patch.grupos.filter(Boolean) : ex.grupos;
+  if (patch.hombro_flag != null) ex.hombro_flag = !!patch.hombro_flag;
+  if (patch.nota_default != null) ex.nota_default = String(patch.nota_default);
+  persistLibrary();
+  return true;
+}
+
+/* ---------- resolución: ejercicio de rutina → datos efectivos ---------- */
+
+function getExerciseName(ex, weekN) {
+  // Si semana par y hay variante, usar variante
+  if (weekN && (weekN % 2 === 0)) {
+    if (ex.variante_semana_par_library_id) {
+      const v = getLibraryExercise(ex.variante_semana_par_library_id);
+      if (v) return v.nombre;
+    }
+    if (ex.variante_semana_par) return ex.variante_semana_par; // legacy
+  }
+  // Caso normal
+  if (ex.nombre_override) return ex.nombre_override;
+  if (ex.library_id) {
+    const lib = getLibraryExercise(ex.library_id);
+    if (lib) return lib.nombre;
+  }
+  return ex.nombre || "(sin nombre)"; // legacy fallback
+}
+
+function getExerciseGrupos(ex) {
+  if (ex.grupos_override && Array.isArray(ex.grupos_override)) return ex.grupos_override;
+  if (ex.library_id) {
+    const lib = getLibraryExercise(ex.library_id);
+    if (lib && lib.grupos) return lib.grupos;
+  }
+  return ex.grupos || [];
+}
+
+function getExerciseHombroFlag(ex) {
+  if (typeof ex.hombro_flag_override === "boolean") return ex.hombro_flag_override;
+  if (ex.library_id) {
+    const lib = getLibraryExercise(ex.library_id);
+    if (lib) return !!lib.hombro_flag;
+  }
+  return !!ex.hombro_flag; // legacy
+}
+
+function getExerciseNota(ex) {
+  // Nota efectiva: nota_override si existe, sino nota_default de la librería, sino ex.nota legacy
+  if (ex.nota_override) return ex.nota_override;
+  if (ex.library_id) {
+    const lib = getLibraryExercise(ex.library_id);
+    if (lib && lib.nota_default) return lib.nota_default;
+  }
+  return ex.nota || "";
+}
+
+/* ---------- rutina activa ---------- */
+
+function activateRoutineInMemory(routineId) {
+  const def = routinesStore.routines[routineId];
+  if (!def) {
+    console.error("activateRoutineInMemory: id no existe:", routineId);
+    return false;
+  }
+  setActiveRoutine(def);
+  routinesStore.activeRoutineId = routineId;
+
+  let logsCreated = false;
+  if (!logsStore[routineId]) {
+    logsStore[routineId] = {
+      weeks: {},
+      currentWeek: 1,
+      currentDay: getFirstDayIdOf(def) || "D1"
+    };
+    logsCreated = true;
+  }
+  state = logsStore[routineId];
+  currentWeek = state.currentWeek || 1;
+  currentDay  = state.currentDay  || (getFirstDayIdOf(def) || "D1");
+
+  // Defensa: tras editar una rutina, el currentDay/currentWeek guardados
+  // pueden apuntar a un día/semana que ya no existe. Resetear al primero disponible.
+  const dayExists  = (def.dias || []).some(d => d.id === currentDay);
+  const weekExists = (def.semanas || []).some(w => w.n === currentWeek);
+  if (!dayExists) {
+    currentDay = getFirstDayIdOf(def) || "D1";
+    state.currentDay = currentDay;
+  }
+  if (!weekExists) {
+    currentWeek = (def.semanas && def.semanas[0] && def.semanas[0].n) || 1;
+    state.currentWeek = currentWeek;
+  }
+  if (!dayExists || !weekExists) persistLogs();
+
+  // Si creamos log o cambió el activeRoutineId, persistir
+  if (logsCreated) persistLogs();
+  return true;
+}
+
+function getActiveRoutineId() {
+  return routinesStore.activeRoutineId;
+}
+
+/* ---------- API pública de guardado ---------- */
+
+function saveState() {
+  // Persiste el log activo. `state` es referencia a logsStore[activeRoutineId].
+  state.currentWeek = currentWeek;
+  state.currentDay  = currentDay;
+  persistLogs();
+}
+
+/* ---------- sessions (idéntico comportamiento, nueva ubicación) ---------- */
+
+function getSessionKey(week, dayId) {
+  return `W${week}_${dayId}`;
+}
+
+function getSessionData(week, dayId) {
+  const key = getSessionKey(week, dayId);
+  if (!state.weeks[key]) {
+    state.weeks[key] = {
+      week, dayId,
+      started_at: null,
+      wellness: {},
+      exercises: {}
+    };
+  } else {
+    // Defensa: sesiones viejas/importadas pueden venir sin todos los campos
+    const s = state.weeks[key];
+    if (!s.wellness)  s.wellness  = {};
+    if (!s.exercises) s.exercises = {};
+    if (!("started_at" in s)) s.started_at = null;
+  }
+  return state.weeks[key];
+}
+
+function getExerciseData(session, exerciseId) {
+  if (!session.exercises[exerciseId]) {
+    session.exercises[exerciseId] = {
+      sets: [],
+      notes: ""
+    };
+  }
+  return session.exercises[exerciseId];
+}
+
+// Inicializar el sistema. Esto debe correr antes de cualquier render.
+bootPersistence();
+
+/* ============================================
+   RENDER
+   ============================================ */
+function getSeriesForWeek(baseSeries, weekInfo) {
+  const s = baseSeries + weekInfo.series_extra;
+  return Math.max(1, s);
+}
+
+function getVarianteForWeek(exercise, week) {
+  // Semanas pares (2, 4) usan variante si existe
+  if (exercise.variante_semana_par && (week === 2 || week === 4)) {
+    return exercise.variante_semana_par;
+  }
+  return exercise.nombre;
+}
+
+function getPrevSessionNote(week, dayId, exerciseId) {
+  // Busca la última semana < current donde se registró algo
+  for (let w = week - 1; w >= 1; w--) {
+    const key = getSessionKey(w, dayId);
+    const sess = state.weeks[key];
+    if (sess && sess.exercises[exerciseId]) {
+      const ex = sess.exercises[exerciseId];
+      if (ex.sets && ex.sets.length > 0) {
+        const completed = ex.sets.filter(s => s && s.done);
+        if (completed.length > 0) {
+          const last = completed[completed.length - 1];
+          return `Sem ${w}: mejor ${last.peso || "–"}kg × ${last.reps || "–"} reps @RIR ${last.rir !== undefined && last.rir !== "" ? last.rir : "–"}`;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Busca la última serie registrada (con peso o reps) para este ejercicio.
+ * Prioridad:
+ * 1. Serie anterior completada en la MISMA sesión (serie i-1)
+ * 2. Última serie completada en semanas previas del mismo día
+ * Retorna { peso, reps, rir } o null.
+ */
+function getSuggestedSet(week, dayId, exerciseId, setIndex) {
+  // 1. Misma sesión, serie anterior
+  const sess = state.weeks[getSessionKey(week, dayId)];
+  if (sess && sess.exercises[exerciseId]) {
+    const sets = sess.exercises[exerciseId].sets || [];
+    for (let i = setIndex - 1; i >= 0; i--) {
+      const s = sets[i];
+      if (s && (s.peso || s.reps)) {
+        return { peso: s.peso, reps: s.reps, rir: s.rir, source: "prev_set" };
+      }
+    }
+  }
+  // 2. Semanas previas, mismo día y ejercicio - última serie completada
+  for (let w = week - 1; w >= 1; w--) {
+    const prevSess = state.weeks[getSessionKey(w, dayId)];
+    if (prevSess && prevSess.exercises[exerciseId]) {
+      const prevSets = prevSess.exercises[exerciseId].sets || [];
+      // Preferir la misma posición de serie si existe
+      if (prevSets[setIndex] && (prevSets[setIndex].peso || prevSets[setIndex].reps)) {
+        return { ...prevSets[setIndex], source: "prev_week" };
+      }
+      // Si no, la última serie completada de esa sesión
+      for (let i = prevSets.length - 1; i >= 0; i--) {
+        const s = prevSets[i];
+        if (s && (s.peso || s.reps)) {
+          return { peso: s.peso, reps: s.reps, rir: s.rir, source: "prev_week" };
+        }
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Parsea el string de descanso del ejercicio a segundos.
+ * Acepta: "2:30", "90s", "3:00", "60s"
+ */
+function parseRestToSeconds(str) {
+  if (!str) return 90;
+  str = str.trim().toLowerCase();
+  if (str.includes(":")) {
+    const [m, s] = str.split(":").map(x => parseInt(x) || 0);
+    return m * 60 + s;
+  }
+  if (str.endsWith("s")) return parseInt(str) || 90;
+  const n = parseInt(str);
+  return isNaN(n) ? 90 : n;
+}
+
+function formatSeconds(s) {
+  if (s < 0) s = 0;
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${m}:${sec.toString().padStart(2, "0")}`;
+}
+
+function renderWeekSelector() {
+  const c = document.getElementById("week-selector");
+  c.innerHTML = "";
+  getWeeks().forEach(w => {
+    const btn = document.createElement("button");
+    btn.className = "pill" + (w.n === currentWeek ? " active" : "") + (w.deload ? " deload" : "");
+    btn.textContent = `S${w.n}`;
+    btn.title = w.fase;
+    btn.onclick = () => { currentWeek = w.n; saveState(); render(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderDaySelector() {
+  const c = document.getElementById("day-selector");
+  c.innerHTML = "";
+  getDays().forEach(d => {
+    const btn = document.createElement("button");
+    btn.className = "pill" + (d.id === currentDay ? " active" : "");
+    btn.textContent = `${d.id} · ${d.nombre}`;
+    btn.onclick = () => { currentDay = d.id; saveState(); render(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderSessionHeader() {
+  const day = getDay(currentDay);
+  const week = getWeek(currentWeek);
+  document.getElementById("session-title").textContent = `Día ${day.id.slice(1)} · ${day.nombre}`;
+  document.getElementById("session-meta").textContent = `${day.foco} · Semana ${week.n} (${week.fase})`;
+  document.getElementById("rir-target").textContent = week.rir;
+  document.getElementById("load-target").textContent = Math.round(week.carga * 100) + "%";
+  document.getElementById("phase-label").textContent = week.fase;
+}
+
+function renderWellness() {
+  const session = getSessionData(currentWeek, currentDay);
+  const c = document.getElementById("wellness-grid");
+  const fields = [
+    { id: "sueno", label: "Sueño (1-5)", type: "select", options: ["", "1", "2", "3", "4", "5"] },
+    { id: "energia", label: "Energía (1-5)", type: "select", options: ["", "1", "2", "3", "4", "5"] },
+    { id: "apetito", label: "Apetito (1-5)", type: "select", options: ["", "1", "2", "3", "4", "5"] },
+    { id: "dolor_hombro", label: "Dolor hombro (0-5)", type: "select", options: ["", "0", "1", "2", "3", "4", "5"] },
+    { id: "peso", label: "Peso (kg)", type: "number" }
+  ];
+  c.innerHTML = "";
+  fields.forEach(f => {
+    const div = document.createElement("div");
+    div.className = "wellness-item";
+    const val = session.wellness[f.id] || "";
+    if (f.type === "select") {
+      div.innerHTML = `<label>${f.label}</label><select data-wellness="${f.id}">
+        ${f.options.map(o => `<option value="${o}"${val === o ? " selected" : ""}>${o || "–"}</option>`).join("")}
+      </select>`;
+    } else {
+      div.innerHTML = `<label>${f.label}</label><input type="number" step="0.1" data-wellness="${f.id}" value="${val}">`;
+    }
+    c.appendChild(div);
+  });
+  c.querySelectorAll("[data-wellness]").forEach(el => {
+    el.addEventListener("change", () => {
+      session.wellness[el.dataset.wellness] = el.value;
+      saveState();
+      if (el.dataset.wellness === "dolor_hombro" && parseInt(el.value) >= 3) {
+        alert("⚠️ Dolor de hombro ≥3. Considera reducir carga en empujes o sustituir ejercicio.");
+      }
+    });
+  });
+}
+
+function renderExercises() {
+  const day = getDay(currentDay);
+  const week = getWeek(currentWeek);
+  const session = getSessionData(currentWeek, currentDay);
+  const c = document.getElementById("exercises-container");
+  c.innerHTML = "";
+
+  day.ejercicios.forEach(ex => {
+    const series = getSeriesForWeek(ex.series_base, week);
+    const nombreActual = getExerciseName(ex, week.n);
+    const grupos = getExerciseGrupos(ex);
+    const hombroFlag = getExerciseHombroFlag(ex);
+    const notaTec = getExerciseNota(ex);
+    const exData = getExerciseData(session, ex.id);
+
+    // Asegurar que haya el número correcto de sets
+    while (exData.sets.length < series) exData.sets.push({ peso: "", reps: "", rir: "", done: false });
+
+    const card = document.createElement("div");
+    card.className = "exercise";
+    card.dataset.exerciseId = ex.id;
+
+    const prevNote = getPrevSessionNote(currentWeek, currentDay, ex.id);
+
+    card.innerHTML = `
+      <div class="exercise-head">
+        <div class="exercise-code">${ex.codigo}</div>
+        <div>
+          <div class="exercise-name">
+            ${nombreActual}
+            ${hombroFlag ? '<span class="hombro-warn">hombro</span>' : ''}
+          </div>
+          <div class="exercise-sub">${grupos.join(" · ")}</div>
+          <div class="exercise-params" style="margin-top: 6px;">
+            <span><strong>${series}</strong>×${ex.reps}</span>
+            <span>Tempo <strong>${ex.tempo}</strong></span>
+            <span>Desc <strong>${ex.descanso}</strong></span>
+            ${notaTec ? '<button class="tech-note-btn" data-toggle-note="' + ex.id + '">Técnica ▾</button>' : ''}
+          </div>
+        </div>
+      </div>
+      <div class="sets-body">
+        ${prevNote ? `<div class="sets-prev"><strong>↻</strong> ${prevNote}</div>` : ''}
+        <div class="set-row header">
+          <div>#</div>
+          <div>Peso (kg)</div>
+          <div>Reps</div>
+          <div>RIR</div>
+          <div style="text-align: center;">Acción</div>
+        </div>
+        ${exData.sets.slice(0, series).map((set, i) => {
+          const suggestion = getSuggestedSet(currentWeek, currentDay, ex.id, i);
+          const phPeso = suggestion && suggestion.peso ? suggestion.peso : "–";
+          const phReps = suggestion && suggestion.reps ? suggestion.reps : "–";
+          const phRir  = suggestion && suggestion.rir !== undefined && suggestion.rir !== "" ? suggestion.rir : week.rir;
+          return `
+          <div class="set-row ${set.done ? 'done-row' : ''}">
+            <div class="set-num">${i + 1}</div>
+            <input class="set-input" type="number" step="0.5" inputmode="decimal"
+                   data-ex="${ex.id}" data-set="${i}" data-field="peso"
+                   placeholder="${phPeso}" value="${set.peso || ''}">
+            <input class="set-input" type="text" inputmode="numeric"
+                   data-ex="${ex.id}" data-set="${i}" data-field="reps"
+                   placeholder="${phReps}" value="${set.reps || ''}">
+            <input class="set-input" type="number" step="1" min="0" inputmode="numeric"
+                   data-ex="${ex.id}" data-set="${i}" data-field="rir"
+                   placeholder="${phRir}" value="${set.rir !== undefined && set.rir !== '' ? set.rir : ''}">
+            <button class="btn-fin ${set.done ? 'done' : ''}"
+                    data-finish-ex="${ex.id}" data-finish-set="${i}"
+                    data-rest="${ex.descanso}" data-exname="${nombreActual.replace(/"/g, '&quot;')}">
+              ${set.done ? '✓ OK' : 'Fin'}
+            </button>
+          </div>`;
+        }).join("")}
+        <div class="exercise-notes">
+          <textarea data-ex-note="${ex.id}" placeholder="Notas de la sesión...">${exData.notes || ""}</textarea>
+        </div>
+      </div>
+      ${notaTec ? `<div class="tech-note-content" id="note-${ex.id}">${notaTec}</div>` : ''}
+    `;
+    c.appendChild(card);
+  });
+
+  // Bind inputs
+  c.querySelectorAll(".set-input").forEach(inp => {
+    inp.addEventListener("change", (e) => {
+      const exId = e.target.dataset.ex;
+      const setIdx = parseInt(e.target.dataset.set);
+      const field = e.target.dataset.field;
+      const session = getSessionData(currentWeek, currentDay);
+      const exData = getExerciseData(session, exId);
+      exData.sets[setIdx][field] = e.target.value;
+      if (!session.started_at) session.started_at = new Date().toISOString();
+      saveState();
+      scheduleSheetsSync();
+      updateVolumePanel();
+      updateSessionStats();
+    });
+  });
+
+  c.querySelectorAll("[data-finish-ex]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const exId = e.currentTarget.dataset.finishEx;
+      const setIdx = parseInt(e.currentTarget.dataset.finishSet);
+      const restStr = e.currentTarget.dataset.rest;
+      const exName = e.currentTarget.dataset.exname;
+      const session = getSessionData(currentWeek, currentDay);
+      const exData = getExerciseData(session, exId);
+      const wasCompleted = exData.sets[setIdx].done;
+
+      // Si no está completado: marcarlo y commitear valores sugeridos si están vacíos
+      if (!wasCompleted) {
+        const suggestion = getSuggestedSet(currentWeek, currentDay, exId, setIdx);
+        const set = exData.sets[setIdx];
+        // Solo usar sugerencia si el campo está vacío
+        if (!set.peso && suggestion && suggestion.peso) set.peso = suggestion.peso;
+        if (!set.reps && suggestion && suggestion.reps) set.reps = suggestion.reps;
+        if ((set.rir === undefined || set.rir === "") && suggestion && suggestion.rir !== undefined && suggestion.rir !== "") {
+          set.rir = suggestion.rir;
+        } else if (set.rir === undefined || set.rir === "") {
+          // Si no hay sugerencia de RIR, usar el objetivo de la semana
+          const weekInfo = getWeek(currentWeek);
+          if (weekInfo) set.rir = String(weekInfo.rir);
+        }
+        set.done = true;
+        set.timestamp = new Date().toISOString();
+        if (!session.started_at) session.started_at = new Date().toISOString();
+
+        // Iniciar timer de descanso
+        const restSec = parseRestToSeconds(restStr);
+        startRestTimer(restSec, exName, setIdx + 1);
+      } else {
+        // Si ya está completado, destogglar (quitar check)
+        exData.sets[setIdx].done = false;
+      }
+
+      saveState();
+      scheduleSheetsSync();
+      renderExercises();
+      updateVolumePanel();
+      updateSessionStats();
+    });
+  });
+
+  c.querySelectorAll("[data-ex-note]").forEach(ta => {
+    ta.addEventListener("change", (e) => {
+      const exId = e.target.dataset.exNote;
+      const session = getSessionData(currentWeek, currentDay);
+      const exData = getExerciseData(session, exId);
+      exData.notes = e.target.value;
+      saveState();
+      scheduleSheetsSync();
+    });
+  });
+
+  c.querySelectorAll("[data-toggle-note]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const id = e.target.dataset.toggleNote;
+      const el = document.getElementById("note-" + id);
+      if (el) el.classList.toggle("open");
+    });
+  });
+}
+
+function updateVolumePanel() {
+  const week = getWeek(currentWeek);
+  const counts = {};
+  // Contar series marcadas done en toda la semana (D1-D4)
+  getDays().forEach(day => {
+    const session = state.weeks[getSessionKey(currentWeek, day.id)];
+    if (!session) return;
+    day.ejercicios.forEach(ex => {
+      const exData = session.exercises && session.exercises[ex.id];
+      if (!exData) return;
+      const doneSets = (exData.sets || []).filter(s => s && s.done).length;
+      if (doneSets === 0) return;
+      getExerciseGrupos(ex).forEach(g => {
+        if (!hasVolumeTarget(g)) return;
+        counts[g] = (counts[g] || 0) + doneSets;
+      });
+    });
+  });
+
+  const c = document.getElementById("volume-grid");
+  c.innerHTML = "";
+  Object.entries(getVolumeTargets()).forEach(([grupo, obj]) => {
+    // Target depende de semana (interpolado MEV a MAV)
+    let target;
+    if (week.deload) target = Math.round(obj.mev * 0.6);
+    else {
+      const ratio = (currentWeek - 1) / 3; // semanas 1-4
+      target = Math.round(obj.mev + (obj.mav - obj.mev) * Math.min(1, ratio));
+    }
+    const done = counts[grupo] || 0;
+    const pct = target > 0 ? done / target : 0;
+    let color = "var(--accent)";
+    if (pct < 0.5) color = "var(--warn)";
+    else if (pct > 1.2) color = "var(--danger)";
+
+    const cell = document.createElement("div");
+    cell.className = "volume-cell";
+    cell.innerHTML = `
+      <div class="label">${grupo}</div>
+      <div class="value" style="color: ${color}">${done} <span style="color: var(--text-faint); font-size: 12px;">/ ${target}</span></div>
+      <div class="target">MEV ${obj.mev} · MAV ${obj.mav}</div>
+    `;
+    c.appendChild(cell);
+  });
+}
+
+function updateSessionStats() {
+  const session = getSessionData(currentWeek, currentDay);
+  let total = 0, done = 0;
+  const day = getDay(currentDay);
+  const week = getWeek(currentWeek);
+  day.ejercicios.forEach(ex => {
+    const series = getSeriesForWeek(ex.series_base, week);
+    total += series;
+    const exData = session.exercises[ex.id];
+    if (exData) done += (exData.sets || []).slice(0, series).filter(s => s && s.done).length;
+  });
+  document.getElementById("session-stats").textContent = `${done}/${total} series`;
+  updateFinishSection();
+}
+
+function updateFinishSection() {
+  const session = getSessionData(currentWeek, currentDay);
+  const day = getDay(currentDay);
+  const week = getWeek(currentWeek);
+
+  let total = 0, done = 0;
+  day.ejercicios.forEach(ex => {
+    const series = getSeriesForWeek(ex.series_base, week);
+    total += series;
+    const exData = session.exercises[ex.id];
+    if (exData) done += (exData.sets || []).slice(0, series).filter(s => s && s.done).length;
+  });
+
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  const summaryEl = document.getElementById("finish-summary");
+  const btn = document.getElementById("btn-finish-session");
+  const label = document.getElementById("finish-btn-label");
+
+  // Calcular duración si la sesión está iniciada
+  let durationStr = "";
+  if (session.started_at) {
+    const endAt = session.finished_at ? new Date(session.finished_at) : new Date();
+    const startAt = new Date(session.started_at);
+    const mins = Math.round((endAt - startAt) / 60000);
+    durationStr = mins > 0 ? ` · ${mins} min` : "";
+  }
+
+  if (session.finished_at) {
+    const finishedDate = new Date(session.finished_at);
+    const hora = finishedDate.toLocaleTimeString("es", { hour: "2-digit", minute: "2-digit" });
+    summaryEl.innerHTML = `<strong>✓ Rutina completada</strong> a las ${hora}${durationStr} · ${done}/${total} series (${pct}%)`;
+    btn.classList.add("completed");
+    label.textContent = "Reabrir sesión";
+  } else {
+    summaryEl.innerHTML = `Progreso: <strong>${done}/${total} series</strong> (${pct}%)${durationStr}`;
+    btn.classList.remove("completed");
+    label.textContent = done === 0 ? "Finalizar rutina del día" : (done < total ? `Finalizar rutina (${total - done} series sin completar)` : "✓ Finalizar rutina del día");
+  }
+}
+
+function renderAppTitle() {
+  const meta = getMeta();
+  const weeksCount = getWeeksCount();
+  const daysCount = getDays().length;
+  const nombre = meta.nombre || "";
+  const atleta = meta.atleta || "";
+  const split = meta.split || "";
+
+  // Título: si hay nombre, resaltar la última palabra como acento. Fallback al título original.
+  const titleEl = document.getElementById("app-title");
+  if (titleEl) {
+    if (nombre) {
+      const parts = nombre.trim().split(/\s+/);
+      if (parts.length >= 2) {
+        const last = parts.pop();
+        titleEl.innerHTML = `${escapeHtml(parts.join(" "))} <span class="accent">${escapeHtml(last)}</span>`;
+      } else {
+        titleEl.innerHTML = `<span class="accent">${escapeHtml(nombre)}</span>`;
+      }
+    } else {
+      titleEl.innerHTML = 'Mesociclo <span class="accent">Hipertrofia</span>';
+    }
+  }
+
+  // Subtítulo: "Ndías · split · Msemanas · atleta" compactado
+  const subEl = document.getElementById("app-subtitle");
+  if (subEl) {
+    const parts = [];
+    if (daysCount) parts.push(`${daysCount}D`);
+    if (split)     parts.push(split);
+    if (weeksCount) parts.push(`${weeksCount} ${weeksCount === 1 ? "semana" : "semanas"}`);
+    if (atleta)    parts.push(atleta);
+    subEl.textContent = parts.join(" · ");
+  }
+}
+
+function render() {
+  renderAppTitle();
+  renderWeekSelector();
+  renderDaySelector();
+  renderSessionHeader();
+  renderWellness();
+  renderExercises();
+  updateVolumePanel();
+  updateSessionStats();
+  updateFinishSection();
+}
+
+/* ============================================
+   REST TIMER
+   ============================================ */
+let restState = {
+  running: false,
+  paused: false,
+  pausedRemaining: 0,
+  secondsLeft: 0,
+  intervalId: null,
+  endsAt: 0,
+  exerciseName: "",
+  setNumber: 0
+};
+
+function startRestTimer(seconds, exerciseName, setNumber) {
+  stopRestTimer(); // limpia timer anterior
+  restState.running = true;
+  restState.paused = false;
+  restState.secondsLeft = seconds;
+  restState.endsAt = Date.now() + seconds * 1000;
+  restState.exerciseName = exerciseName;
+  restState.setNumber = setNumber;
+
+  const timerEl = document.getElementById("rest-timer");
+  timerEl.classList.remove("finished", "paused");
+  timerEl.classList.add("visible");
+  document.getElementById("rest-exercise").textContent = `${exerciseName} · Serie ${setNumber}`;
+  document.getElementById("rest-label").textContent = "Descanso";
+  document.getElementById("rest-pause").textContent = "❚❚";
+  updateRestDisplay();
+  startRestInterval();
+
+  // Pequeña vibración al iniciar (feedback háctico)
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+
+function startRestInterval() {
+  if (restState.intervalId) clearInterval(restState.intervalId);
+  restState.intervalId = setInterval(() => {
+    if (restState.paused) return;
+    const remaining = Math.round((restState.endsAt - Date.now()) / 1000);
+    restState.secondsLeft = remaining;
+    updateRestDisplay();
+    if (remaining <= 0 && restState.running) {
+      onRestFinished();
+      restState.running = false; // evitar que vuelva a disparar el beep
+    }
+  }, 250);
+}
+
+function stopRestTimer() {
+  if (restState.intervalId) clearInterval(restState.intervalId);
+  restState.intervalId = null;
+  restState.running = false;
+  restState.paused = false;
+}
+
+function hideRestTimer() {
+  stopRestTimer();
+  document.getElementById("rest-timer").classList.remove("visible", "finished", "paused");
+}
+
+function togglePauseRestTimer() {
+  const timerEl = document.getElementById("rest-timer");
+  const pauseBtn = document.getElementById("rest-pause");
+
+  if (restState.paused) {
+    // Reanudar: recalcular endsAt desde el tiempo que quedaba al pausar
+    restState.endsAt = Date.now() + restState.pausedRemaining * 1000;
+    restState.paused = false;
+    restState.running = restState.pausedRemaining > 0;
+    timerEl.classList.remove("paused");
+    if (restState.pausedRemaining <= 0) {
+      // Estaba en negativo → seguir contando tiempo excedido
+      restState.endsAt = Date.now() - (-restState.pausedRemaining) * 1000;
+      document.getElementById("rest-label").textContent = "¡Listo! A la siguiente";
+    } else {
+      document.getElementById("rest-label").textContent = "Descanso";
+    }
+    pauseBtn.textContent = "❚❚";
+  } else {
+    // Pausar: guardar tiempo restante
+    restState.pausedRemaining = Math.round((restState.endsAt - Date.now()) / 1000);
+    restState.paused = true;
+    timerEl.classList.add("paused");
+    document.getElementById("rest-label").textContent = "Pausado";
+    pauseBtn.textContent = "▶";
+  }
+}
+
+function updateRestDisplay() {
+  const el = document.getElementById("rest-time");
+  if (restState.secondsLeft >= 0) {
+    el.textContent = formatSeconds(restState.secondsLeft);
+  } else {
+    // Tiempo excedido — contador en negativo
+    el.textContent = "+" + formatSeconds(-restState.secondsLeft);
+  }
+}
+
+function onRestFinished() {
+  const timerEl = document.getElementById("rest-timer");
+  timerEl.classList.add("finished");
+  document.getElementById("rest-label").textContent = "¡Listo! A la siguiente";
+  // Beep + vibración
+  playBeep();
+  if (navigator.vibrate) navigator.vibrate([200, 100, 200, 100, 200]);
+  // Seguir contando (en negativo) hasta que el usuario cierre
+  // No detener el interval todavía
+}
+
+function playBeep() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    // Tres pulsos rápidos
+    [0, 0.15, 0.3].forEach(delay => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = 880;
+      osc.type = "sine";
+      gain.gain.setValueAtTime(0, ctx.currentTime + delay);
+      gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + delay + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + 0.12);
+      osc.connect(gain).connect(ctx.destination);
+      osc.start(ctx.currentTime + delay);
+      osc.stop(ctx.currentTime + delay + 0.13);
+    });
+  } catch (e) { /* silencioso */ }
+}
+
+document.getElementById("rest-close").onclick = hideRestTimer;
+document.getElementById("rest-pause").onclick = togglePauseRestTimer;
+document.getElementById("rest-plus").onclick = () => {
+  if (restState.paused) {
+    restState.pausedRemaining += 15;
+    // Actualizar display manualmente porque el interval está pausado
+    restState.secondsLeft = restState.pausedRemaining;
+    updateRestDisplay();
+    return;
+  }
+  if (!restState.running && restState.secondsLeft <= 0) {
+    // Si ya terminó, reiniciar con 15s
+    restState.running = true;
+    restState.endsAt = Date.now() + 15000;
+    document.getElementById("rest-timer").classList.remove("finished");
+    document.getElementById("rest-label").textContent = "Descanso";
+    startRestInterval();
+  } else {
+    restState.endsAt += 15000;
+    restState.secondsLeft = Math.round((restState.endsAt - Date.now()) / 1000);
+    updateRestDisplay();
+  }
+};
+document.getElementById("rest-minus").onclick = () => {
+  if (restState.paused) {
+    restState.pausedRemaining -= 15;
+    restState.secondsLeft = restState.pausedRemaining;
+    updateRestDisplay();
+    return;
+  }
+  restState.endsAt -= 15000;
+  restState.secondsLeft = Math.round((restState.endsAt - Date.now()) / 1000);
+  updateRestDisplay();
+  if (restState.secondsLeft <= 0 && restState.running) {
+    onRestFinished();
+    restState.running = false;
+  }
+};
+
+// Mantener el timer funcionando aunque la pestaña esté en background (recalcular al volver)
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden && restState.intervalId && !restState.paused) {
+    restState.secondsLeft = Math.round((restState.endsAt - Date.now()) / 1000);
+    updateRestDisplay();
+    if (restState.secondsLeft <= 0 && restState.running) {
+      onRestFinished();
+      restState.running = false;
+    }
+  }
+});
+
+/* ============================================
+   GESTOR DE RUTINAS (Fase 2)
+   ============================================
+   UI + handlers para listar, activar, duplicar, renombrar y eliminar
+   rutinas. Todo se apoya en routinesStore + logsStore (Fase 1).
+*/
+
+function slugify(text) {
+  return (text || "")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // quitar acentos
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 40) || "rutina";
+}
+
+function shortRandomSuffix() {
+  // 5 chars base36 pseudoaleatorios — suficiente para evitar colisiones locales
+  return Math.random().toString(36).slice(2, 7);
+}
+
+function generateRoutineId(name) {
+  return `${slugify(name)}-${shortRandomSuffix()}`;
+}
+
+function countSessionsForRoutine(routineId) {
+  const log = logsStore[routineId];
+  if (!log || !log.weeks) return 0;
+  // Contar solo sesiones con datos reales: algún set marcado done, o wellness con al menos un valor,
+  // o started_at real. Esto evita contar las sesiones-fantasma que render() crea al vuelo.
+  let count = 0;
+  for (const key of Object.keys(log.weeks)) {
+    const s = log.weeks[key];
+    if (!s) continue;
+    if (s.started_at) { count++; continue; }
+    const wellnessHasData = s.wellness && Object.values(s.wellness).some(v => v !== "" && v !== null && v !== undefined);
+    if (wellnessHasData) { count++; continue; }
+    const exs = s.exercises || {};
+    const anyDone = Object.values(exs).some(ex => (ex.sets || []).some(set => set && (set.done || set.peso || set.reps)));
+    if (anyDone) count++;
+  }
+  return count;
+}
+
+function lastSessionDateForRoutine(routineId) {
+  const log = logsStore[routineId];
+  if (!log || !log.weeks) return null;
+  let latest = null;
+  for (const k of Object.keys(log.weeks)) {
+    const s = log.weeks[k];
+    const ts = s.finished_at || s.started_at;
+    if (ts && (!latest || ts > latest)) latest = ts;
+  }
+  return latest;
+}
+
+function formatShortDate(iso) {
+  if (!iso) return "sin registros";
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString("es", { day: "2-digit", month: "short", year: "numeric" });
+  } catch (e) { return iso.slice(0, 10); }
+}
+
+function renderRoutinesList() {
+  const c = document.getElementById("routines-list");
+  c.innerHTML = "";
+  const ids = Object.keys(routinesStore.routines);
+  if (ids.length === 0) {
+    c.innerHTML = '<div class="routines-empty">No hay rutinas. Esto no debería pasar — recargá la página.</div>';
+    return;
+  }
+  const activeId = routinesStore.activeRoutineId;
+
+  // Ordenar: activa primero, después alfabético por nombre
+  ids.sort((a, b) => {
+    if (a === activeId) return -1;
+    if (b === activeId) return 1;
+    const na = (routinesStore.routines[a].meta && routinesStore.routines[a].meta.nombre) || a;
+    const nb = (routinesStore.routines[b].meta && routinesStore.routines[b].meta.nombre) || b;
+    return na.localeCompare(nb);
+  });
+
+  ids.forEach(id => {
+    const r = routinesStore.routines[id];
+    const meta = r.meta || {};
+    const nombre = meta.nombre || meta.atleta || id;
+    const isActive = id === activeId;
+    const sesiones = countSessionsForRoutine(id);
+    const lastDate = lastSessionDateForRoutine(id);
+    const numDias = (r.dias || []).length;
+    const numSemanas = (r.semanas || []).length;
+    const objetivo = meta.objetivo || "";
+    const split = meta.split || "";
+
+    const card = document.createElement("div");
+    card.className = "routine-card" + (isActive ? " active" : "");
+    card.innerHTML = `
+      <div class="routine-info">
+        <div class="routine-name-row">
+          <span class="routine-name">${escapeHtml(nombre)}</span>
+          ${isActive ? '<span class="routine-badge">Activa</span>' : ''}
+        </div>
+        <div class="routine-meta">
+          ${objetivo ? `<strong>${escapeHtml(objetivo)}</strong><br>` : ''}
+          ${split ? escapeHtml(split) + " · " : ""}${numDias} días × ${numSemanas} semanas
+        </div>
+        <div class="routine-stats">
+          ${sesiones} ${sesiones === 1 ? "sesión registrada" : "sesiones registradas"} · último: ${formatShortDate(lastDate)}
+        </div>
+      </div>
+      <div class="routine-actions">
+        <button class="btn" data-action="activate" data-id="${id}" ${isActive ? "disabled" : ""}>${isActive ? "Activa" : "Activar"}</button>
+        <button class="btn" data-action="edit" data-id="${id}">Editar</button>
+        <button class="btn" data-action="duplicate" data-id="${id}">Duplicar</button>
+        <button class="btn" data-action="rename" data-id="${id}">Renombrar</button>
+        <button class="btn" data-action="export" data-id="${id}" title="Disponible en Fase 5" disabled>Exportar</button>
+        <button class="btn danger" data-action="delete" data-id="${id}">Eliminar</button>
+      </div>
+    `;
+    c.appendChild(card);
+  });
+
+  // Bind handlers
+  c.querySelectorAll("[data-action]").forEach(btn => {
+    if (btn.disabled) return;
+    btn.onclick = (e) => {
+      const action = e.currentTarget.dataset.action;
+      const id = e.currentTarget.dataset.id;
+      handleRoutineAction(action, id);
+    };
+  });
+}
+
+function escapeHtml(str) {
+  return String(str || "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
+}
+
+function handleRoutineAction(action, id) {
+  const r = routinesStore.routines[id];
+  if (!r) { alert("Rutina no encontrada"); return; }
+  const currentName = (r.meta && r.meta.nombre) || (r.meta && r.meta.atleta) || id;
+
+  switch (action) {
+    case "activate": {
+      if (id === routinesStore.activeRoutineId) return;
+      activateRoutineInMemory(id);
+      persistRoutines();
+      render();
+      document.getElementById("modal-routines").classList.remove("open");
+      break;
+    }
+    case "edit": {
+      document.getElementById("modal-routines").classList.remove("open");
+      openEditor(id);
+      break;
+    }
+    case "duplicate": {
+      const defaultName = `${currentName} (copia)`;
+      const newName = prompt("Nombre de la copia:", defaultName);
+      if (!newName || !newName.trim()) return;
+      const newId = generateRoutineId(newName);
+      const cloned = deepClone(r);
+      // Garantizar que meta.nombre existe
+      cloned.meta = cloned.meta || {};
+      cloned.meta.nombre = newName.trim();
+      routinesStore.routines[newId] = cloned;
+      logsStore[newId] = {
+        weeks: {},
+        currentWeek: 1,
+        currentDay: getFirstDayIdOf(cloned) || "D1"
+      };
+      persistRoutines();
+      persistLogs();
+      renderRoutinesList();
+      break;
+    }
+    case "rename": {
+      const newName = prompt("Nuevo nombre:", currentName);
+      if (newName === null) return; // Cancelado
+      const trimmed = newName.trim();
+      if (!trimmed) { alert("El nombre no puede estar vacío"); return; }
+      r.meta = r.meta || {};
+      r.meta.nombre = trimmed;
+      persistRoutines();
+      // Si es la activa, el header actual no muestra el nombre — pero re-render igual por si acaso
+      if (id === routinesStore.activeRoutineId) render();
+      renderRoutinesList();
+      break;
+    }
+    case "delete": {
+      if (id === routinesStore.activeRoutineId) {
+        alert("No se puede eliminar la rutina activa.\n\nActivá otra rutina primero.");
+        return;
+      }
+      const totalRoutines = Object.keys(routinesStore.routines).length;
+      if (totalRoutines <= 1) {
+        alert("No se puede eliminar la última rutina.\n\nLa app necesita al menos una rutina para funcionar.");
+        return;
+      }
+      const sesiones = countSessionsForRoutine(id);
+      const msg1 = `¿Eliminar "${currentName}"?`;
+      if (!confirm(msg1)) return;
+      if (sesiones > 0) {
+        const msg2 = `Esta rutina tiene ${sesiones} ${sesiones === 1 ? "sesión registrada" : "sesiones registradas"}.\n\nSe borrarán junto con la rutina. ¿Confirmás?`;
+        if (!confirm(msg2)) return;
+      }
+      delete routinesStore.routines[id];
+      delete logsStore[id];
+      persistRoutines();
+      persistLogs();
+      renderRoutinesList();
+      break;
+    }
+  }
+}
+
+document.getElementById("btn-routines").onclick = () => {
+  renderRoutinesList();
+  document.getElementById("modal-routines").classList.add("open");
+};
+document.getElementById("btn-routines-close").onclick = () => {
+  document.getElementById("modal-routines").classList.remove("open");
+};
+
+/* ============================================
+   EDITOR DE RUTINA (Fase 3)
+   ============================================
+   Edita meta + plan semanal + lista de días de una rutina.
+   Trabaja sobre editingDraft (deep-clone) hasta que se hace save,
+   que es cuando recién se aplica al routinesStore.
+*/
+
+let editingRoutineId = null;
+let editingDraft = null;
+let editingIsNew = false; // true cuando se entra vía "Crear desde cero"
+
+function openEditor(routineId, isNew = false) {
+  const r = routinesStore.routines[routineId];
+  if (!r) { alert("Rutina no encontrada"); return; }
+  editingRoutineId = routineId;
+  editingDraft = deepClone(r);
+  editingIsNew = isNew;
+
+  // Normalizar el draft por si viene con estructura incompleta
+  editingDraft.meta    = editingDraft.meta    || {};
+  editingDraft.semanas = editingDraft.semanas || [];
+  editingDraft.dias    = editingDraft.dias    || [];
+
+  renderEditor();
+  document.body.classList.add("editor-mode");
+  // scroll a top del editor
+  window.scrollTo(0, 0);
+}
+
+function closeEditor(applyChanges) {
+  if (applyChanges) {
+    // Validar y guardar
+    const err = validateDraft(editingDraft);
+    if (err) { alert("Error: " + err); return false; }
+
+    // Detectar días que fueron eliminados (comparar con la rutina guardada)
+    const storedIds = new Set((routinesStore.routines[editingRoutineId]?.dias || []).map(d => d.id));
+    const draftIds  = new Set(editingDraft.dias.map(d => d.id));
+    const removedDayIds = [...storedIds].filter(id => !draftIds.has(id));
+
+    // Verificar si algún día eliminado tiene logs huérfanos
+    const orphanDetails = detectOrphanLogs(editingRoutineId, removedDayIds);
+    if (orphanDetails.total > 0) {
+      const msg = `Al guardar se eliminarán días que tienen ${orphanDetails.total} ${orphanDetails.total === 1 ? "sesión registrada" : "sesiones registradas"} (${orphanDetails.summary}).\n\nEsas sesiones se borrarán junto con los días.\n\n¿Continuar?`;
+      if (!confirm(msg)) return false;
+      // Eliminar logs huérfanos
+      purgeOrphanLogs(editingRoutineId, removedDayIds);
+    }
+
+    // Aplicar el draft
+    routinesStore.routines[editingRoutineId] = editingDraft;
+
+    // Si es la activa, actualizar la referencia en memoria
+    if (editingRoutineId === routinesStore.activeRoutineId) {
+      activateRoutineInMemory(editingRoutineId);
+    }
+    persistRoutines();
+    persistLogs(); // por si purgamos logs huérfanos
+    render();
+  } else if (editingIsNew) {
+    // Cancelar nueva rutina = eliminarla (nunca se mostró al usuario como persistida)
+    delete routinesStore.routines[editingRoutineId];
+    delete logsStore[editingRoutineId];
+    persistRoutines();
+    persistLogs();
+  }
+
+  editingRoutineId = null;
+  editingDraft = null;
+  editingIsNew = false;
+  document.body.classList.remove("editor-mode");
+  return true;
+}
+
+function validateDraft(draft) {
+  if (!draft.meta.nombre || !draft.meta.nombre.trim()) return "El nombre de la rutina no puede estar vacío.";
+  if (draft.semanas.length === 0) return "Debe haber al menos una semana.";
+  if (draft.dias.length === 0)    return "Debe haber al menos un día.";
+
+  // IDs únicos
+  const ids = draft.dias.map(d => d.id);
+  const seen = new Set();
+  for (const id of ids) {
+    if (!id || !id.trim()) return "Hay días sin ID.";
+    if (seen.has(id)) return `ID de día duplicado: "${id}". Los IDs deben ser únicos.`;
+    seen.add(id);
+  }
+
+  // Validaciones numéricas por semana
+  for (const w of draft.semanas) {
+    if (typeof w.n !== "number" || w.n < 1) return `Semana con número inválido: ${w.n}`;
+  }
+
+  return null;
+}
+
+function detectOrphanLogs(routineId, removedDayIds) {
+  const log = logsStore[routineId];
+  if (!log || !log.weeks || removedDayIds.length === 0) return { total: 0, summary: "" };
+
+  const byDay = {};
+  let total = 0;
+  for (const key of Object.keys(log.weeks)) {
+    const sess = log.weeks[key];
+    if (!sess) continue;
+    if (!removedDayIds.includes(sess.dayId)) continue;
+    // Solo contar sesiones con datos reales
+    const hasData = sess.started_at
+      || (sess.wellness && Object.values(sess.wellness).some(v => v !== "" && v != null))
+      || Object.values(sess.exercises || {}).some(ex => (ex.sets || []).some(s => s && (s.done || s.peso || s.reps)));
+    if (!hasData) continue;
+    byDay[sess.dayId] = (byDay[sess.dayId] || 0) + 1;
+    total++;
+  }
+  const summary = Object.entries(byDay).map(([id, n]) => `${id}: ${n}`).join(", ");
+  return { total, summary };
+}
+
+function purgeOrphanLogs(routineId, removedDayIds) {
+  const log = logsStore[routineId];
+  if (!log || !log.weeks) return;
+  for (const key of Object.keys(log.weeks)) {
+    const sess = log.weeks[key];
+    if (sess && removedDayIds.includes(sess.dayId)) {
+      delete log.weeks[key];
+    }
+  }
+}
+
+function renderEditor() {
+  // Header title
+  const name = editingDraft.meta.nombre || "(sin nombre)";
+  document.getElementById("editor-title-name").textContent = name;
+  document.getElementById("editor-subtitle").textContent = editingIsNew ? "Nueva rutina" : "Editando rutina";
+
+  // Meta form
+  document.getElementById("edit-meta-nombre").value    = editingDraft.meta.nombre    || "";
+  document.getElementById("edit-meta-atleta").value    = editingDraft.meta.atleta    || "";
+  document.getElementById("edit-meta-objetivo").value  = editingDraft.meta.objetivo  || "";
+  document.getElementById("edit-meta-split").value     = editingDraft.meta.split     || "";
+  document.getElementById("edit-meta-notas").value     = editingDraft.meta.notas     || "";
+  document.getElementById("edit-meta-lesion-hombro").value = editingDraft.meta.lesion_hombro ? "true" : "false";
+
+  renderWeeksEditor();
+  renderDaysEditor();
+}
+
+function renderWeeksEditor() {
+  const tbody = document.getElementById("weeks-tbody");
+  tbody.innerHTML = "";
+  editingDraft.semanas.forEach((w, idx) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="week-num">${w.n}</td>
+      <td><input type="text" data-week-idx="${idx}" data-field="fase" value="${escapeHtml(w.fase || '')}"></td>
+      <td><input type="number" step="1" min="0" data-week-idx="${idx}" data-field="rir" value="${w.rir != null ? w.rir : ''}"></td>
+      <td><input type="number" step="0.01" data-week-idx="${idx}" data-field="carga" value="${w.carga != null ? w.carga : 1}"></td>
+      <td><input type="number" step="1" data-week-idx="${idx}" data-field="series_extra" value="${w.series_extra != null ? w.series_extra : 0}"></td>
+      <td><input type="checkbox" data-week-idx="${idx}" data-field="deload" ${w.deload ? 'checked' : ''}></td>
+      <td class="col-actions"><button class="btn-row-delete" data-del-week="${idx}" title="Eliminar esta semana">✕</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Bindings
+  tbody.querySelectorAll("[data-week-idx]").forEach(inp => {
+    inp.addEventListener("change", (e) => {
+      const i = parseInt(e.target.dataset.weekIdx);
+      const f = e.target.dataset.field;
+      const w = editingDraft.semanas[i];
+      if (!w) return;
+      if (f === "deload") {
+        w.deload = e.target.checked;
+      } else if (f === "rir" || f === "series_extra") {
+        w[f] = e.target.value === "" ? 0 : parseInt(e.target.value);
+      } else if (f === "carga") {
+        w[f] = e.target.value === "" ? 1 : parseFloat(e.target.value);
+      } else {
+        w[f] = e.target.value;
+      }
+    });
+  });
+  tbody.querySelectorAll("[data-del-week]").forEach(btn => {
+    btn.onclick = (e) => {
+      const i = parseInt(e.currentTarget.dataset.delWeek);
+      if (editingDraft.semanas.length <= 1) { alert("Debe haber al menos una semana."); return; }
+      if (!confirm(`¿Eliminar semana ${editingDraft.semanas[i].n}?`)) return;
+      editingDraft.semanas.splice(i, 1);
+      // Re-numerar para que queden 1..N consecutivos
+      editingDraft.semanas.forEach((w, idx) => w.n = idx + 1);
+      renderWeeksEditor();
+    };
+  });
+}
+
+function renderDaysEditor() {
+  const list = document.getElementById("days-list");
+  list.innerHTML = "";
+  editingDraft.dias.forEach((d, idx) => {
+    const ejCount = (d.ejercicios || []).length;
+    const row = document.createElement("div");
+    row.className = "day-row";
+    row.innerHTML = `
+      <div class="day-row-num">${idx + 1}</div>
+      <div class="editor-field" style="gap:2px;">
+        <label>ID</label>
+        <input type="text" data-day-idx="${idx}" data-field="id" value="${escapeHtml(d.id || '')}" readonly title="Los IDs no se pueden editar. Para cambiar, elimina y creá un día nuevo.">
+      </div>
+      <div class="editor-field" style="gap:2px;">
+        <label>Nombre</label>
+        <input type="text" data-day-idx="${idx}" data-field="nombre" value="${escapeHtml(d.nombre || '')}" placeholder="Upper A">
+      </div>
+      <div class="editor-field field-foco-wrap" style="gap:2px;">
+        <label>Foco</label>
+        <input type="text" data-day-idx="${idx}" data-field="foco" value="${escapeHtml(d.foco || '')}" placeholder="Pecho + Espalda">
+      </div>
+      <div class="day-reorder-btns">
+        <button class="btn-reorder" data-move-day="${idx}" data-dir="up" ${idx === 0 ? 'disabled' : ''}>▲</button>
+        <button class="btn-reorder" data-move-day="${idx}" data-dir="down" ${idx === editingDraft.dias.length - 1 ? 'disabled' : ''}>▼</button>
+      </div>
+      <button class="btn-row-delete" data-del-day="${idx}" title="Eliminar este día">✕</button>
+      <div class="day-row-info">
+        <strong>${ejCount}</strong> ${ejCount === 1 ? "ejercicio" : "ejercicios"} · (edición de ejercicios: Fase 4)
+      </div>
+    `;
+    list.appendChild(row);
+  });
+
+  // Bindings
+  list.querySelectorAll("[data-day-idx]").forEach(inp => {
+    inp.addEventListener("change", (e) => {
+      const i = parseInt(e.target.dataset.dayIdx);
+      const f = e.target.dataset.field;
+      if (editingDraft.dias[i]) editingDraft.dias[i][f] = e.target.value;
+    });
+  });
+  list.querySelectorAll("[data-move-day]").forEach(btn => {
+    btn.onclick = (e) => {
+      const i = parseInt(e.currentTarget.dataset.moveDay);
+      const dir = e.currentTarget.dataset.dir;
+      const j = dir === "up" ? i - 1 : i + 1;
+      if (j < 0 || j >= editingDraft.dias.length) return;
+      const tmp = editingDraft.dias[i];
+      editingDraft.dias[i] = editingDraft.dias[j];
+      editingDraft.dias[j] = tmp;
+      renderDaysEditor();
+    };
+  });
+  list.querySelectorAll("[data-del-day]").forEach(btn => {
+    btn.onclick = (e) => {
+      const i = parseInt(e.currentTarget.dataset.delDay);
+      if (editingDraft.dias.length <= 1) { alert("Debe haber al menos un día."); return; }
+      const d = editingDraft.dias[i];
+      const ejCount = (d.ejercicios || []).length;
+      const msg = ejCount > 0
+        ? `¿Eliminar día "${d.nombre}" (${d.id})?\n\nEste día tiene ${ejCount} ejercicios. Se perderán al guardar.`
+        : `¿Eliminar día "${d.nombre}" (${d.id})?`;
+      if (!confirm(msg)) return;
+      editingDraft.dias.splice(i, 1);
+      renderDaysEditor();
+    };
+  });
+}
+
+function generateNewDayId() {
+  // Buscar el siguiente "D{n}" libre
+  const existing = new Set(editingDraft.dias.map(d => d.id));
+  for (let i = 1; i <= 99; i++) {
+    const id = "D" + i;
+    if (!existing.has(id)) return id;
+  }
+  return "D" + Date.now();
+}
+
+function addWeek() {
+  const n = editingDraft.semanas.length + 1;
+  const last = editingDraft.semanas[editingDraft.semanas.length - 1] || {};
+  editingDraft.semanas.push({
+    n,
+    fase: last.fase || "Acumulación",
+    rir: last.rir != null ? last.rir : 2,
+    carga: last.carga != null ? last.carga : 1.0,
+    series_extra: last.series_extra != null ? last.series_extra : 0,
+    deload: false
+  });
+  renderWeeksEditor();
+}
+
+function addDay() {
+  const id = generateNewDayId();
+  editingDraft.dias.push({
+    id,
+    nombre: "Día " + id.slice(1),
+    foco: "",
+    ejercicios: []
+  });
+  renderDaysEditor();
+}
+
+// Meta fields → bind al cambio
+function bindEditorMetaFields() {
+  const map = [
+    ["edit-meta-nombre",   "nombre"],
+    ["edit-meta-atleta",   "atleta"],
+    ["edit-meta-objetivo", "objetivo"],
+    ["edit-meta-split",    "split"],
+    ["edit-meta-notas",    "notas"]
+  ];
+  map.forEach(([elId, field]) => {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.addEventListener("input", () => {
+      if (editingDraft) {
+        editingDraft.meta[field] = el.value;
+        if (field === "nombre") {
+          document.getElementById("editor-title-name").textContent = el.value || "(sin nombre)";
+        }
+      }
+    });
+  });
+  const lesion = document.getElementById("edit-meta-lesion-hombro");
+  if (lesion) {
+    lesion.addEventListener("change", () => {
+      if (editingDraft) editingDraft.meta.lesion_hombro = lesion.value === "true";
+    });
+  }
+}
+
+// Collapsible sections
+function bindSectionToggles() {
+  document.querySelectorAll("[data-toggle-section]").forEach(head => {
+    head.addEventListener("click", () => {
+      const id = head.dataset.toggleSection;
+      document.getElementById(id).classList.toggle("collapsed");
+    });
+  });
+}
+
+// Handlers top-level
+document.getElementById("btn-editor-save").onclick   = () => closeEditor(true);
+document.getElementById("btn-editor-cancel").onclick = () => {
+  if (confirm("¿Descartar los cambios?")) closeEditor(false);
+};
+document.getElementById("btn-add-week").onclick = addWeek;
+document.getElementById("btn-add-day").onclick  = addDay;
+
+bindEditorMetaFields();
+bindSectionToggles();
+
+// Crear desde cero
+function createRoutineFromScratch() {
+  const nombre = prompt("Nombre de la nueva rutina:", "Mi Rutina");
+  if (!nombre || !nombre.trim()) return;
+  const id = generateRoutineId(nombre);
+  const newRoutine = {
+    meta: {
+      nombre: nombre.trim(),
+      atleta: getAtleta() || "",
+      objetivo: "",
+      split: "",
+      lesion_hombro: false,
+      notas: ""
+    },
+    semanas: [
+      { n: 1, fase: "Acumulación", rir: 2, carga: 1.0, series_extra: 0, deload: false }
+    ],
+    dias: [
+      { id: "D1", nombre: "Día 1", foco: "", ejercicios: [] }
+    ],
+    objetivos_volumen: {}
+  };
+  routinesStore.routines[id] = newRoutine;
+  logsStore[id] = { weeks: {}, currentWeek: 1, currentDay: "D1" };
+  persistRoutines();
+  persistLogs();
+  // Cerrar modal de rutinas y abrir editor
+  document.getElementById("modal-routines").classList.remove("open");
+  openEditor(id, /*isNew=*/true);
+}
+document.getElementById("btn-routine-new").onclick = createRoutineFromScratch;
+
+/* ============================================
+   EXPORT / IMPORT / RESET
+   ============================================ */
+document.getElementById("btn-export").onclick = () => {
+  const payload = {
+    version: "v2",
+    exported_at: new Date().toISOString(),
+    routines: routinesStore,
+    logs: logsStore,
+    config: { sheetsUrl: config.sheetsUrl } // nunca el token
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  const atletaSlug = (getAtleta() || "atleta").toLowerCase().replace(/[^a-z0-9]+/g, "_");
+  a.download = `rutina_${atletaSlug}_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+document.getElementById("btn-import").onclick = () => {
+  document.getElementById("modal-import").classList.add("open");
+};
+document.getElementById("btn-import-close").onclick = () => {
+  document.getElementById("modal-import").classList.remove("open");
+};
+document.getElementById("btn-import-confirm").onclick = () => {
+  try {
+    const data = JSON.parse(document.getElementById("import-data").value);
+
+    if (data.version === "v2" && data.routines && data.logs) {
+      // Formato v2 nativo
+      if (!confirm("Esto reemplazará TODAS las rutinas y registros actuales. ¿Continuar?")) return;
+      routinesStore = data.routines;
+      logsStore = data.logs;
+      // Si venía config.sheetsUrl y el actual está vacío, sugerir (sin pisar token)
+      if (data.config && data.config.sheetsUrl && !config.sheetsUrl) {
+        config.sheetsUrl = data.config.sheetsUrl;
+        saveConfig();
+      }
+      // Defensa: asegurar activeRoutineId válido
+      if (!routinesStore.routines[routinesStore.activeRoutineId]) {
+        routinesStore.activeRoutineId = Object.keys(routinesStore.routines)[0] || null;
+      }
+      persistRoutines();
+      persistLogs();
+      activateRoutineInMemory(routinesStore.activeRoutineId);
+    } else if (data.state && data.state.weeks) {
+      // Backward compat: formato v1 viejo → migrar al vuelo
+      if (!confirm("JSON en formato anterior (v1). Se importará como la rutina default. ¿Continuar?")) return;
+      routinesStore = {
+        routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+        activeRoutineId: DEFAULT_ROUTINE_ID
+      };
+      logsStore = {
+        [DEFAULT_ROUTINE_ID]: {
+          weeks: data.state.weeks || {},
+          currentWeek: data.state.currentWeek || 1,
+          currentDay:  data.state.currentDay  || "D1"
+        }
+      };
+      persistRoutines();
+      persistLogs();
+      activateRoutineInMemory(DEFAULT_ROUTINE_ID);
+    } else {
+      throw new Error("Estructura no reconocida (ni v2 ni v1)");
+    }
+
+    document.getElementById("modal-import").classList.remove("open");
+    render();
+    alert("Datos importados");
+  } catch (e) {
+    alert("JSON inválido: " + e.message);
+  }
+};
+
+document.getElementById("btn-reset").onclick = () => {
+  if (!confirm("¿Borrar TODAS las rutinas y registros? Esta acción no se puede deshacer.\n\nSe conserva el backup rutina_juank_v1 si existe.")) return;
+  // Reset completo a estado inicial con DEFAULT_ROUTINE
+  routinesStore = {
+    routines: { [DEFAULT_ROUTINE_ID]: deepClone(DEFAULT_ROUTINE) },
+    activeRoutineId: DEFAULT_ROUTINE_ID
+  };
+  logsStore = {
+    [DEFAULT_ROUTINE_ID]: {
+      weeks: {},
+      currentWeek: 1,
+      currentDay: getFirstDayIdOf(DEFAULT_ROUTINE) || "D1"
+    }
+  };
+  persistRoutines();
+  persistLogs();
+  activateRoutineInMemory(DEFAULT_ROUTINE_ID);
+  render();
+};
+
+/* ============================================
+   FINALIZAR RUTINA DEL DÍA
+   ============================================ */
+document.getElementById("btn-finish-session").onclick = () => {
+  const session = getSessionData(currentWeek, currentDay);
+  const day = getDay(currentDay);
+  const week = getWeek(currentWeek);
+
+  if (session.finished_at) {
+    // Reabrir sesión
+    if (confirm("¿Reabrir esta sesión? Podrás seguir registrando series.")) {
+      session.finished_at = null;
+      saveState();
+      scheduleSheetsSync();
+      render();
+    }
+    return;
+  }
+
+  // Calcular stats para el resumen
+  let total = 0, done = 0;
+  const porGrupo = {};
+  day.ejercicios.forEach(ex => {
+    const series = getSeriesForWeek(ex.series_base, week);
+    total += series;
+    const exData = session.exercises[ex.id];
+    if (exData) {
+      const d = (exData.sets || []).slice(0, series).filter(s => s && s.done).length;
+      done += d;
+      getExerciseGrupos(ex).forEach(g => {
+        if (!hasVolumeTarget(g)) return;
+        porGrupo[g] = (porGrupo[g] || 0) + d;
+      });
+    }
+  });
+
+  const incompleto = done < total;
+  const msg = incompleto
+    ? `Te faltan ${total - done} series por completar.\n\n¿Finalizar la rutina igual?`
+    : `¡Completaste todas las series (${done}/${total})!\n\n¿Finalizar la rutina?`;
+
+  if (!confirm(msg)) return;
+
+  // Marcar finalizada
+  session.finished_at = new Date().toISOString();
+  if (!session.started_at) session.started_at = session.finished_at;
+
+  // Cerrar timer de descanso si estaba abierto
+  hideRestTimer();
+
+  saveState();
+  scheduleSheetsSync();
+
+  // Mostrar toast de resumen
+  showSessionSummary(session, day, done, total, porGrupo);
+  render();
+};
+
+function showSessionSummary(session, day, done, total, porGrupo) {
+  const duration = session.started_at
+    ? Math.round((new Date(session.finished_at) - new Date(session.started_at)) / 60000)
+    : 0;
+
+  const grupoList = Object.entries(porGrupo)
+    .map(([g, n]) => `${g}: ${n}`)
+    .join(" · ");
+
+  const msg = `
+✓ ${day.nombre} completado
+
+${done}/${total} series · ${duration} min
+
+${grupoList}
+
+Buen trabajo 💪
+  `.trim();
+
+  alert(msg);
+}
+
+/* ============================================
+   GOOGLE SHEETS SYNC
+   ============================================ */
+let syncTimeout = null;
+let lastSyncResult = null;
+
+function scheduleSheetsSync() {
+  if (!config.sheetsUrl) return;
+  clearTimeout(syncTimeout);
+  syncTimeout = setTimeout(() => syncToSheets(false), 2000);
+}
+
+function logSync(msg, level) {
+  lastSyncResult = { msg, level, at: new Date().toLocaleTimeString() };
+  const el = document.getElementById("sheets-msg");
+  if (el && document.getElementById("modal-sheets").classList.contains("open")) {
+    el.textContent = `[${lastSyncResult.at}] ${msg}`;
+    el.style.color = level === "ok" ? "var(--ok)" : level === "warn" ? "var(--warn)" : "var(--danger)";
+  }
+  console.log(`[Sheets ${level}]`, msg);
+}
+
+async function syncToSheets(isFull) {
+  if (!config.sheetsUrl) return false;
+  setStatus("sheets", "warn");
+  const rows = buildSheetRows();
+  if (rows.length === 0 && !isFull) {
+    logSync("Nada para sincronizar aún", "warn");
+    setStatus("sheets", "ok");
+    return true;
+  }
+  try {
+    const payload = {
+      token: config.sheetsToken,
+      atleta: getAtleta(),
+      timestamp: new Date().toISOString(),
+      rows: rows
+    };
+    // Usar mode "cors" — Apps Script soporta CORS para text/plain
+    const resp = await fetch(config.sheetsUrl, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+      redirect: "follow"
+    });
+    if (!resp.ok) {
+      logSync(`HTTP ${resp.status} — ${resp.statusText}. Verifica que el Web App esté desplegado con acceso "Anyone".`, "error");
+      setStatus("sheets", "warn");
+      return false;
+    }
+    const text = await resp.text();
+    let data;
+    try { data = JSON.parse(text); } catch (e) {
+      logSync(`Respuesta no-JSON. Primeros 200 chars: ${text.slice(0,200)}`, "error");
+      setStatus("sheets", "warn");
+      return false;
+    }
+    if (data.ok) {
+      logSync(`✓ ${data.rows || 0} filas escritas en Sheets`, "ok");
+      setStatus("sheets", "ok");
+      return true;
+    } else {
+      logSync(`✗ Apps Script devolvió error: ${data.error}`, "error");
+      setStatus("sheets", "warn");
+      return false;
+    }
+  } catch (e) {
+    // Error típico: CORS (si el Apps Script no está bien desplegado) o red
+    logSync(`Fetch falló: ${e.message}. Causas comunes: (1) Web App no desplegado como "Anyone", (2) URL incorrecta (debe terminar en /exec), (3) script con error de sintaxis.`, "error");
+    setStatus("sheets", "warn");
+    console.error("Sheets sync failed:", e);
+    return false;
+  }
+}
+
+function buildSheetRows() {
+  // Una fila por set completado, con todo el contexto
+  const rows = [];
+  Object.entries(state.weeks).forEach(([key, sess]) => {
+    const day = getDay(sess.dayId);
+    if (!day) return;
+    const weekInfo = getWeek(sess.week);
+    // Duración total de la sesión en minutos (si finalizó)
+    let duracionMin = "";
+    if (sess.started_at && sess.finished_at) {
+      duracionMin = Math.round((new Date(sess.finished_at) - new Date(sess.started_at)) / 60000);
+    }
+    day.ejercicios.forEach(ex => {
+      const exData = sess.exercises[ex.id];
+      if (!exData || !exData.sets) return;
+      exData.sets.forEach((set, i) => {
+        if (!set || (!set.peso && !set.reps && !set.done)) return;
+        rows.push({
+          fecha: sess.started_at || "",
+          fecha_fin: sess.finished_at || "",
+          duracion_min: duracionMin,
+          sesion_estado: sess.finished_at ? "FINALIZADA" : "EN_CURSO",
+          semana: sess.week,
+          fase: weekInfo ? weekInfo.fase : "",
+          dia: sess.dayId,
+          dia_nombre: day.nombre,
+          ejercicio_id: ex.id,
+          ejercicio: getExerciseName(ex, sess.week),
+          grupo: getExerciseGrupos(ex).join("|"),
+          set_num: i + 1,
+          peso_kg: set.peso,
+          reps: set.reps,
+          rir: set.rir,
+          completado: set.done ? "SI" : "NO",
+          tempo: ex.tempo,
+          descanso: ex.descanso,
+          rir_objetivo: weekInfo ? weekInfo.rir : "",
+          notas_ejercicio: exData.notes || "",
+          sueno: sess.wellness.sueno || "",
+          energia: sess.wellness.energia || "",
+          apetito: sess.wellness.apetito || "",
+          dolor_hombro: sess.wellness.dolor_hombro || "",
+          peso_corporal: sess.wellness.peso || ""
+        });
+      });
+    });
+  });
+  return rows;
+}
+
+document.getElementById("btn-sheets").onclick = () => {
+  document.getElementById("sheets-url").value = config.sheetsUrl || "";
+  document.getElementById("sheets-token").value = config.sheetsToken || "";
+  document.getElementById("modal-sheets").classList.add("open");
+};
+document.getElementById("btn-sheets-close").onclick = () => {
+  document.getElementById("modal-sheets").classList.remove("open");
+};
+document.getElementById("btn-sheets-save").onclick = () => {
+  config.sheetsUrl = document.getElementById("sheets-url").value.trim();
+  config.sheetsToken = document.getElementById("sheets-token").value.trim();
+  saveConfig();
+  logSync("✓ Configuración guardada", "ok");
+  setStatus("sheets", config.sheetsUrl ? "ok" : "off");
+};
+
+document.getElementById("btn-sheets-test").onclick = async () => {
+  config.sheetsUrl = document.getElementById("sheets-url").value.trim();
+  config.sheetsToken = document.getElementById("sheets-token").value.trim();
+  saveConfig();
+  if (!config.sheetsUrl) { logSync("Ingresá la URL primero", "warn"); return; }
+  if (!config.sheetsUrl.endsWith("/exec")) {
+    logSync("⚠ La URL debe terminar en /exec. La tuya termina en: " + config.sheetsUrl.slice(-20), "warn");
+    return;
+  }
+  logSync("Enviando ping...", "warn");
+  try {
+    const resp = await fetch(config.sheetsUrl, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ ping: true, token: config.sheetsToken, atleta: getAtleta(), timestamp: new Date().toISOString() }),
+      redirect: "follow"
+    });
+    if (!resp.ok) {
+      logSync(`✗ HTTP ${resp.status}. Verifica deploy con acceso "Anyone".`, "error");
+      return;
+    }
+    const text = await resp.text();
+    let data;
+    try { data = JSON.parse(text); } catch (e) {
+      logSync(`✗ Respuesta no-JSON. Probablemente el deploy no ejecuta doPost. Primeros 200 chars: ${text.slice(0,200)}`, "error");
+      return;
+    }
+    if (data.ok) {
+      logSync("✓ Ping exitoso. Fila 'PING' agregada al Sheet. Conexión funcionando.", "ok");
+    } else {
+      logSync(`✗ Apps Script: ${data.error}`, "error");
+    }
+  } catch (e) {
+    logSync(`✗ ${e.message}. ¿El deploy está configurado como "Anyone"?`, "error");
+  }
+};
+
+document.getElementById("btn-sheets-sync").onclick = async () => {
+  logSync("Sincronizando todo el historial...", "warn");
+  await syncToSheets(true);
+};
+
+function setStatus(which, state) {
+  const dot = document.getElementById(which + "-dot");
+  if (!dot) return;
+  dot.className = "dot" + (state === "off" ? " off" : state === "warn" ? " warn" : "");
+}
+
+/* ============================================
+   PWA: Service Worker + botón Instalar
+   ============================================ */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(err => console.warn("SW fallo:", err));
+  });
+}
+
+let deferredInstallPrompt = null;
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById("btn-install");
+  if (btn) btn.style.display = "inline-block";
+});
+
+// Exponer handler del botón instalar (se asigna más adelante si existe)
+async function handleInstall() {
+  if (!deferredInstallPrompt) {
+    alert("Para instalar en iPhone: Safari → Compartir → Agregar a pantalla de inicio.\nPara instalar en Android/desktop: el navegador debería ofrecer la opción automáticamente. Si no aparece, verifica que estés accediendo por HTTPS (no file://).");
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  const result = await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  const btn = document.getElementById("btn-install");
+  if (btn) btn.style.display = "none";
+}
+
+window.addEventListener("appinstalled", () => {
+  const btn = document.getElementById("btn-install");
+  if (btn) btn.style.display = "none";
+});
+
+/* ============================================
+   INIT
+   ============================================ */
+setStatus("local", "ok");
+setStatus("sheets", config.sheetsUrl ? "ok" : "off");
+render();
+
+/* ============================================
+   APPS SCRIPT para copiar (se muestra en el modal)
+   ============================================ */
+const APPS_SCRIPT_CODE = `const SECRET_TOKEN = "cambia-este-token"; // debe coincidir con el token de la app
+const SHEET_NAME = "Rutina";
+const HEADERS = [
+  "fecha","fecha_fin","duracion_min","sesion_estado",
+  "semana","fase","dia","dia_nombre","ejercicio_id","ejercicio","grupo",
+  "set_num","peso_kg","reps","rir","completado","tempo","descanso","rir_objetivo",
+  "notas_ejercicio","sueno","energia","apetito","dolor_hombro","peso_corporal",
+  "atleta","sync_timestamp"
+];
+const ATLETA_COL_IDX = 25; // índice 0-based de "atleta" en HEADERS
+
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({
+    ok: true,
+    message: "Apps Script activo. Usa POST para enviar datos.",
+    timestamp: new Date().toISOString()
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonOut({ok: false, error: "Sin postData"});
+    }
+    const data = JSON.parse(e.postData.contents);
+
+    if (SECRET_TOKEN && data.token !== SECRET_TOKEN) {
+      return jsonOut({ok: false, error: "token invalido"});
+    }
+
+    const sh = getOrCreateSheet();
+
+    if (data.ping) {
+      const pingRow = new Array(HEADERS.length).fill("");
+      pingRow[0] = "PING_" + new Date().toISOString();
+      pingRow[ATLETA_COL_IDX] = data.atleta || "";
+      pingRow[HEADERS.length - 1] = data.timestamp || new Date().toISOString();
+      sh.appendRow(pingRow);
+      return jsonOut({ok: true, ping: true, rows: 1});
+    }
+
+    const rows = data.rows || [];
+    const lastRow = sh.getLastRow();
+    if (lastRow > 1) {
+      const allData = sh.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
+      const keepRows = allData.filter(function(r) {
+        return r[ATLETA_COL_IDX] !== data.atleta && r[0] !== "" && String(r[0]).indexOf("PING") !== 0;
+      });
+      sh.getRange(2, 1, lastRow - 1, HEADERS.length).clearContent();
+      if (keepRows.length > 0) {
+        sh.getRange(2, 1, keepRows.length, HEADERS.length).setValues(keepRows);
+      }
+    }
+
+    const output = rows.map(function(r) {
+      return [
+        r.fecha, r.fecha_fin || "", r.duracion_min || "", r.sesion_estado || "",
+        r.semana, r.fase, r.dia, r.dia_nombre, r.ejercicio_id, r.ejercicio, r.grupo,
+        r.set_num, r.peso_kg, r.reps, r.rir, r.completado, r.tempo, r.descanso, r.rir_objetivo,
+        r.notas_ejercicio, r.sueno, r.energia, r.apetito, r.dolor_hombro, r.peso_corporal,
+        data.atleta, data.timestamp
+      ];
+    });
+    if (output.length > 0) {
+      sh.getRange(sh.getLastRow() + 1, 1, output.length, HEADERS.length).setValues(output);
+    }
+
+    return jsonOut({ok: true, rows: output.length});
+
+  } catch (err) {
+    return jsonOut({ok: false, error: err.toString()});
+  }
+}
+
+function getOrCreateSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(SHEET_NAME);
+  if (!sh) {
+    sh = ss.insertSheet(SHEET_NAME);
+    sh.appendRow(HEADERS);
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function jsonOut(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}`;
+
+document.getElementById("script-code").textContent = APPS_SCRIPT_CODE;
+document.getElementById("link-show-script").onclick = (e) => {
+  e.preventDefault();
+  const b = document.getElementById("script-block");
+  b.style.display = b.style.display === "none" ? "block" : "none";
+};
+document.getElementById("btn-copy-script").onclick = async () => {
+  try {
+    await navigator.clipboard.writeText(APPS_SCRIPT_CODE);
+    document.getElementById("btn-copy-script").textContent = "✓ Copiado";
+    setTimeout(() => { document.getElementById("btn-copy-script").textContent = "Copiar script"; }, 2000);
+  } catch (e) {
+    // Fallback: seleccionar texto
+    const range = document.createRange();
+    range.selectNode(document.getElementById("script-code"));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  }
+};
+
+/* ============================================
+   GOOGLE APPS SCRIPT (copia esto en script.google.com)
+   ============================================
+
+const SECRET_TOKEN = "cambia-este-token"; // cambiar y usar el mismo en la app
+const SHEET_NAME = "Rutina";
+const HEADERS = [
+  "fecha","semana","fase","dia","dia_nombre","ejercicio_id","ejercicio","grupo",
+  "set_num","peso_kg","reps","rir","completado","tempo","descanso","rir_objetivo",
+  "notas_ejercicio","sueno","energia","apetito","dolor_hombro","peso_corporal",
+  "atleta","sync_timestamp"
+];
+
+// Permite verificar en el navegador que el deploy funciona
+function doGet(e) {
+  return ContentService.createTextOutput(JSON.stringify({
+    ok: true,
+    message: "Apps Script activo. Usa POST para enviar datos.",
+    timestamp: new Date().toISOString()
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return jsonOut({ok: false, error: "Sin postData. Llamar con POST y body JSON."});
+    }
+    const data = JSON.parse(e.postData.contents);
+
+    // Validar token
+    if (SECRET_TOKEN && data.token !== SECRET_TOKEN) {
+      return jsonOut({ok: false, error: "token inválido"});
+    }
+
+    const sh = getOrCreateSheet();
+
+    // Ping de diagnóstico
+    if (data.ping) {
+      sh.appendRow(["PING_" + new Date().toISOString(), "", "", "", "", "", "", "",
+                    "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+                    data.atleta || "", data.timestamp || new Date().toISOString()]);
+      return jsonOut({ok: true, ping: true, rows: 1});
+    }
+
+    const rows = data.rows || [];
+    // Estrategia: borrar filas previas de este atleta y reescribir (consistencia con estado local)
+    const lastRow = sh.getLastRow();
+    if (lastRow > 1) {
+      const allData = sh.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
+      const keepRows = allData.filter(r => r[22] !== data.atleta && r[0] !== "" && String(r[0]).indexOf("PING") !== 0);
+      sh.getRange(2, 1, lastRow - 1, HEADERS.length).clearContent();
+      if (keepRows.length > 0) {
+        sh.getRange(2, 1, keepRows.length, HEADERS.length).setValues(keepRows);
+      }
+    }
+
+    const output = rows.map(r => [
+      r.fecha, r.semana, r.fase, r.dia, r.dia_nombre, r.ejercicio_id, r.ejercicio, r.grupo,
+      r.set_num, r.peso_kg, r.reps, r.rir, r.completado, r.tempo, r.descanso, r.rir_objetivo,
+      r.notas_ejercicio, r.sueno, r.energia, r.apetito, r.dolor_hombro, r.peso_corporal,
+      data.atleta, data.timestamp
+    ]);
+    if (output.length > 0) {
+      sh.getRange(sh.getLastRow() + 1, 1, output.length, HEADERS.length).setValues(output);
+    }
+
+    return jsonOut({ok: true, rows: output.length});
+
+  } catch (err) {
+    return jsonOut({ok: false, error: err.toString(), stack: err.stack});
+  }
+}
+
+function getOrCreateSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName(SHEET_NAME);
+  if (!sh) {
+    sh = ss.insertSheet(SHEET_NAME);
+    sh.appendRow(HEADERS);
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+function jsonOut(obj) {
+  return ContentService
+    .createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ============= PASOS DE DESPLIEGUE =============
+// 1. Abrí un Google Sheet nuevo (será donde se guardan los datos)
+// 2. Extensiones > Apps Script
+// 3. Borrá el código por defecto y pegá TODO este bloque (del const SECRET_TOKEN a jsonOut)
+// 4. Cambiá "cambia-este-token" por un token propio (mismo que pegás en la app)
+// 5. Guardá el proyecto (icono del disquete) y dale un nombre
+// 6. Click en "Desplegar" (arriba derecha) > "Nueva implementación"
+// 7. Tipo: Aplicación web
+// 8. Ejecutar como: Yo (tu email)
+// 9. Quién tiene acceso: CUALQUIER USUARIO (importante, si no dice esto, falla con CORS)
+// 10. Implementar > Aceptar permisos
+// 11. Copiar la URL que termina en /exec
+// 12. Pegar en la app, "Probar conexión"
+// 13. VERIFICACIÓN: abrí la URL en el navegador. Deberías ver un JSON con {"ok":true,"message":"Apps Script activo..."}
+//     Si ves HTML con login de Google → el acceso no está en "Cualquier usuario"
+//     Si ves error 404 → la URL no es correcta o no está desplegada
+
+// ============= CAMBIOS IMPORTANTES =============
+// Cada vez que modifiques el script:
+// Desplegar > Administrar implementaciones > ícono lápiz > Nueva versión > Implementar
+// Si creás una implementación nueva (en vez de nueva versión), la URL cambia.
+
+ ============================================ */
+
+</script>
+</body>
+</html>
