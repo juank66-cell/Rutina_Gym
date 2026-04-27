@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Mesociclo Hipertrofia · 4d · U/L</title>
+<title>Rutina · entrenamiento</title>
 <meta name="description" content="Registro de rutina de gimnasio – Mesociclo de hipertrofia 4 días Upper/Lower">
 <meta name="theme-color" content="#0a0a0b">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -106,6 +106,21 @@
   }
   .btn.primary:hover { background: var(--accent-dim); color: var(--bg); }
   .btn.danger:hover { border-color: var(--danger); color: var(--danger); }
+
+  /* Badge contador (Fase 7) */
+  .btn-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0;
+  }
+  .btn:hover .btn-badge { background: var(--bg); color: var(--accent); border: 1px solid var(--accent); padding: 0 5px; }
 
   /* Selectors */
   .selector-row {
@@ -1038,6 +1053,300 @@
     width: 100%;
   }
   .editor-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .editor-add-btn.small {
+    padding: 6px 10px;
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  /* Ejercicios dentro del editor de día (Fase 4b) */
+  .day-exercises-toggle {
+    grid-column: 1 / -1;
+    padding: 6px 0;
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed var(--border);
+    margin-top: 6px;
+  }
+  .day-exercises-toggle:hover { color: var(--accent); }
+  .day-exercises-toggle .chev {
+    transition: transform 0.15s;
+    display: inline-block;
+  }
+  .day-exercises-toggle.expanded .chev { transform: rotate(90deg); }
+
+  .day-exercises-panel {
+    grid-column: 1 / -1;
+    display: none;
+    padding-top: 10px;
+  }
+  .day-exercises-panel.expanded { display: block; }
+  .exercise-editor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .exercise-editor-row {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    display: grid;
+    grid-template-columns: 32px 1fr auto auto auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .exercise-editor-code {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 13px;
+    color: var(--accent);
+    text-align: center;
+  }
+  .exercise-editor-body { min-width: 0; }
+  .exercise-editor-name {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .exercise-editor-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .exercise-editor-meta strong { color: var(--text); font-weight: 700; }
+  .exercise-editor-row .btn-reorder,
+  .exercise-editor-row .btn-row-delete {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+  .exercise-editor-reorder-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .exercise-editor-empty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    padding: 12px;
+    text-align: center;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+  }
+
+  /* Modales de ejercicio (Fase 4c) */
+  .ex-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .ex-tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: -1px;
+  }
+  .ex-tab:hover { color: var(--text); }
+  .ex-tab.active {
+    background: var(--bg);
+    color: var(--accent);
+    border-color: var(--border-strong);
+    border-bottom: 1px solid var(--bg);
+    font-weight: 700;
+  }
+
+  .ex-lib-search {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border-radius: 0;
+    margin-bottom: 10px;
+  }
+  .ex-lib-search:focus { outline: none; border-color: var(--accent); }
+
+  .ex-lib-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .ex-lib-chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 4px 8px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .ex-lib-chip:hover { border-color: var(--text-dim); color: var(--text); }
+  .ex-lib-chip.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+
+  .ex-lib-results {
+    max-height: 360px;
+    overflow-y: auto;
+    border: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .ex-lib-item {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+  .ex-lib-item:last-child { border-bottom: none; }
+  .ex-lib-item:hover { background: var(--bg-elev); }
+  .ex-lib-item-name {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .ex-lib-item-grupos {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .ex-lib-item-hombro {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--hombro);
+    background: rgba(255, 154, 58, 0.1);
+    padding: 2px 6px;
+    letter-spacing: 0.1em;
+    border: 1px solid var(--hombro);
+  }
+  .ex-lib-empty {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* Grid de checkboxes de grupos (para tab "Ejercicio nuevo" y editor) */
+  .grupos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 4px;
+  }
+  .grupo-check {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    user-select: none;
+  }
+  .grupo-check:hover { border-color: var(--text-dim); color: var(--text); }
+  .grupo-check.selected {
+    background: rgba(212, 255, 58, 0.08);
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .grupo-check input { accent-color: var(--accent); cursor: pointer; }
+
+  /* Secciones del modal de editar ejercicio */
+  .edit-ex-section {
+    border: 1px solid var(--border);
+    padding: 12px;
+    margin-bottom: 12px;
+    background: var(--bg);
+  }
+  .edit-ex-section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .edit-ex-override-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px dashed var(--border);
+  }
+  .edit-ex-override-row:first-of-type { border-top: none; }
+  .edit-ex-override-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    cursor: pointer;
+    min-width: 140px;
+    user-select: none;
+  }
+  .edit-ex-override-input {
+    flex: 1;
+    min-width: 0;
+  }
+  .edit-ex-override-input input,
+  .edit-ex-override-input textarea,
+  .edit-ex-override-input select {
+    width: 100%;
+    background: var(--bg-elev);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    padding: 6px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    border-radius: 0;
+  }
+  .edit-ex-override-input input:disabled,
+  .edit-ex-override-input textarea:disabled,
+  .edit-ex-override-input select:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
   /* Mobile */
   @media (max-width: 640px) {
@@ -1076,6 +1385,12 @@
     .day-row .field-foco-wrap { grid-column: 1 / -1; }
     .weeks-table { font-size: 11px; }
     .weeks-table th, .weeks-table td { padding: 4px 3px; }
+    .exercise-editor-row {
+      grid-template-columns: 28px 1fr auto auto;
+      gap: 5px;
+      padding: 8px;
+    }
+    .exercise-editor-reorder-btns { display: none; }
   }
 </style>
 </head>
@@ -1301,6 +1616,20 @@
     <input type="url" id="sheets-url" placeholder="https://script.google.com/macros/s/AKfyc.../exec">
     <label>Token</label>
     <input type="text" id="sheets-token" placeholder="tu-token-secreto">
+
+    <label style="margin-top:16px;">Scope del sync automático</label>
+    <div style="display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap;">
+      <label style="display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); cursor:pointer;">
+        <input type="radio" name="sheets-scope" id="sheets-scope-all" value="all" checked> Todas las rutinas
+      </label>
+      <label style="display:flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-dim); cursor:pointer;">
+        <input type="radio" name="sheets-scope" id="sheets-scope-active" value="active"> Solo la rutina activa
+      </label>
+    </div>
+    <p style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); margin:0 0 8px 0;">
+      "Todas" envía todos los logs de todas las rutinas en cada sync (recomendado, el Sheet queda como espejo del LocalStorage).
+    </p>
+
     <div class="modal-actions">
       <button class="btn" id="btn-sheets-test">Probar conexión</button>
       <button class="btn" id="btn-sheets-sync">Sincronizar ahora</button>
@@ -1330,11 +1659,189 @@
     <h2>Gestor de rutinas</h2>
     <div class="routines-toolbar">
       <button class="btn" id="btn-routine-new">＋ Crear desde cero</button>
-      <button class="btn" id="btn-routine-import" title="Disponible en Fase 5" disabled>Importar rutina</button>
+      <button class="btn" id="btn-routine-template">Cargar plantilla</button>
+      <button class="btn" id="btn-routine-import">Importar rutina</button>
     </div>
     <div class="routines-list" id="routines-list"></div>
     <div class="modal-actions">
       <button class="btn" id="btn-routines-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Plantillas (Fase 5) -->
+<div class="modal-overlay" id="modal-templates">
+  <div class="modal modal-wide">
+    <h2>Cargar plantilla</h2>
+    <p style="color: var(--text-dim); font-size: 13px;">
+      Elegí una plantilla como punto de partida. Se creará una copia editable — no afecta la plantilla original.
+    </p>
+    <div class="routines-list" id="templates-list"></div>
+    <div class="modal-actions">
+      <button class="btn" id="btn-templates-close">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Import rutina individual (Fase 5) -->
+<div class="modal-overlay" id="modal-import-routine">
+  <div class="modal">
+    <h2>Importar rutina</h2>
+    <p style="color: var(--text-dim); font-size: 13px;">
+      Pegá el JSON exportado desde otra instalación. Se creará como una rutina nueva — no sobrescribe nada.
+    </p>
+    <textarea id="import-routine-data" rows="10" style="width: 100%; margin-top: 8px;" placeholder='{"version":"v2-routine",...}'></textarea>
+    <p id="import-routine-msg" style="margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; min-height: 18px;"></p>
+    <div class="modal-actions">
+      <button class="btn primary" id="btn-import-routine-confirm">Importar</button>
+      <button class="btn" id="btn-import-routine-close">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar ejercicio (Fase 4c) -->
+<div class="modal-overlay" id="modal-add-exercise">
+  <div class="modal modal-wide">
+    <h2>Agregar ejercicio</h2>
+    <div class="ex-tabs">
+      <button class="ex-tab active" data-ex-tab="library">Desde librería</button>
+      <button class="ex-tab" data-ex-tab="new">Ejercicio nuevo</button>
+    </div>
+
+    <!-- Tab: Desde librería -->
+    <div id="ex-tab-library">
+      <input type="text" class="ex-lib-search" id="ex-lib-search" placeholder="Buscar por nombre o grupo...">
+      <div class="ex-lib-filters" id="ex-lib-filters"></div>
+      <div class="ex-lib-results" id="ex-lib-results"></div>
+    </div>
+
+    <!-- Tab: Ejercicio nuevo -->
+    <div id="ex-tab-new" style="display:none;">
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Nombre *</label>
+        <input type="text" id="new-ex-nombre" placeholder="Ej: Curl martillo con mancuernas">
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Grupos musculares</label>
+        <div class="grupos-grid" id="new-ex-grupos"></div>
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Lesión/cuidado hombro</label>
+        <select id="new-ex-hombro-flag">
+          <option value="false">No aplica</option>
+          <option value="true">Sí, tener cuidado</option>
+        </select>
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Nota técnica (opcional)</label>
+        <textarea id="new-ex-nota" rows="3" placeholder="Ej: Codos pegados al torso, control excéntrica..."></textarea>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.05em;">
+        Se agregará a la librería global y quedará disponible para futuras rutinas.
+      </p>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" id="btn-add-ex-close">Cancelar</button>
+      <button class="btn primary" id="btn-add-ex-save-new" style="display:none;">Crear y agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar ejercicio (Fase 4c) -->
+<div class="modal-overlay" id="modal-edit-exercise">
+  <div class="modal modal-wide">
+    <h2 id="edit-ex-title">Editar ejercicio</h2>
+
+    <div class="edit-ex-section">
+      <div class="edit-ex-section-title">Parámetros de esta rutina</div>
+      <div class="editor-form-grid">
+        <div class="editor-field">
+          <label>Código</label>
+          <input type="text" id="edit-ex-codigo" maxlength="4" placeholder="A1">
+        </div>
+        <div class="editor-field">
+          <label>Series base</label>
+          <input type="number" id="edit-ex-series-base" min="1" step="1">
+        </div>
+        <div class="editor-field">
+          <label>Reps</label>
+          <input type="text" id="edit-ex-reps" placeholder="8-10 ó 30s">
+        </div>
+        <div class="editor-field">
+          <label>Tempo</label>
+          <input type="text" id="edit-ex-tempo" placeholder="3-1-1-0">
+        </div>
+        <div class="editor-field">
+          <label>Descanso</label>
+          <input type="text" id="edit-ex-descanso" placeholder="2:30 ó 90s">
+        </div>
+      </div>
+    </div>
+
+    <!-- Si ejercicio tiene library_id: overrides opcionales -->
+    <div class="edit-ex-section" id="edit-ex-overrides-section">
+      <div class="edit-ex-section-title">Overrides (opcionales — vinculado a librería)</div>
+      <div class="edit-ex-override-row">
+        <label class="edit-ex-override-toggle"><input type="checkbox" id="edit-ex-override-nombre-toggle"> Nombre</label>
+        <div class="edit-ex-override-input"><input type="text" id="edit-ex-nombre-override" disabled></div>
+      </div>
+      <div class="edit-ex-override-row">
+        <label class="edit-ex-override-toggle"><input type="checkbox" id="edit-ex-override-grupos-toggle"> Grupos</label>
+        <div class="edit-ex-override-input"><div class="grupos-grid" id="edit-ex-grupos-override"></div></div>
+      </div>
+      <div class="edit-ex-override-row">
+        <label class="edit-ex-override-toggle"><input type="checkbox" id="edit-ex-override-hombro-toggle"> Hombro</label>
+        <div class="edit-ex-override-input">
+          <select id="edit-ex-hombro-override" disabled>
+            <option value="false">No aplica</option>
+            <option value="true">Sí, tener cuidado</option>
+          </select>
+        </div>
+      </div>
+      <div class="edit-ex-override-row">
+        <label class="edit-ex-override-toggle"><input type="checkbox" id="edit-ex-override-nota-toggle"> Nota técnica</label>
+        <div class="edit-ex-override-input"><textarea id="edit-ex-nota-override" rows="2" disabled></textarea></div>
+      </div>
+    </div>
+
+    <!-- Si es ejercicio legacy inline: campos directos -->
+    <div class="edit-ex-section" id="edit-ex-legacy-section" style="display:none;">
+      <div class="edit-ex-section-title">Campos del ejercicio (inline, no vinculado a librería)</div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Nombre</label>
+        <input type="text" id="edit-ex-nombre-legacy">
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Grupos musculares</label>
+        <div class="grupos-grid" id="edit-ex-grupos-legacy"></div>
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Lesión/cuidado hombro</label>
+        <select id="edit-ex-hombro-legacy">
+          <option value="false">No aplica</option>
+          <option value="true">Sí, tener cuidado</option>
+        </select>
+      </div>
+      <div class="editor-field" style="margin-bottom:12px;">
+        <label>Nota técnica</label>
+        <textarea id="edit-ex-nota-legacy" rows="3"></textarea>
+      </div>
+    </div>
+
+    <!-- Variante semana par -->
+    <div class="edit-ex-section">
+      <div class="edit-ex-section-title">Variante en semanas pares (opcional)</div>
+      <div class="editor-field">
+        <label>Ejercicio alternativo para semanas 2, 4, ...</label>
+        <select id="edit-ex-variante-select"><option value="">Ninguna</option></select>
+        <div class="hint" id="edit-ex-variante-hint">Para rotar ejercicio similar cada 2 semanas.</div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn" id="btn-edit-ex-close">Cancelar</button>
+      <button class="btn primary" id="btn-edit-ex-save">Guardar</button>
     </div>
   </div>
 </div>
@@ -1618,10 +2125,6 @@ const DEFAULT_ROUTINE = {
 */
 let activeRoutine = DEFAULT_ROUTINE;
 
-function getRoutine() {
-  return activeRoutine;
-}
-
 function setActiveRoutine(routine) {
   if (!routine || !Array.isArray(routine.semanas) || !Array.isArray(routine.dias)) {
     console.warn("setActiveRoutine: rutina inválida, se ignora", routine);
@@ -1659,16 +2162,6 @@ function getDay(id) {
   return (activeRoutine.dias || []).find(d => d.id === id) || null;
 }
 
-function getFirstDayId() {
-  const dias = activeRoutine.dias || [];
-  return dias.length > 0 ? dias[0].id : null;
-}
-
-function getExercisesForDay(dayId) {
-  const day = getDay(dayId);
-  return day ? (day.ejercicios || []) : [];
-}
-
 function getVolumeTargets() {
   return activeRoutine.objetivos_volumen || {};
 }
@@ -1703,9 +2196,12 @@ const DEFAULT_ROUTINE_ID = "default-hipertrofia-juank";
    Cada ejercicio en la librería es reutilizable entre rutinas.
    Un ejercicio DENTRO de una rutina puede referenciar un library_id,
    o seguir siendo inline (legacy, campos nombre/grupos/nota propios).
-   Grupos canónicos: Pecho, Espalda, Hombro lat/post, Cuádriceps,
-   Isquios/Glúteo, Bíceps, Tríceps, Pantorrilla, Core, Prehab.
 */
+const GRUPOS_CANONICOS = [
+  "Pecho", "Espalda", "Hombro lat/post", "Cuádriceps", "Isquios/Glúteo",
+  "Bíceps", "Tríceps", "Pantorrilla", "Core", "Prehab"
+];
+
 const DEFAULT_EXERCISE_LIBRARY = {
   // === Pecho ===
   "press-banca-plano-barra":      { nombre: "Press banca plano con barra",      grupos: ["Pecho"],     hombro_flag: true,  nota_default: "Escápulas retraídas, codos ~45° del torso, barra al pecho controlada." },
@@ -1785,6 +2281,141 @@ const DEFAULT_EXERCISE_LIBRARY = {
 
 // Store en memoria de la librería (se hidrata en boot)
 let exerciseLibrary = {};
+
+/* ============================================
+   PLANTILLAS DE RUTINA (Fase 5)
+   ============================================
+   Rutinas-plantilla que el usuario puede cargar como punto de partida.
+   Todos los ejercicios son inline (legacy format) — no dependen de la
+   librería, así funcionan en cualquier instalación sin supuestos.
+*/
+const ROUTINE_TEMPLATES = {
+  "ppl-6d": {
+    meta: {
+      nombre: "PPL 6 días",
+      atleta: "",
+      objetivo: "Hipertrofia intermedia",
+      split: "Push/Pull/Legs ×2",
+      duracion_semanas: 4,
+      lesion_hombro: false,
+      notas: "Plantilla PPL clásica: 2 ciclos Push/Pull/Legs por semana. Volumen moderado-alto."
+    },
+    semanas: [
+      { n: 1, fase: "Acumulación", rir: 3, carga: 1.0,  series_extra: 0, deload: false },
+      { n: 2, fase: "Acumulación", rir: 2, carga: 1.0,  series_extra: 1, deload: false },
+      { n: 3, fase: "Intensificación", rir: 1, carga: 1.03, series_extra: 1, deload: false },
+      { n: 4, fase: "Deload", rir: 4, carga: 0.85, series_extra: -2, deload: true }
+    ],
+    objetivos_volumen: {
+      "Pecho":           { mev: 10, mav: 18 },
+      "Espalda":         { mev: 12, mav: 20 },
+      "Hombro lat/post": { mev: 8,  mav: 16 },
+      "Cuádriceps":      { mev: 10, mav: 16 },
+      "Isquios/Glúteo":  { mev: 10, mav: 16 },
+      "Bíceps":          { mev: 8,  mav: 14 },
+      "Tríceps":         { mev: 8,  mav: 14 }
+    },
+    dias: [
+      { id: "D1", nombre: "Push A", foco: "Pecho + Hombro + Tríceps", ejercicios: [
+        { id: "D1-A", codigo: "A", nombre: "Press banca plano con barra", grupos: ["Pecho"], series_base: 4, reps: "6-8", tempo: "3-1-1-0", descanso: "3:00", hombro_flag: false, nota: "Escápulas retraídas, codos ~45°, barra al pecho." },
+        { id: "D1-B", codigo: "B", nombre: "Press mancuernas inclinado", grupos: ["Pecho"], series_base: 3, reps: "8-10", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "30° inclinación, controlar excéntrica." },
+        { id: "D1-C", codigo: "C", nombre: "Shoulder press máquina", grupos: ["Hombro lat/post"], series_base: 3, reps: "8-12", tempo: "2-1-1-0", descanso: "2:00", hombro_flag: false, nota: "" },
+        { id: "D1-D", codigo: "D", nombre: "Elevación lateral mancuerna", grupos: ["Hombro lat/post"], series_base: 4, reps: "12-15", tempo: "2-1-2-1", descanso: "60s", hombro_flag: false, nota: "Subir hasta altura hombro, codos ligeramente flexionados." },
+        { id: "D1-E", codigo: "E", nombre: "Extensión tríceps polea cuerda", grupos: ["Tríceps"], series_base: 3, reps: "10-15", tempo: "2-1-1-1", descanso: "60s", hombro_flag: false, nota: "Codos pegados al torso, separar cuerda al final." }
+      ]},
+      { id: "D2", nombre: "Pull A", foco: "Espalda + Bíceps", ejercicios: [
+        { id: "D2-A", codigo: "A", nombre: "Dominadas", grupos: ["Espalda", "Bíceps"], series_base: 4, reps: "6-10", tempo: "3-0-1-1", descanso: "3:00", hombro_flag: false, nota: "Pecho a la barra, omóplatos abajo al iniciar." },
+        { id: "D2-B", codigo: "B", nombre: "Remo con barra Pendlay", grupos: ["Espalda"], series_base: 3, reps: "8-10", tempo: "2-0-1-1", descanso: "2:30", hombro_flag: false, nota: "Torso paralelo al piso, explosivo." },
+        { id: "D2-C", codigo: "C", nombre: "Jalón al pecho neutro", grupos: ["Espalda"], series_base: 3, reps: "10-12", tempo: "3-0-1-1", descanso: "2:00", hombro_flag: false, nota: "Codos hacia caderas, retracción escapular." },
+        { id: "D2-D", codigo: "D", nombre: "Face pull polea", grupos: ["Espalda", "Hombro lat/post"], series_base: 3, reps: "15-20", tempo: "2-1-1-2", descanso: "60s", hombro_flag: false, nota: "Codos altos, rotación externa al final." },
+        { id: "D2-E", codigo: "E", nombre: "Curl bíceps con barra", grupos: ["Bíceps"], series_base: 3, reps: "8-12", tempo: "3-0-1-1", descanso: "90s", hombro_flag: false, nota: "Codos fijos, sin impulso." },
+        { id: "D2-F", codigo: "F", nombre: "Curl martillo", grupos: ["Bíceps"], series_base: 3, reps: "10-12", tempo: "3-0-1-1", descanso: "60s", hombro_flag: false, nota: "Agarre neutro, trabaja braquial." }
+      ]},
+      { id: "D3", nombre: "Legs A", foco: "Cuádriceps dominante", ejercicios: [
+        { id: "D3-A", codigo: "A", nombre: "Sentadilla con barra", grupos: ["Cuádriceps", "Isquios/Glúteo"], series_base: 4, reps: "6-8", tempo: "3-1-1-0", descanso: "3:30", hombro_flag: false, nota: "Ancho hombros, rodillas siguen pies." },
+        { id: "D3-B", codigo: "B", nombre: "Prensa 45°", grupos: ["Cuádriceps"], series_base: 3, reps: "10-12", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "Pies medios, rango completo sin despegar lumbar." },
+        { id: "D3-C", codigo: "C", nombre: "Curl femoral tumbado", grupos: ["Isquios/Glúteo"], series_base: 3, reps: "10-12", tempo: "3-1-1-1", descanso: "90s", hombro_flag: false, nota: "Cadera pegada al banco." },
+        { id: "D3-D", codigo: "D", nombre: "Extensión cuádriceps", grupos: ["Cuádriceps"], series_base: 3, reps: "12-15", tempo: "2-1-2-1", descanso: "90s", hombro_flag: false, nota: "Control excéntrica." },
+        { id: "D3-E", codigo: "E", nombre: "Elevación gemelos de pie", grupos: ["Pantorrilla"], series_base: 4, reps: "10-15", tempo: "2-2-1-1", descanso: "60s", hombro_flag: false, nota: "Rango completo, pausa arriba y abajo." }
+      ]},
+      { id: "D4", nombre: "Push B", foco: "Hombro + Pecho alto + Tríceps", ejercicios: [
+        { id: "D4-A", codigo: "A", nombre: "Press militar con barra", grupos: ["Hombro lat/post", "Tríceps"], series_base: 4, reps: "6-8", tempo: "3-0-1-0", descanso: "3:00", hombro_flag: false, nota: "Glúteos apretados, línea recta." },
+        { id: "D4-B", codigo: "B", nombre: "Press banca inclinado con mancuernas", grupos: ["Pecho"], series_base: 3, reps: "8-12", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "30°, controlado." },
+        { id: "D4-C", codigo: "C", nombre: "Fondos en paralelas", grupos: ["Pecho", "Tríceps"], series_base: 3, reps: "6-10", tempo: "3-0-1-0", descanso: "2:00", hombro_flag: false, nota: "Torso adelante para pecho." },
+        { id: "D4-D", codigo: "D", nombre: "Elevación lateral en polea", grupos: ["Hombro lat/post"], series_base: 4, reps: "12-15", tempo: "2-1-2-1", descanso: "60s", hombro_flag: false, nota: "Tensión constante." },
+        { id: "D4-E", codigo: "E", nombre: "Extensión tríceps polea barra", grupos: ["Tríceps"], series_base: 3, reps: "10-12", tempo: "2-1-1-1", descanso: "60s", hombro_flag: false, nota: "" }
+      ]},
+      { id: "D5", nombre: "Pull B", foco: "Espalda horizontal + Bíceps", ejercicios: [
+        { id: "D5-A", codigo: "A", nombre: "Peso muerto convencional", grupos: ["Isquios/Glúteo", "Espalda"], series_base: 3, reps: "5-6", tempo: "2-0-1-1", descanso: "3:30", hombro_flag: false, nota: "Barra pegada al cuerpo, empujar el piso." },
+        { id: "D5-B", codigo: "B", nombre: "Remo mancuerna unilateral", grupos: ["Espalda"], series_base: 3, reps: "8-12", tempo: "3-0-1-1", descanso: "2:00", hombro_flag: false, nota: "Apoyado en banco, tirar a cadera." },
+        { id: "D5-C", codigo: "C", nombre: "Remo sentado polea", grupos: ["Espalda"], series_base: 3, reps: "10-12", tempo: "2-1-1-1", descanso: "2:00", hombro_flag: false, nota: "Retracción escapular." },
+        { id: "D5-D", codigo: "D", nombre: "Pullover en polea", grupos: ["Espalda"], series_base: 3, reps: "12-15", tempo: "3-1-1-0", descanso: "90s", hombro_flag: false, nota: "Codos semi-fijos." },
+        { id: "D5-E", codigo: "E", nombre: "Curl predicador", grupos: ["Bíceps"], series_base: 3, reps: "10-12", tempo: "3-0-1-1", descanso: "90s", hombro_flag: false, nota: "" },
+        { id: "D5-F", codigo: "F", nombre: "Curl mancuerna supinación", grupos: ["Bíceps"], series_base: 3, reps: "10-12", tempo: "3-0-1-1", descanso: "60s", hombro_flag: false, nota: "Iniciar neutro, rotar al subir." }
+      ]},
+      { id: "D6", nombre: "Legs B", foco: "Posterior dominante", ejercicios: [
+        { id: "D6-A", codigo: "A", nombre: "Hip thrust con barra", grupos: ["Isquios/Glúteo"], series_base: 4, reps: "8-10", tempo: "2-1-1-2", descanso: "2:30", hombro_flag: false, nota: "Barbilla metida, empujar con talones, glúteo 1s arriba." },
+        { id: "D6-B", codigo: "B", nombre: "Peso muerto rumano con barra", grupos: ["Isquios/Glúteo"], series_base: 3, reps: "8-10", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "Rodillas fijas, bisagra pura." },
+        { id: "D6-C", codigo: "C", nombre: "Sentadilla búlgara con mancuernas", grupos: ["Cuádriceps", "Isquios/Glúteo"], series_base: 3, reps: "8-10 /pierna", tempo: "3-1-1-0", descanso: "2:00", hombro_flag: false, nota: "" },
+        { id: "D6-D", codigo: "D", nombre: "Curl femoral sentado", grupos: ["Isquios/Glúteo"], series_base: 3, reps: "10-12", tempo: "3-1-1-1", descanso: "90s", hombro_flag: false, nota: "" },
+        { id: "D6-E", codigo: "E", nombre: "Elevación gemelos sentado", grupos: ["Pantorrilla"], series_base: 3, reps: "12-15", tempo: "2-2-1-1", descanso: "60s", hombro_flag: false, nota: "Enfatiza sóleo." }
+      ]}
+    ]
+  },
+
+  "full-body-3d": {
+    meta: {
+      nombre: "Full Body 3 días",
+      atleta: "",
+      objetivo: "Mantenimiento o principiante/intermedio",
+      split: "Full Body ×3",
+      duracion_semanas: 4,
+      lesion_hombro: false,
+      notas: "3 sesiones de cuerpo completo. Ideal para agendas ocupadas o principiantes."
+    },
+    semanas: [
+      { n: 1, fase: "Adaptación", rir: 3, carga: 1.0,  series_extra: 0, deload: false },
+      { n: 2, fase: "Acumulación", rir: 2, carga: 1.0,  series_extra: 0, deload: false },
+      { n: 3, fase: "Progreso", rir: 1, carga: 1.03, series_extra: 1, deload: false },
+      { n: 4, fase: "Deload", rir: 4, carga: 0.85, series_extra: -1, deload: true }
+    ],
+    objetivos_volumen: {
+      "Pecho":           { mev: 8,  mav: 12 },
+      "Espalda":         { mev: 10, mav: 14 },
+      "Hombro lat/post": { mev: 6,  mav: 10 },
+      "Cuádriceps":      { mev: 8,  mav: 12 },
+      "Isquios/Glúteo":  { mev: 8,  mav: 12 },
+      "Bíceps":          { mev: 6,  mav: 10 },
+      "Tríceps":         { mev: 6,  mav: 10 }
+    },
+    dias: [
+      { id: "D1", nombre: "Full Body A", foco: "Fuerza compuesta", ejercicios: [
+        { id: "D1-A", codigo: "A", nombre: "Sentadilla con barra", grupos: ["Cuádriceps", "Isquios/Glúteo"], series_base: 3, reps: "6-8", tempo: "3-1-1-0", descanso: "3:00", hombro_flag: false, nota: "Ancho hombros, rodillas siguen pies." },
+        { id: "D1-B", codigo: "B", nombre: "Press banca plano con barra", grupos: ["Pecho"], series_base: 3, reps: "6-8", tempo: "3-1-1-0", descanso: "3:00", hombro_flag: false, nota: "Escápulas retraídas." },
+        { id: "D1-C", codigo: "C", nombre: "Remo mancuerna unilateral", grupos: ["Espalda"], series_base: 3, reps: "8-10 /lado", tempo: "3-0-1-1", descanso: "2:00", hombro_flag: false, nota: "" },
+        { id: "D1-D", codigo: "D", nombre: "Press militar con barra", grupos: ["Hombro lat/post", "Tríceps"], series_base: 3, reps: "8-10", tempo: "3-0-1-0", descanso: "2:30", hombro_flag: false, nota: "Glúteos apretados." },
+        { id: "D1-E", codigo: "E", nombre: "Curl bíceps con barra", grupos: ["Bíceps"], series_base: 2, reps: "10-12", tempo: "3-0-1-1", descanso: "60s", hombro_flag: false, nota: "" },
+        { id: "D1-F", codigo: "F", nombre: "Plancha frontal", grupos: ["Core"], series_base: 3, reps: "30-45s", tempo: "iso", descanso: "60s", hombro_flag: false, nota: "Línea recta, glúteos apretados." }
+      ]},
+      { id: "D2", nombre: "Full Body B", foco: "Hipertrofia pulls", ejercicios: [
+        { id: "D2-A", codigo: "A", nombre: "Peso muerto rumano con barra", grupos: ["Isquios/Glúteo"], series_base: 3, reps: "8-10", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "Rodillas fijas, bisagra." },
+        { id: "D2-B", codigo: "B", nombre: "Dominadas", grupos: ["Espalda", "Bíceps"], series_base: 3, reps: "6-10", tempo: "3-0-1-1", descanso: "2:30", hombro_flag: false, nota: "" },
+        { id: "D2-C", codigo: "C", nombre: "Press mancuernas inclinado", grupos: ["Pecho"], series_base: 3, reps: "8-12", tempo: "3-1-1-0", descanso: "2:00", hombro_flag: false, nota: "30°." },
+        { id: "D2-D", codigo: "D", nombre: "Elevación lateral mancuerna", grupos: ["Hombro lat/post"], series_base: 3, reps: "12-15", tempo: "2-1-2-1", descanso: "60s", hombro_flag: false, nota: "" },
+        { id: "D2-E", codigo: "E", nombre: "Extensión tríceps polea cuerda", grupos: ["Tríceps"], series_base: 3, reps: "10-15", tempo: "2-1-1-1", descanso: "60s", hombro_flag: false, nota: "Codos pegados." },
+        { id: "D2-F", codigo: "F", nombre: "Elevación gemelos de pie", grupos: ["Pantorrilla"], series_base: 3, reps: "12-15", tempo: "2-2-1-1", descanso: "60s", hombro_flag: false, nota: "" }
+      ]},
+      { id: "D3", nombre: "Full Body C", foco: "Variación y accesorios", ejercicios: [
+        { id: "D3-A", codigo: "A", nombre: "Prensa 45°", grupos: ["Cuádriceps"], series_base: 3, reps: "10-12", tempo: "3-1-1-0", descanso: "2:30", hombro_flag: false, nota: "Pies medios, rango completo." },
+        { id: "D3-B", codigo: "B", nombre: "Hip thrust con barra", grupos: ["Isquios/Glúteo"], series_base: 3, reps: "10-12", tempo: "2-1-1-2", descanso: "2:00", hombro_flag: false, nota: "Empujar con talones, pausa arriba." },
+        { id: "D3-C", codigo: "C", nombre: "Remo sentado polea", grupos: ["Espalda"], series_base: 3, reps: "10-12", tempo: "2-1-1-1", descanso: "90s", hombro_flag: false, nota: "Retracción escapular." },
+        { id: "D3-D", codigo: "D", nombre: "Apertura con mancuernas plana", grupos: ["Pecho"], series_base: 3, reps: "12-15", tempo: "3-1-2-0", descanso: "90s", hombro_flag: false, nota: "Codos ligeramente flexionados." },
+        { id: "D3-E", codigo: "E", nombre: "Face pull polea", grupos: ["Espalda", "Hombro lat/post"], series_base: 3, reps: "15-20", tempo: "2-1-1-2", descanso: "60s", hombro_flag: false, nota: "" },
+        { id: "D3-F", codigo: "F", nombre: "Curl martillo", grupos: ["Bíceps"], series_base: 2, reps: "10-12", tempo: "3-0-1-1", descanso: "60s", hombro_flag: false, nota: "" }
+      ]}
+    ]
+  }
+};
 
 // Store persistente (en memoria, espejo de localStorage)
 let routinesStore = { routines: {}, activeRoutineId: null };
@@ -1919,7 +2550,11 @@ function persistLogs() {
 
 function loadConfig() {
   const c = safeRead(CONFIG_KEY);
-  return c || { sheetsUrl: "", sheetsToken: "" };
+  const defaults = { sheetsUrl: "", sheetsToken: "", sheetsScope: "all" };
+  if (!c) return defaults;
+  // Merge defensivo: si la config existente no tiene sheetsScope, completamos
+  if (c.sheetsScope == null) c.sheetsScope = "all";
+  return c;
 }
 
 function saveConfig() {
@@ -2092,10 +2727,6 @@ function activateRoutineInMemory(routineId) {
   return true;
 }
 
-function getActiveRoutineId() {
-  return routinesStore.activeRoutineId;
-}
-
 /* ---------- API pública de guardado ---------- */
 
 function saveState() {
@@ -2149,14 +2780,6 @@ bootPersistence();
 function getSeriesForWeek(baseSeries, weekInfo) {
   const s = baseSeries + weekInfo.series_extra;
   return Math.max(1, s);
-}
-
-function getVarianteForWeek(exercise, week) {
-  // Semanas pares (2, 4) usan variante si existe
-  if (exercise.variante_semana_par && (week === 2 || week === 4)) {
-    return exercise.variante_semana_par;
-  }
-  return exercise.nombre;
 }
 
 function getPrevSessionNote(week, dayId, exerciseId) {
@@ -2610,6 +3233,24 @@ function renderAppTitle() {
     if (atleta)    parts.push(atleta);
     subEl.textContent = parts.join(" · ");
   }
+
+  // Badge en botón "Rutinas" con cantidad total (solo si hay > 1)
+  const btnRoutines = document.getElementById("btn-routines");
+  if (btnRoutines) {
+    const total = Object.keys(routinesStore.routines || {}).length;
+    if (total > 1) {
+      btnRoutines.innerHTML = `Rutinas <span class="btn-badge">${total}</span>`;
+    } else {
+      btnRoutines.innerHTML = "Rutinas";
+    }
+  }
+
+  // Title del documento (visible en pestaña/PWA shortcut)
+  if (nombre) {
+    document.title = `${nombre} · entrenamiento`;
+  } else {
+    document.title = "Rutina · entrenamiento";
+  }
 }
 
 function render() {
@@ -2924,7 +3565,7 @@ function renderRoutinesList() {
         <button class="btn" data-action="edit" data-id="${id}">Editar</button>
         <button class="btn" data-action="duplicate" data-id="${id}">Duplicar</button>
         <button class="btn" data-action="rename" data-id="${id}">Renombrar</button>
-        <button class="btn" data-action="export" data-id="${id}" title="Disponible en Fase 5" disabled>Exportar</button>
+        <button class="btn" data-action="export" data-id="${id}">Exportar</button>
         <button class="btn danger" data-action="delete" data-id="${id}">Eliminar</button>
       </div>
     `;
@@ -2965,6 +3606,10 @@ function handleRoutineAction(action, id) {
     case "edit": {
       document.getElementById("modal-routines").classList.remove("open");
       openEditor(id);
+      break;
+    }
+    case "export": {
+      exportSingleRoutine(id);
       break;
     }
     case "duplicate": {
@@ -3053,6 +3698,7 @@ function openEditor(routineId, isNew = false) {
   editingRoutineId = routineId;
   editingDraft = deepClone(r);
   editingIsNew = isNew;
+  editorExpandedDays = new Set(); // estado UI fresco al abrir
 
   // Normalizar el draft por si viene con estructura incompleta
   editingDraft.meta    = editingDraft.meta    || {};
@@ -3127,6 +3773,16 @@ function validateDraft(draft) {
   // Validaciones numéricas por semana
   for (const w of draft.semanas) {
     if (typeof w.n !== "number" || w.n < 1) return `Semana con número inválido: ${w.n}`;
+  }
+
+  // IDs de ejercicio únicos dentro de cada día
+  for (const d of draft.dias) {
+    const exSeen = new Set();
+    for (const ex of (d.ejercicios || [])) {
+      if (!ex.id || !ex.id.trim()) return `Hay ejercicios sin ID en el día "${d.id}".`;
+      if (exSeen.has(ex.id)) return `ID de ejercicio duplicado en el día "${d.id}": "${ex.id}".`;
+      exSeen.add(ex.id);
+    }
   }
 
   return null;
@@ -3231,11 +3887,16 @@ function renderWeeksEditor() {
   });
 }
 
+// Set con dayIds cuyo panel de ejercicios está expandido en el editor.
+// No se persiste — solo es estado UI transitorio.
+let editorExpandedDays = new Set();
+
 function renderDaysEditor() {
   const list = document.getElementById("days-list");
   list.innerHTML = "";
   editingDraft.dias.forEach((d, idx) => {
     const ejCount = (d.ejercicios || []).length;
+    const expanded = editorExpandedDays.has(d.id);
     const row = document.createElement("div");
     row.className = "day-row";
     row.innerHTML = `
@@ -3257,14 +3918,19 @@ function renderDaysEditor() {
         <button class="btn-reorder" data-move-day="${idx}" data-dir="down" ${idx === editingDraft.dias.length - 1 ? 'disabled' : ''}>▼</button>
       </div>
       <button class="btn-row-delete" data-del-day="${idx}" title="Eliminar este día">✕</button>
-      <div class="day-row-info">
-        <strong>${ejCount}</strong> ${ejCount === 1 ? "ejercicio" : "ejercicios"} · (edición de ejercicios: Fase 4)
+      <button class="day-exercises-toggle ${expanded ? 'expanded' : ''}" data-toggle-day-ex="${d.id}">
+        <span><span class="chev">▸</span> Ejercicios (${ejCount})</span>
+        <span style="color: var(--text-faint);">${expanded ? 'ocultar' : 'mostrar'}</span>
+      </button>
+      <div class="day-exercises-panel ${expanded ? 'expanded' : ''}" id="day-ex-panel-${d.id}">
+        ${renderExerciseListInDay(d, idx)}
+        <button class="editor-add-btn small" data-add-ex-to-day="${idx}">＋ Agregar ejercicio</button>
       </div>
     `;
     list.appendChild(row);
   });
 
-  // Bindings
+  // Bindings: campos de día
   list.querySelectorAll("[data-day-idx]").forEach(inp => {
     inp.addEventListener("change", (e) => {
       const i = parseInt(e.target.dataset.dayIdx);
@@ -3294,11 +3960,505 @@ function renderDaysEditor() {
         ? `¿Eliminar día "${d.nombre}" (${d.id})?\n\nEste día tiene ${ejCount} ejercicios. Se perderán al guardar.`
         : `¿Eliminar día "${d.nombre}" (${d.id})?`;
       if (!confirm(msg)) return;
+      editorExpandedDays.delete(d.id);
       editingDraft.dias.splice(i, 1);
       renderDaysEditor();
     };
   });
+
+  // Bindings: toggle expandir ejercicios
+  list.querySelectorAll("[data-toggle-day-ex]").forEach(btn => {
+    btn.onclick = (e) => {
+      const dayId = e.currentTarget.dataset.toggleDayEx;
+      if (editorExpandedDays.has(dayId)) editorExpandedDays.delete(dayId);
+      else editorExpandedDays.add(dayId);
+      renderDaysEditor();
+    };
+  });
+
+  // Bindings: reordenar ejercicios dentro de un día
+  list.querySelectorAll("[data-move-ex]").forEach(btn => {
+    btn.onclick = (e) => {
+      const dayIdx = parseInt(e.currentTarget.dataset.dayIdx);
+      const exIdx = parseInt(e.currentTarget.dataset.moveEx);
+      const dir = e.currentTarget.dataset.dir;
+      const day = editingDraft.dias[dayIdx];
+      if (!day || !day.ejercicios) return;
+      const j = dir === "up" ? exIdx - 1 : exIdx + 1;
+      if (j < 0 || j >= day.ejercicios.length) return;
+      const tmp = day.ejercicios[exIdx];
+      day.ejercicios[exIdx] = day.ejercicios[j];
+      day.ejercicios[j] = tmp;
+      renderDaysEditor();
+    };
+  });
+
+  // Bindings: eliminar ejercicio
+  list.querySelectorAll("[data-del-ex]").forEach(btn => {
+    btn.onclick = (e) => {
+      const dayIdx = parseInt(e.currentTarget.dataset.dayIdx);
+      const exIdx = parseInt(e.currentTarget.dataset.delEx);
+      const day = editingDraft.dias[dayIdx];
+      if (!day || !day.ejercicios) return;
+      const ex = day.ejercicios[exIdx];
+      const exName = getExerciseName(ex, 1);
+      if (!confirm(`¿Eliminar ejercicio "${exName}" de ${day.id}?\n\nNota: si tiene series registradas en algún log, esas series quedarán huérfanas (no visibles).`)) return;
+      day.ejercicios.splice(exIdx, 1);
+      renderDaysEditor();
+    };
+  });
+
+  // Bindings: editar ejercicio (Fase 4c)
+  list.querySelectorAll("[data-edit-ex]").forEach(btn => {
+    btn.onclick = (e) => {
+      const dayIdx = parseInt(e.currentTarget.dataset.dayIdx);
+      const exIdx  = parseInt(e.currentTarget.dataset.editEx);
+      openEditExerciseModal(dayIdx, exIdx);
+    };
+  });
+
+  // Bindings: agregar ejercicio (versión básica, 4c lo reemplaza con modal)
+  list.querySelectorAll("[data-add-ex-to-day]").forEach(btn => {
+    btn.onclick = (e) => {
+      const dayIdx = parseInt(e.currentTarget.dataset.addExToDay);
+      addExerciseBasic(dayIdx);
+    };
+  });
 }
+
+function renderExerciseListInDay(day, dayIdx) {
+  const ejercicios = day.ejercicios || [];
+  if (ejercicios.length === 0) {
+    return `<div class="exercise-editor-empty">Sin ejercicios. Agregá el primero con el botón de abajo.</div>`;
+  }
+  const total = ejercicios.length;
+  const rows = ejercicios.map((ex, i) => {
+    const nombre = getExerciseName(ex, 1);
+    const grupos = getExerciseGrupos(ex);
+    const series = ex.series_base || "?";
+    const reps = ex.reps || "?";
+    const codigo = ex.codigo || `${i + 1}`;
+    return `
+      <div class="exercise-editor-row">
+        <div class="exercise-editor-code">${escapeHtml(codigo)}</div>
+        <div class="exercise-editor-body">
+          <div class="exercise-editor-name">${escapeHtml(nombre)}</div>
+          <div class="exercise-editor-meta">
+            ${escapeHtml(grupos.join(" · ") || "—")} · <strong>${series}×${escapeHtml(String(reps))}</strong>
+          </div>
+        </div>
+        <div class="exercise-editor-reorder-btns">
+          <button class="btn-reorder" data-move-ex="${i}" data-day-idx="${dayIdx}" data-dir="up" ${i === 0 ? 'disabled' : ''}>▲</button>
+          <button class="btn-reorder" data-move-ex="${i}" data-day-idx="${dayIdx}" data-dir="down" ${i === total - 1 ? 'disabled' : ''}>▼</button>
+        </div>
+        <button class="btn-reorder" data-edit-ex="${i}" data-day-idx="${dayIdx}" title="Editar parámetros">✎</button>
+        <button class="btn-row-delete" data-del-ex="${i}" data-day-idx="${dayIdx}" title="Eliminar ejercicio">✕</button>
+      </div>
+    `;
+  }).join("");
+  return `<div class="exercise-editor-list">${rows}</div>`;
+}
+
+function generateNewExerciseId(day) {
+  // Busca primer "{dayId}-E{n}" libre (letra E porque A/B/C/D suelen estar ocupadas)
+  const existing = new Set((day.ejercicios || []).map(e => e.id));
+  for (let n = 1; n <= 99; n++) {
+    const id = `${day.id}-E${n}`;
+    if (!existing.has(id)) return id;
+  }
+  return `${day.id}-${Date.now()}`;
+}
+
+function generateNewExerciseCodigo(day) {
+  // Genera un código de 2 chars: siguiente letra+número libre después del último
+  const used = new Set((day.ejercicios || []).map(e => (e.codigo || "").toUpperCase()));
+  // Heurística simple: "X{n}" donde X es la siguiente letra no usada después de lo existente
+  const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+  for (const letter of letters) {
+    for (let n = 1; n <= 9; n++) {
+      const code = `${letter}${n}`;
+      if (!used.has(code)) return code;
+    }
+  }
+  return `X${Date.now().toString().slice(-3)}`;
+}
+
+function addExerciseBasic(dayIdx) {
+  // Fase 4c: abrir modal en lugar del prompt. El prompt anterior queda disponible
+  // como fallback pero ya no se usa desde la UI.
+  openAddExerciseModal(dayIdx);
+}
+
+/* ============================================
+   MODAL AGREGAR EJERCICIO (Fase 4c)
+   ============================================ */
+let addingToDayIdx = null;
+let addLibFilterGroup = null; // null = todos
+let addLibSearchQuery = "";
+
+function openAddExerciseModal(dayIdx) {
+  addingToDayIdx = dayIdx;
+  addLibFilterGroup = null;
+  addLibSearchQuery = "";
+  // Reset UI
+  document.getElementById("ex-lib-search").value = "";
+  setAddExerciseTab("library");
+  renderLibFilters();
+  renderLibResults();
+  renderNewExerciseForm();
+  document.getElementById("modal-add-exercise").classList.add("open");
+}
+
+function closeAddExerciseModal() {
+  addingToDayIdx = null;
+  document.getElementById("modal-add-exercise").classList.remove("open");
+}
+
+function setAddExerciseTab(tab) {
+  document.querySelectorAll("#modal-add-exercise .ex-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.exTab === tab);
+  });
+  document.getElementById("ex-tab-library").style.display = (tab === "library") ? "" : "none";
+  document.getElementById("ex-tab-new").style.display    = (tab === "new")     ? "" : "none";
+  document.getElementById("btn-add-ex-save-new").style.display = (tab === "new") ? "" : "none";
+}
+
+function renderLibFilters() {
+  const c = document.getElementById("ex-lib-filters");
+  c.innerHTML = "";
+  const mkChip = (label, groupKey) => {
+    const btn = document.createElement("button");
+    btn.className = "ex-lib-chip" + ((addLibFilterGroup === groupKey) ? " active" : "");
+    btn.textContent = label;
+    btn.onclick = () => { addLibFilterGroup = groupKey; renderLibFilters(); renderLibResults(); };
+    return btn;
+  };
+  c.appendChild(mkChip("Todos", null));
+  GRUPOS_CANONICOS.forEach(g => c.appendChild(mkChip(g, g)));
+}
+
+function renderLibResults() {
+  const c = document.getElementById("ex-lib-results");
+  let ids = searchLibrary(addLibSearchQuery);
+  if (addLibFilterGroup) {
+    ids = ids.filter(id => (exerciseLibrary[id].grupos || []).includes(addLibFilterGroup));
+  }
+  // Ordenar alfabético
+  ids.sort((a, b) => (exerciseLibrary[a].nombre || "").localeCompare(exerciseLibrary[b].nombre || ""));
+
+  if (ids.length === 0) {
+    c.innerHTML = '<div class="ex-lib-empty">Sin resultados. Probá otra búsqueda o agregá un ejercicio nuevo en la otra pestaña.</div>';
+    return;
+  }
+  c.innerHTML = ids.map(id => {
+    const ex = exerciseLibrary[id];
+    return `
+      <div class="ex-lib-item" data-lib-id="${escapeHtml(id)}">
+        <div>
+          <div class="ex-lib-item-name">${escapeHtml(ex.nombre)}</div>
+          <div class="ex-lib-item-grupos">${escapeHtml((ex.grupos || []).join(" · "))}</div>
+        </div>
+        ${ex.hombro_flag ? '<div class="ex-lib-item-hombro">hombro</div>' : '<div></div>'}
+      </div>
+    `;
+  }).join("");
+  c.querySelectorAll("[data-lib-id]").forEach(el => {
+    el.onclick = () => addExerciseFromLibrary(el.dataset.libId);
+  });
+}
+
+function addExerciseFromLibrary(libId) {
+  if (addingToDayIdx == null) return;
+  const day = editingDraft.dias[addingToDayIdx];
+  if (!day) return;
+  const lib = getLibraryExercise(libId);
+  if (!lib) { alert("Ejercicio de librería no encontrado"); return; }
+
+  day.ejercicios = day.ejercicios || [];
+  day.ejercicios.push({
+    id: generateNewExerciseId(day),
+    codigo: generateNewExerciseCodigo(day),
+    library_id: libId,
+    series_base: 3,
+    reps: "8-12",
+    tempo: "",
+    descanso: "2:00"
+  });
+  editorExpandedDays.add(day.id);
+  closeAddExerciseModal();
+  renderDaysEditor();
+}
+
+function renderNewExerciseForm() {
+  // Reset form
+  document.getElementById("new-ex-nombre").value = "";
+  document.getElementById("new-ex-hombro-flag").value = "false";
+  document.getElementById("new-ex-nota").value = "";
+  // Grupos: render checkboxes
+  const gc = document.getElementById("new-ex-grupos");
+  gc.innerHTML = "";
+  GRUPOS_CANONICOS.forEach(g => {
+    const label = document.createElement("label");
+    label.className = "grupo-check";
+    label.innerHTML = `<input type="checkbox" data-grupo="${escapeHtml(g)}"> ${escapeHtml(g)}`;
+    gc.appendChild(label);
+    const input = label.querySelector("input");
+    input.onchange = () => label.classList.toggle("selected", input.checked);
+  });
+}
+
+function saveNewExercise() {
+  const nombre = document.getElementById("new-ex-nombre").value.trim();
+  if (!nombre) { alert("El nombre es requerido."); return; }
+  const grupos = [...document.querySelectorAll("#new-ex-grupos input[type=checkbox]:checked")].map(i => i.dataset.grupo);
+  const hombro = document.getElementById("new-ex-hombro-flag").value === "true";
+  const nota = document.getElementById("new-ex-nota").value;
+
+  // Agregar a librería
+  const libId = addLibraryExercise({
+    nombre, grupos, hombro_flag: hombro, nota_default: nota
+  });
+  if (!libId) { alert("No se pudo crear el ejercicio en la librería."); return; }
+
+  // Agregar al día con library_id
+  addExerciseFromLibrary(libId);
+}
+
+/* ============================================
+   MODAL EDITAR EJERCICIO (Fase 4c)
+   ============================================ */
+let editingExerciseContext = null; // { dayIdx, exIdx }
+
+function openEditExerciseModal(dayIdx, exIdx) {
+  const day = editingDraft.dias[dayIdx];
+  if (!day || !day.ejercicios[exIdx]) return;
+  editingExerciseContext = { dayIdx, exIdx };
+  const ex = day.ejercicios[exIdx];
+  const isLegacy = !ex.library_id;
+
+  // Título del modal
+  const name = getExerciseName(ex, 1);
+  document.getElementById("edit-ex-title").textContent = `Editar: ${name}`;
+
+  // Parámetros de rutina
+  document.getElementById("edit-ex-codigo").value       = ex.codigo || "";
+  document.getElementById("edit-ex-series-base").value  = ex.series_base != null ? ex.series_base : 3;
+  document.getElementById("edit-ex-reps").value         = ex.reps || "";
+  document.getElementById("edit-ex-tempo").value        = ex.tempo || "";
+  document.getElementById("edit-ex-descanso").value     = ex.descanso || "";
+
+  // Toggle secciones según legacy vs library_id
+  document.getElementById("edit-ex-overrides-section").style.display = isLegacy ? "none" : "";
+  document.getElementById("edit-ex-legacy-section").style.display    = isLegacy ? ""     : "none";
+
+  if (isLegacy) {
+    renderEditExLegacyFields(ex);
+  } else {
+    renderEditExOverrides(ex);
+  }
+
+  renderEditExVarianteSelect(ex);
+  document.getElementById("modal-edit-exercise").classList.add("open");
+}
+
+function closeEditExerciseModal() {
+  editingExerciseContext = null;
+  document.getElementById("modal-edit-exercise").classList.remove("open");
+}
+
+function renderEditExLegacyFields(ex) {
+  document.getElementById("edit-ex-nombre-legacy").value = ex.nombre || "";
+  document.getElementById("edit-ex-hombro-legacy").value = ex.hombro_flag ? "true" : "false";
+  document.getElementById("edit-ex-nota-legacy").value   = ex.nota || "";
+  const gc = document.getElementById("edit-ex-grupos-legacy");
+  gc.innerHTML = "";
+  const currentGrupos = new Set(ex.grupos || []);
+  GRUPOS_CANONICOS.forEach(g => {
+    const label = document.createElement("label");
+    label.className = "grupo-check" + (currentGrupos.has(g) ? " selected" : "");
+    label.innerHTML = `<input type="checkbox" data-grupo-legacy="${escapeHtml(g)}" ${currentGrupos.has(g) ? "checked" : ""}> ${escapeHtml(g)}`;
+    gc.appendChild(label);
+    const input = label.querySelector("input");
+    input.onchange = () => label.classList.toggle("selected", input.checked);
+  });
+}
+
+function renderEditExOverrides(ex) {
+  // Nombre override
+  const nomToggle = document.getElementById("edit-ex-override-nombre-toggle");
+  const nomInput  = document.getElementById("edit-ex-nombre-override");
+  nomToggle.checked = !!ex.nombre_override;
+  nomInput.value = ex.nombre_override || "";
+  nomInput.disabled = !nomToggle.checked;
+  nomToggle.onchange = () => { nomInput.disabled = !nomToggle.checked; if (!nomToggle.checked) nomInput.value = ""; };
+
+  // Hombro override
+  const homToggle = document.getElementById("edit-ex-override-hombro-toggle");
+  const homSelect = document.getElementById("edit-ex-hombro-override");
+  const hasHombroOverride = typeof ex.hombro_flag_override === "boolean";
+  homToggle.checked = hasHombroOverride;
+  homSelect.value = hasHombroOverride ? String(ex.hombro_flag_override) : "false";
+  homSelect.disabled = !homToggle.checked;
+  homToggle.onchange = () => { homSelect.disabled = !homToggle.checked; };
+
+  // Nota override
+  const notToggle = document.getElementById("edit-ex-override-nota-toggle");
+  const notTextarea = document.getElementById("edit-ex-nota-override");
+  notToggle.checked = !!ex.nota_override;
+  notTextarea.value = ex.nota_override || "";
+  notTextarea.disabled = !notToggle.checked;
+  notToggle.onchange = () => { notTextarea.disabled = !notToggle.checked; if (!notToggle.checked) notTextarea.value = ""; };
+
+  // Grupos override
+  const grpToggle = document.getElementById("edit-ex-override-grupos-toggle");
+  const grpContainer = document.getElementById("edit-ex-grupos-override");
+  const hasGruposOverride = Array.isArray(ex.grupos_override);
+  grpToggle.checked = hasGruposOverride;
+  const currentGrupos = new Set(hasGruposOverride ? ex.grupos_override : getExerciseGrupos(ex));
+  grpContainer.innerHTML = "";
+  GRUPOS_CANONICOS.forEach(g => {
+    const label = document.createElement("label");
+    const isSel = currentGrupos.has(g);
+    label.className = "grupo-check" + (isSel ? " selected" : "");
+    if (!grpToggle.checked) label.style.opacity = "0.4";
+    label.innerHTML = `<input type="checkbox" data-grupo-override="${escapeHtml(g)}" ${isSel ? "checked" : ""} ${!grpToggle.checked ? "disabled" : ""}> ${escapeHtml(g)}`;
+    grpContainer.appendChild(label);
+    const input = label.querySelector("input");
+    input.onchange = () => label.classList.toggle("selected", input.checked);
+  });
+  grpToggle.onchange = () => {
+    const disabled = !grpToggle.checked;
+    grpContainer.querySelectorAll("input").forEach(i => i.disabled = disabled);
+    grpContainer.querySelectorAll(".grupo-check").forEach(l => l.style.opacity = disabled ? "0.4" : "1");
+  };
+}
+
+function renderEditExVarianteSelect(ex) {
+  const sel = document.getElementById("edit-ex-variante-select");
+  // Construir opciones desde librería, alfabético
+  const ids = Object.keys(exerciseLibrary).sort((a, b) =>
+    (exerciseLibrary[a].nombre || "").localeCompare(exerciseLibrary[b].nombre || "")
+  );
+  sel.innerHTML = '<option value="">Ninguna</option>';
+
+  // Si el ejercicio tiene variante legacy inline, agregamos opción especial PRIMERO
+  // (después de "Ninguna") para que el usuario pueda mantenerla.
+  if (!ex.variante_semana_par_library_id && ex.variante_semana_par) {
+    const legacyOpt = document.createElement("option");
+    legacyOpt.value = "__legacy__";
+    legacyOpt.textContent = `(inline legacy) ${ex.variante_semana_par}`;
+    sel.appendChild(legacyOpt);
+  }
+
+  ids.forEach(id => {
+    const opt = document.createElement("option");
+    opt.value = id;
+    opt.textContent = exerciseLibrary[id].nombre;
+    sel.appendChild(opt);
+  });
+
+  // Preseleccionar
+  if (ex.variante_semana_par_library_id && exerciseLibrary[ex.variante_semana_par_library_id]) {
+    sel.value = ex.variante_semana_par_library_id;
+  } else if (ex.variante_semana_par) {
+    sel.value = "__legacy__";
+  } else {
+    sel.value = "";
+  }
+}
+
+function saveEditedExercise() {
+  if (!editingExerciseContext) return;
+  const { dayIdx, exIdx } = editingExerciseContext;
+  const day = editingDraft.dias[dayIdx];
+  if (!day || !day.ejercicios[exIdx]) return;
+  const ex = day.ejercicios[exIdx];
+  const isLegacy = !ex.library_id;
+
+  // Parámetros de rutina
+  const codigo = document.getElementById("edit-ex-codigo").value.trim();
+  if (!codigo) { alert("El código no puede estar vacío."); return; }
+  // Validar código único en el día (excepto si es el mismo ejercicio)
+  const codigoDup = day.ejercicios.find((e, i) => i !== exIdx && (e.codigo || "").toUpperCase() === codigo.toUpperCase());
+  if (codigoDup) { alert(`El código "${codigo}" ya lo usa otro ejercicio en este día.`); return; }
+  const seriesBase = parseInt(document.getElementById("edit-ex-series-base").value) || 3;
+  if (seriesBase < 1) { alert("Las series deben ser al menos 1."); return; }
+  const reps = document.getElementById("edit-ex-reps").value.trim();
+  const tempo = document.getElementById("edit-ex-tempo").value.trim();
+  const descanso = document.getElementById("edit-ex-descanso").value.trim();
+
+  ex.codigo = codigo;
+  ex.series_base = seriesBase;
+  ex.reps = reps;
+  ex.tempo = tempo;
+  ex.descanso = descanso;
+
+  if (isLegacy) {
+    // Campos inline
+    ex.nombre = document.getElementById("edit-ex-nombre-legacy").value.trim() || ex.nombre || "(sin nombre)";
+    ex.hombro_flag = document.getElementById("edit-ex-hombro-legacy").value === "true";
+    ex.nota = document.getElementById("edit-ex-nota-legacy").value;
+    ex.grupos = [...document.querySelectorAll("#edit-ex-grupos-legacy input:checked")].map(i => i.dataset.grupoLegacy);
+  } else {
+    // Overrides
+    const nomToggle = document.getElementById("edit-ex-override-nombre-toggle").checked;
+    const nomVal = document.getElementById("edit-ex-nombre-override").value.trim();
+    ex.nombre_override = (nomToggle && nomVal) ? nomVal : undefined;
+    if (ex.nombre_override === undefined) delete ex.nombre_override;
+
+    const grpToggle = document.getElementById("edit-ex-override-grupos-toggle").checked;
+    if (grpToggle) {
+      ex.grupos_override = [...document.querySelectorAll("#edit-ex-grupos-override input:checked")].map(i => i.dataset.grupoOverride);
+    } else {
+      delete ex.grupos_override;
+    }
+
+    const homToggle = document.getElementById("edit-ex-override-hombro-toggle").checked;
+    if (homToggle) {
+      ex.hombro_flag_override = document.getElementById("edit-ex-hombro-override").value === "true";
+    } else {
+      delete ex.hombro_flag_override;
+    }
+
+    const notToggle = document.getElementById("edit-ex-override-nota-toggle").checked;
+    const notVal = document.getElementById("edit-ex-nota-override").value;
+    if (notToggle && notVal.trim()) {
+      ex.nota_override = notVal;
+    } else {
+      delete ex.nota_override;
+    }
+  }
+
+  // Variante semana par
+  const varSel = document.getElementById("edit-ex-variante-select").value;
+  if (varSel === "" || varSel === "__legacy__") {
+    if (varSel === "") {
+      delete ex.variante_semana_par_library_id;
+      if (ex.variante_semana_par) delete ex.variante_semana_par;
+    }
+    // Si queda "__legacy__" la mantenemos tal cual (no tocamos variante_semana_par inline)
+  } else {
+    ex.variante_semana_par_library_id = varSel;
+    if (ex.variante_semana_par) delete ex.variante_semana_par; // no mezclar ambos
+  }
+
+  closeEditExerciseModal();
+  renderDaysEditor();
+}
+
+// Handlers
+document.querySelectorAll("#modal-add-exercise .ex-tab").forEach(btn => {
+  btn.onclick = () => setAddExerciseTab(btn.dataset.exTab);
+});
+document.getElementById("btn-add-ex-close").onclick = closeAddExerciseModal;
+document.getElementById("btn-add-ex-save-new").onclick = saveNewExercise;
+document.getElementById("ex-lib-search").oninput = (e) => {
+  addLibSearchQuery = e.target.value;
+  renderLibResults();
+};
+document.getElementById("btn-edit-ex-close").onclick = closeEditExerciseModal;
+document.getElementById("btn-edit-ex-save").onclick  = saveEditedExercise;
+
 
 function generateNewDayId() {
   // Buscar el siguiente "D{n}" libre
@@ -3416,6 +4576,184 @@ function createRoutineFromScratch() {
   openEditor(id, /*isNew=*/true);
 }
 document.getElementById("btn-routine-new").onclick = createRoutineFromScratch;
+
+/* ============================================
+   PLANTILLAS (Fase 5)
+   ============================================ */
+
+function getAvailableTemplates() {
+  // Devuelve array de {id, def} con todas las plantillas disponibles,
+  // incluyendo DEFAULT_ROUTINE como opción.
+  const out = [
+    { id: "default-juank", def: DEFAULT_ROUTINE, source: "bundled" }
+  ];
+  for (const [tid, def] of Object.entries(ROUTINE_TEMPLATES)) {
+    out.push({ id: tid, def, source: "bundled" });
+  }
+  return out;
+}
+
+function loadTemplateAsRoutine(templateId) {
+  const templates = getAvailableTemplates();
+  const tpl = templates.find(t => t.id === templateId);
+  if (!tpl) { alert("Plantilla no encontrada"); return; }
+  const defaultName = tpl.def.meta.nombre || "Rutina";
+  const userName = prompt(`Nombre para tu copia de "${defaultName}":`, `${defaultName} - mi versión`);
+  if (!userName || !userName.trim()) return;
+
+  const newId = generateRoutineId(userName);
+  const cloned = deepClone(tpl.def);
+  cloned.meta = cloned.meta || {};
+  cloned.meta.nombre = userName.trim();
+  // Setear atleta con el de la rutina actual si no viene en la plantilla
+  if (!cloned.meta.atleta && getAtleta()) cloned.meta.atleta = getAtleta();
+
+  routinesStore.routines[newId] = cloned;
+  logsStore[newId] = {
+    weeks: {},
+    currentWeek: 1,
+    currentDay: getFirstDayIdOf(cloned) || "D1"
+  };
+  persistRoutines();
+  persistLogs();
+
+  // Cerrar ambos modales si están abiertos
+  document.getElementById("modal-templates").classList.remove("open");
+  document.getElementById("modal-routines").classList.remove("open");
+  renderRoutinesList();
+  // Abrir editor para que el usuario la customice
+  openEditor(newId, /*isNew=*/true);
+}
+
+function renderTemplatesList() {
+  const c = document.getElementById("templates-list");
+  c.innerHTML = "";
+  const templates = getAvailableTemplates();
+  templates.forEach(tpl => {
+    const def = tpl.def;
+    const numDias = (def.dias || []).length;
+    const numSemanas = (def.semanas || []).length;
+    const totalEjercicios = (def.dias || []).reduce((acc, d) => acc + (d.ejercicios || []).length, 0);
+    const nombre = (def.meta && def.meta.nombre) || tpl.id;
+    const objetivo = (def.meta && def.meta.objetivo) || "";
+    const split = (def.meta && def.meta.split) || "";
+    const notas = (def.meta && def.meta.notas) || "";
+
+    const card = document.createElement("div");
+    card.className = "routine-card";
+    card.innerHTML = `
+      <div class="routine-info">
+        <div class="routine-name-row">
+          <span class="routine-name">${escapeHtml(nombre)}</span>
+        </div>
+        <div class="routine-meta">
+          ${objetivo ? `<strong>${escapeHtml(objetivo)}</strong><br>` : ''}
+          ${split ? escapeHtml(split) + " · " : ""}${numDias} días × ${numSemanas} semanas · ${totalEjercicios} ejercicios
+        </div>
+        ${notas ? `<div class="routine-stats">${escapeHtml(notas)}</div>` : ''}
+      </div>
+      <div class="routine-actions">
+        <button class="btn primary" data-template-id="${escapeHtml(tpl.id)}">Usar esta</button>
+      </div>
+    `;
+    c.appendChild(card);
+  });
+
+  c.querySelectorAll("[data-template-id]").forEach(btn => {
+    btn.onclick = (e) => loadTemplateAsRoutine(e.currentTarget.dataset.templateId);
+  });
+}
+
+function openTemplatesModal() {
+  renderTemplatesList();
+  document.getElementById("modal-templates").classList.add("open");
+}
+
+/* ============================================
+   EXPORT / IMPORT GRANULAR POR RUTINA (Fase 5)
+   ============================================ */
+
+function exportSingleRoutine(routineId) {
+  const routine = routinesStore.routines[routineId];
+  if (!routine) { alert("Rutina no encontrada"); return; }
+  const payload = {
+    version: "v2-routine",
+    exported_at: new Date().toISOString(),
+    routine: deepClone(routine),
+    logs: logsStore[routineId] ? deepClone(logsStore[routineId]) : { weeks: {}, currentWeek: 1, currentDay: getFirstDayIdOf(routine) || "D1" }
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  const slug = slugify(routine.meta && routine.meta.nombre || routineId);
+  a.download = `rutina_${slug}_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importSingleRoutineFromJson(jsonText) {
+  let data;
+  try { data = JSON.parse(jsonText); }
+  catch (e) { return { ok: false, error: "JSON inválido: " + e.message }; }
+
+  if (data.version !== "v2-routine" || !data.routine) {
+    return { ok: false, error: "Formato no reconocido. Esperado: 'v2-routine' (export individual de una rutina)." };
+  }
+
+  const incoming = data.routine;
+  const suggestedName = (incoming.meta && incoming.meta.nombre) || "Rutina importada";
+  const nameInput = prompt("Nombre para la rutina importada:", suggestedName);
+  if (!nameInput || !nameInput.trim()) return { ok: false, error: "Cancelado" };
+
+  // Generar ID nuevo (no pisamos nada)
+  const newId = generateRoutineId(nameInput);
+  const cloned = deepClone(incoming);
+  cloned.meta = cloned.meta || {};
+  cloned.meta.nombre = nameInput.trim();
+
+  // Importar logs asociados, si vinieron
+  const incomingLogs = data.logs && data.logs.weeks ? deepClone(data.logs) : { weeks: {}, currentWeek: 1, currentDay: getFirstDayIdOf(cloned) || "D1" };
+
+  routinesStore.routines[newId] = cloned;
+  logsStore[newId] = incomingLogs;
+  persistRoutines();
+  persistLogs();
+
+  return { ok: true, routineId: newId, logCount: Object.keys(incomingLogs.weeks || {}).length };
+}
+
+function openImportRoutineModal() {
+  document.getElementById("import-routine-data").value = "";
+  document.getElementById("import-routine-msg").textContent = "";
+  document.getElementById("modal-import-routine").classList.add("open");
+}
+
+// Handlers del toolbar del gestor y modales Fase 5
+document.getElementById("btn-routine-template").onclick = openTemplatesModal;
+document.getElementById("btn-routine-import").onclick = openImportRoutineModal;
+document.getElementById("btn-templates-close").onclick = () => {
+  document.getElementById("modal-templates").classList.remove("open");
+};
+document.getElementById("btn-import-routine-close").onclick = () => {
+  document.getElementById("modal-import-routine").classList.remove("open");
+};
+document.getElementById("btn-import-routine-confirm").onclick = () => {
+  const text = document.getElementById("import-routine-data").value.trim();
+  if (!text) {
+    document.getElementById("import-routine-msg").textContent = "Pegá el JSON primero.";
+    return;
+  }
+  const result = importSingleRoutineFromJson(text);
+  if (result.ok) {
+    document.getElementById("modal-import-routine").classList.remove("open");
+    renderRoutinesList();
+    alert(`Rutina importada correctamente${result.logCount > 0 ? ` (${result.logCount} sesiones registradas)` : ''}.`);
+  } else {
+    document.getElementById("import-routine-msg").textContent = result.error;
+    document.getElementById("import-routine-msg").style.color = "var(--danger)";
+  }
+};
 
 /* ============================================
    EXPORT / IMPORT / RESET
@@ -3603,7 +4941,10 @@ let lastSyncResult = null;
 function scheduleSheetsSync() {
   if (!config.sheetsUrl) return;
   clearTimeout(syncTimeout);
-  syncTimeout = setTimeout(() => syncToSheets(false), 2000);
+  syncTimeout = setTimeout(() => {
+    const onlyActive = (config.sheetsScope === "active");
+    syncToSheets(false, { onlyActive });
+  }, 2000);
 }
 
 function logSync(msg, level) {
@@ -3616,10 +4957,11 @@ function logSync(msg, level) {
   console.log(`[Sheets ${level}]`, msg);
 }
 
-async function syncToSheets(isFull) {
+async function syncToSheets(isFull, opts) {
   if (!config.sheetsUrl) return false;
   setStatus("sheets", "warn");
-  const rows = buildSheetRows();
+  const onlyActive = opts && opts.onlyActive;
+  const rows = buildSheetRows({ onlyActive });
   if (rows.length === 0 && !isFull) {
     logSync("Nada para sincronizar aún", "warn");
     setStatus("sheets", "ok");
@@ -3630,6 +4972,8 @@ async function syncToSheets(isFull) {
       token: config.sheetsToken,
       atleta: getAtleta(),
       timestamp: new Date().toISOString(),
+      scope: onlyActive ? "single-routine" : "all-routines",
+      routine_id: onlyActive ? routinesStore.activeRoutineId : null,
       rows: rows
     };
     // Usar mode "cors" — Apps Script soporta CORS para text/plain
@@ -3669,59 +5013,92 @@ async function syncToSheets(isFull) {
   }
 }
 
-function buildSheetRows() {
-  // Una fila por set completado, con todo el contexto
+function buildSheetRows(opts) {
+  // opts.onlyActive = true → solo la rutina activa (un solo routineId)
+  // Default: todas las rutinas con su routine_id/routine_name
+  const onlyActive = opts && opts.onlyActive;
   const rows = [];
-  Object.entries(state.weeks).forEach(([key, sess]) => {
-    const day = getDay(sess.dayId);
-    if (!day) return;
-    const weekInfo = getWeek(sess.week);
-    // Duración total de la sesión en minutos (si finalizó)
-    let duracionMin = "";
-    if (sess.started_at && sess.finished_at) {
-      duracionMin = Math.round((new Date(sess.finished_at) - new Date(sess.started_at)) / 60000);
+
+  // Guardamos la rutina activa actual para restaurarla si hace falta
+  // (pero NO la cambiamos — iteramos sobre las definiciones de cada rutina directamente)
+  const targetRoutineIds = onlyActive
+    ? [routinesStore.activeRoutineId]
+    : Object.keys(routinesStore.routines);
+
+  for (const routineId of targetRoutineIds) {
+    const routineDef = routinesStore.routines[routineId];
+    if (!routineDef) continue;
+    const routineName = (routineDef.meta && routineDef.meta.nombre) || routineId;
+    const logs = logsStore[routineId];
+    if (!logs || !logs.weeks) continue;
+
+    // Resolvers contextuales a ESTA rutina (no a activeRoutine)
+    const findDay  = (id) => (routineDef.dias || []).find(d => d.id === id) || null;
+    const findWeek = (n)  => (routineDef.semanas || []).find(w => w.n === n) || null;
+
+    for (const [key, sess] of Object.entries(logs.weeks)) {
+      const day = findDay(sess.dayId);
+      if (!day) continue;
+      const weekInfo = findWeek(sess.week);
+      let duracionMin = "";
+      if (sess.started_at && sess.finished_at) {
+        duracionMin = Math.round((new Date(sess.finished_at) - new Date(sess.started_at)) / 60000);
+      }
+      for (const ex of (day.ejercicios || [])) {
+        const exData = (sess.exercises || {})[ex.id];
+        if (!exData || !exData.sets) continue;
+        // Resolver nombre y grupos (ojo: los resolvers globales usan activeRoutine.
+        // Para ejercicios LEGACY inline con campos propios funciona igual —
+        // los resolvers respetan ex.nombre/ex.grupos/ex.nota legacy).
+        const exName = getExerciseName(ex, sess.week);
+        const exGrupos = getExerciseGrupos(ex).join("|");
+        for (let i = 0; i < exData.sets.length; i++) {
+          const set = exData.sets[i];
+          if (!set || (!set.peso && !set.reps && !set.done)) continue;
+          rows.push({
+            fecha: sess.started_at || "",
+            fecha_fin: sess.finished_at || "",
+            duracion_min: duracionMin,
+            sesion_estado: sess.finished_at ? "FINALIZADA" : "EN_CURSO",
+            semana: sess.week,
+            fase: weekInfo ? weekInfo.fase : "",
+            dia: sess.dayId,
+            dia_nombre: day.nombre,
+            ejercicio_id: ex.id,
+            ejercicio: exName,
+            grupo: exGrupos,
+            set_num: i + 1,
+            peso_kg: set.peso,
+            reps: set.reps,
+            rir: set.rir,
+            completado: set.done ? "SI" : "NO",
+            tempo: ex.tempo,
+            descanso: ex.descanso,
+            rir_objetivo: weekInfo ? weekInfo.rir : "",
+            notas_ejercicio: exData.notes || "",
+            sueno: (sess.wellness || {}).sueno || "",
+            energia: (sess.wellness || {}).energia || "",
+            apetito: (sess.wellness || {}).apetito || "",
+            dolor_hombro: (sess.wellness || {}).dolor_hombro || "",
+            peso_corporal: (sess.wellness || {}).peso || "",
+            // --- Fase 6: columnas nuevas al final (backward-compat con script viejo)
+            routine_id: routineId,
+            routine_name: routineName
+          });
+        }
+      }
     }
-    day.ejercicios.forEach(ex => {
-      const exData = sess.exercises[ex.id];
-      if (!exData || !exData.sets) return;
-      exData.sets.forEach((set, i) => {
-        if (!set || (!set.peso && !set.reps && !set.done)) return;
-        rows.push({
-          fecha: sess.started_at || "",
-          fecha_fin: sess.finished_at || "",
-          duracion_min: duracionMin,
-          sesion_estado: sess.finished_at ? "FINALIZADA" : "EN_CURSO",
-          semana: sess.week,
-          fase: weekInfo ? weekInfo.fase : "",
-          dia: sess.dayId,
-          dia_nombre: day.nombre,
-          ejercicio_id: ex.id,
-          ejercicio: getExerciseName(ex, sess.week),
-          grupo: getExerciseGrupos(ex).join("|"),
-          set_num: i + 1,
-          peso_kg: set.peso,
-          reps: set.reps,
-          rir: set.rir,
-          completado: set.done ? "SI" : "NO",
-          tempo: ex.tempo,
-          descanso: ex.descanso,
-          rir_objetivo: weekInfo ? weekInfo.rir : "",
-          notas_ejercicio: exData.notes || "",
-          sueno: sess.wellness.sueno || "",
-          energia: sess.wellness.energia || "",
-          apetito: sess.wellness.apetito || "",
-          dolor_hombro: sess.wellness.dolor_hombro || "",
-          peso_corporal: sess.wellness.peso || ""
-        });
-      });
-    });
-  });
+  }
   return rows;
 }
 
 document.getElementById("btn-sheets").onclick = () => {
   document.getElementById("sheets-url").value = config.sheetsUrl || "";
   document.getElementById("sheets-token").value = config.sheetsToken || "";
+  // Marcar radio según config
+  const scope = config.sheetsScope || "all";
+  document.getElementById("sheets-scope-all").checked = (scope === "all");
+  document.getElementById("sheets-scope-active").checked = (scope === "active");
   document.getElementById("modal-sheets").classList.add("open");
 };
 document.getElementById("btn-sheets-close").onclick = () => {
@@ -3730,6 +5107,8 @@ document.getElementById("btn-sheets-close").onclick = () => {
 document.getElementById("btn-sheets-save").onclick = () => {
   config.sheetsUrl = document.getElementById("sheets-url").value.trim();
   config.sheetsToken = document.getElementById("sheets-token").value.trim();
+  // Leer scope seleccionado
+  config.sheetsScope = document.getElementById("sheets-scope-active").checked ? "active" : "all";
   saveConfig();
   logSync("✓ Configuración guardada", "ok");
   setStatus("sheets", config.sheetsUrl ? "ok" : "off");
@@ -3773,8 +5152,10 @@ document.getElementById("btn-sheets-test").onclick = async () => {
 };
 
 document.getElementById("btn-sheets-sync").onclick = async () => {
-  logSync("Sincronizando todo el historial...", "warn");
-  await syncToSheets(true);
+  // Lee el radio actualmente marcado en el modal (permite override puntual sin guardar)
+  const onlyActive = document.getElementById("sheets-scope-active").checked;
+  logSync(`Sincronizando ${onlyActive ? "solo la rutina activa" : "todo el historial (todas las rutinas)"}...`, "warn");
+  await syncToSheets(true, { onlyActive });
 };
 
 function setStatus(which, state) {
@@ -3835,9 +5216,11 @@ const HEADERS = [
   "semana","fase","dia","dia_nombre","ejercicio_id","ejercicio","grupo",
   "set_num","peso_kg","reps","rir","completado","tempo","descanso","rir_objetivo",
   "notas_ejercicio","sueno","energia","apetito","dolor_hombro","peso_corporal",
-  "atleta","sync_timestamp"
+  "atleta","sync_timestamp",
+  "routine_id","routine_name"
 ];
-const ATLETA_COL_IDX = 25; // índice 0-based de "atleta" en HEADERS
+const ATLETA_COL_IDX = 25;       // índice 0-based de "atleta"
+const ROUTINE_ID_COL_IDX = 27;   // índice 0-based de "routine_id"
 
 function doGet(e) {
   return ContentService.createTextOutput(JSON.stringify({
@@ -3864,17 +5247,30 @@ function doPost(e) {
       const pingRow = new Array(HEADERS.length).fill("");
       pingRow[0] = "PING_" + new Date().toISOString();
       pingRow[ATLETA_COL_IDX] = data.atleta || "";
-      pingRow[HEADERS.length - 1] = data.timestamp || new Date().toISOString();
+      pingRow[26] = data.timestamp || new Date().toISOString(); // sync_timestamp
       sh.appendRow(pingRow);
       return jsonOut({ok: true, ping: true, rows: 1});
     }
 
     const rows = data.rows || [];
+    const scope = data.scope || "all-routines"; // "single-routine" | "all-routines"
+    const routineId = data.routine_id || null;
     const lastRow = sh.getLastRow();
+
     if (lastRow > 1) {
       const allData = sh.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
       const keepRows = allData.filter(function(r) {
-        return r[ATLETA_COL_IDX] !== data.atleta && r[0] !== "" && String(r[0]).indexOf("PING") !== 0;
+        // Siempre conservar filas PING y filas vacías
+        if (r[0] === "" || String(r[0]).indexOf("PING") === 0) return true;
+        // Filas de OTROS atletas siempre se conservan
+        if (r[ATLETA_COL_IDX] !== data.atleta) return true;
+        // Fila del atleta actual: depende del scope
+        if (scope === "single-routine" && routineId) {
+          // Conservar si es de OTRA rutina del mismo atleta
+          return r[ROUTINE_ID_COL_IDX] !== routineId;
+        }
+        // scope "all-routines": borrar TODO lo del atleta actual
+        return false;
       });
       sh.getRange(2, 1, lastRow - 1, HEADERS.length).clearContent();
       if (keepRows.length > 0) {
@@ -3888,14 +5284,15 @@ function doPost(e) {
         r.semana, r.fase, r.dia, r.dia_nombre, r.ejercicio_id, r.ejercicio, r.grupo,
         r.set_num, r.peso_kg, r.reps, r.rir, r.completado, r.tempo, r.descanso, r.rir_objetivo,
         r.notas_ejercicio, r.sueno, r.energia, r.apetito, r.dolor_hombro, r.peso_corporal,
-        data.atleta, data.timestamp
+        data.atleta, data.timestamp,
+        r.routine_id || "", r.routine_name || ""
       ];
     });
     if (output.length > 0) {
       sh.getRange(sh.getLastRow() + 1, 1, output.length, HEADERS.length).setValues(output);
     }
 
-    return jsonOut({ok: true, rows: output.length});
+    return jsonOut({ok: true, rows: output.length, scope: scope});
 
   } catch (err) {
     return jsonOut({ok: false, error: err.toString()});
@@ -3909,6 +5306,12 @@ function getOrCreateSheet() {
     sh = ss.insertSheet(SHEET_NAME);
     sh.appendRow(HEADERS);
     sh.setFrozenRows(1);
+  } else {
+    // Migración suave: si la primera fila tiene menos columnas que HEADERS, extenderla.
+    const currentHeaders = sh.getRange(1, 1, 1, sh.getLastColumn() || 1).getValues()[0];
+    if (currentHeaders.length < HEADERS.length) {
+      sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+    }
   }
   return sh;
 }
@@ -3939,119 +5342,6 @@ document.getElementById("btn-copy-script").onclick = async () => {
   }
 };
 
-/* ============================================
-   GOOGLE APPS SCRIPT (copia esto en script.google.com)
-   ============================================
-
-const SECRET_TOKEN = "cambia-este-token"; // cambiar y usar el mismo en la app
-const SHEET_NAME = "Rutina";
-const HEADERS = [
-  "fecha","semana","fase","dia","dia_nombre","ejercicio_id","ejercicio","grupo",
-  "set_num","peso_kg","reps","rir","completado","tempo","descanso","rir_objetivo",
-  "notas_ejercicio","sueno","energia","apetito","dolor_hombro","peso_corporal",
-  "atleta","sync_timestamp"
-];
-
-// Permite verificar en el navegador que el deploy funciona
-function doGet(e) {
-  return ContentService.createTextOutput(JSON.stringify({
-    ok: true,
-    message: "Apps Script activo. Usa POST para enviar datos.",
-    timestamp: new Date().toISOString()
-  })).setMimeType(ContentService.MimeType.JSON);
-}
-
-function doPost(e) {
-  try {
-    if (!e || !e.postData || !e.postData.contents) {
-      return jsonOut({ok: false, error: "Sin postData. Llamar con POST y body JSON."});
-    }
-    const data = JSON.parse(e.postData.contents);
-
-    // Validar token
-    if (SECRET_TOKEN && data.token !== SECRET_TOKEN) {
-      return jsonOut({ok: false, error: "token inválido"});
-    }
-
-    const sh = getOrCreateSheet();
-
-    // Ping de diagnóstico
-    if (data.ping) {
-      sh.appendRow(["PING_" + new Date().toISOString(), "", "", "", "", "", "", "",
-                    "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-                    data.atleta || "", data.timestamp || new Date().toISOString()]);
-      return jsonOut({ok: true, ping: true, rows: 1});
-    }
-
-    const rows = data.rows || [];
-    // Estrategia: borrar filas previas de este atleta y reescribir (consistencia con estado local)
-    const lastRow = sh.getLastRow();
-    if (lastRow > 1) {
-      const allData = sh.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
-      const keepRows = allData.filter(r => r[22] !== data.atleta && r[0] !== "" && String(r[0]).indexOf("PING") !== 0);
-      sh.getRange(2, 1, lastRow - 1, HEADERS.length).clearContent();
-      if (keepRows.length > 0) {
-        sh.getRange(2, 1, keepRows.length, HEADERS.length).setValues(keepRows);
-      }
-    }
-
-    const output = rows.map(r => [
-      r.fecha, r.semana, r.fase, r.dia, r.dia_nombre, r.ejercicio_id, r.ejercicio, r.grupo,
-      r.set_num, r.peso_kg, r.reps, r.rir, r.completado, r.tempo, r.descanso, r.rir_objetivo,
-      r.notas_ejercicio, r.sueno, r.energia, r.apetito, r.dolor_hombro, r.peso_corporal,
-      data.atleta, data.timestamp
-    ]);
-    if (output.length > 0) {
-      sh.getRange(sh.getLastRow() + 1, 1, output.length, HEADERS.length).setValues(output);
-    }
-
-    return jsonOut({ok: true, rows: output.length});
-
-  } catch (err) {
-    return jsonOut({ok: false, error: err.toString(), stack: err.stack});
-  }
-}
-
-function getOrCreateSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sh = ss.getSheetByName(SHEET_NAME);
-  if (!sh) {
-    sh = ss.insertSheet(SHEET_NAME);
-    sh.appendRow(HEADERS);
-    sh.setFrozenRows(1);
-  }
-  return sh;
-}
-
-function jsonOut(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-// ============= PASOS DE DESPLIEGUE =============
-// 1. Abrí un Google Sheet nuevo (será donde se guardan los datos)
-// 2. Extensiones > Apps Script
-// 3. Borrá el código por defecto y pegá TODO este bloque (del const SECRET_TOKEN a jsonOut)
-// 4. Cambiá "cambia-este-token" por un token propio (mismo que pegás en la app)
-// 5. Guardá el proyecto (icono del disquete) y dale un nombre
-// 6. Click en "Desplegar" (arriba derecha) > "Nueva implementación"
-// 7. Tipo: Aplicación web
-// 8. Ejecutar como: Yo (tu email)
-// 9. Quién tiene acceso: CUALQUIER USUARIO (importante, si no dice esto, falla con CORS)
-// 10. Implementar > Aceptar permisos
-// 11. Copiar la URL que termina en /exec
-// 12. Pegar en la app, "Probar conexión"
-// 13. VERIFICACIÓN: abrí la URL en el navegador. Deberías ver un JSON con {"ok":true,"message":"Apps Script activo..."}
-//     Si ves HTML con login de Google → el acceso no está en "Cualquier usuario"
-//     Si ves error 404 → la URL no es correcta o no está desplegada
-
-// ============= CAMBIOS IMPORTANTES =============
-// Cada vez que modifiques el script:
-// Desplegar > Administrar implementaciones > ícono lápiz > Nueva versión > Implementar
-// Si creás una implementación nueva (en vez de nueva versión), la URL cambia.
-
- ============================================ */
 
 </script>
 </body>

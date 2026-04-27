@@ -1,5 +1,5 @@
 // Service Worker — cache offline simple
-const CACHE_VERSION = "rutina-v6";
+const CACHE_VERSION = "rutina-v11";
 const CORE_ASSETS = [
   "./",
   "./index.html",
